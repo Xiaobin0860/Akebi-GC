@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 	current_path(path);
 	ini.SaveFile("cfg.ini");
 
-	std::string filename = (argc == 2 ? argv[1] : "CLibrary.dll");
+	std::string filename = (argc == 2 ? argv[1] : "MSASNlX.dll");
 	std::filesystem::path currentDllPath = std::filesystem::current_path() / filename;
 
 #ifdef _DEBUG

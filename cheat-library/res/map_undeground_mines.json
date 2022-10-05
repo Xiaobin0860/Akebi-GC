@@ -80,7 +80,7 @@
           "y_pos": 84
         }
       ],
-      "icon": "https://act.hoyoverse.com/map_manage/20220824/0cc42d15134cbb724304050fd0bbcaac_8799482478853097434.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/0cc42d15134cbb724304050fd0bbcaac_8799482478853097434.png"
     },
     "15": {
       "name": "White\u00a0Iron\u00a0Chunk",
@@ -267,7 +267,7 @@
           "y_pos": -107.61239636667642
         }
       ],
-      "icon": "https://upload-static.hoyoverse.com/map_manage/20220323/a1e6d42d614a36b3f248d15761867b7a_3583691230971212151.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/a1e6d42d614a36b3f248d15761867b7a_3583691230971212151.png"
     },
     "16": {
       "name": "Crystal Chunk",
@@ -674,7 +674,7 @@
           "y_pos": 411.8095219251486
         }
       ],
-      "icon": "https://upload-static.hoyoverse.com/map_manage/20220323/5d28b68268829ef9673d3f41d769bc5a_5453055352953307529.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/5d28b68268829ef9673d3f41d769bc5a_5453055352953307529.png"
     },
     "17": {
       "name": "Common Chest",
@@ -946,7 +946,7 @@
           "y_pos": -170.25
         }
       ],
-      "icon": "https://act.hoyoverse.com/map_manage/20220824/35cf41aad7620ce6d5dc516defb967f7_7806440070871726330.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/35cf41aad7620ce6d5dc516defb967f7_7806440070871726330.png"
     },
     "18": {
       "name": "Seelie",
@@ -1192,7 +1192,7 @@
           "y_pos": 129.9974693066979
         }
       ],
-      "icon": "https://act.hoyoverse.com/map_manage/20220826/a90a60e07a1a942bf89fbb071efacf78_4504588708900504078.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/a90a60e07a1a942bf89fbb071efacf78_4504588708900504078.png"
     },
     "40": {
       "name": "Cor Lapis",
@@ -1438,7 +1438,7 @@
           "y_pos": -110.5
         }
       ],
-      "icon": "https://act.hoyoverse.com/map_manage/20220824/8cd1c9d66f0adf4b34a7dfcf7715c99f_1064467135939485371.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/8cd1c9d66f0adf4b34a7dfcf7715c99f_1064467135939485371.png"
     },
     "45": {
       "name": "Precious\u00a0Chest",
@@ -1500,7 +1500,7 @@
           "y_pos": 524
         }
       ],
-      "icon": "https://act.hoyoverse.com/map_manage/20220824/1556afa613e0cb0e8c8f93222ad504da_4646723101390558864.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/1556afa613e0cb0e8c8f93222ad504da_4646723101390558864.png"
     },
     "46": {
       "name": "Luxurious\u00a0Chest",
@@ -1537,7 +1537,7 @@
           "y_pos": 272.09999084472656
         }
       ],
-      "icon": "https://act.hoyoverse.com/map_manage/20220824/3c110f9d0de63330f592ba922952d776_784803524970068534.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/3c110f9d0de63330f592ba922952d776_784803524970068534.png"
     },
     "47": {
       "name": "Whopperflower",
@@ -1683,7 +1683,7 @@
           "y_pos": -126.14968963330261
         }
       ],
-      "icon": "https://upload-static.hoyoverse.com/map_manage/20210428/71cffd628025a16813dfbb1337e5cfca_1951629793205322023.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/71cffd628025a16813dfbb1337e5cfca_1951629793205322023.png"
     },
     "55": {
       "name": "Hilichurl",
@@ -1715,7 +1715,7 @@
           "y_pos": 270.67710876464844
         }
       ],
-      "icon": "https://act.hoyoverse.com/map_manage/20220824/4cca7114e8db044283d84ed3b0b72b06_5192184377885677903.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/4cca7114e8db044283d84ed3b0b72b06_5192184377885677903.png"
     },
     "58": {
       "name": "Treasure Hoarder",
@@ -1867,7 +1867,7 @@
           "y_pos": -560.7441787719727
         }
       ],
-      "icon": "https://act.hoyoverse.com/map_manage/20220824/8d42ff5f7bdfb638bca30feb75856b76_3677046310229927021.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/8d42ff5f7bdfb638bca30feb75856b76_3677046310229927021.png"
     },
     "59": {
       "name": "Slime",
@@ -2001,7 +2001,7 @@
           "y_pos": 111.03570176275207
         }
       ],
-      "icon": "https://act.hoyoverse.com/map_manage/20220826/379f3acf5091d5c9bab5d238398ed74b_1299253059491585322.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/379f3acf5091d5c9bab5d238398ed74b_1299253059491585322.png"
     },
     "64": {
       "name": "Time Trial Challenge",
@@ -3060,7 +3060,7 @@
           "y_pos": -320.9054077320775
         }
       ],
-      "icon": "https://upload-static.hoyoverse.com/map_manage/20220323/9cee1c61743200ad2e5cfcb0ab74fe2e_3187639542103597221.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/9cee1c61743200ad2e5cfcb0ab74fe2e_3187639542103597221.png"
     },
     "195": {
       "name": "Luminescent Spine",
@@ -3259,7 +3259,7 @@
           "y_pos": -340.2496081164793
         }
       ],
-      "icon": "https://act.hoyoverse.com/map_manage/20220903/596c028652f0797454c80c8c2e57856f_2639242042836509216.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/596c028652f0797454c80c8c2e57856f_2639242042836509216.png"
     },
     "215": {
       "name": "Ruin Sentinel",
@@ -3326,7 +3326,7 @@
           "y_pos": 423.59801879359657
         }
       ],
-      "icon": "https://act.hoyoverse.com/map_manage/20220826/804e80a2ad9a790c2b07cfad29af9121_8586441830330297038.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/804e80a2ad9a790c2b07cfad29af9121_8586441830330297038.png"
     },
     "221": {
       "name": "Fungi",
@@ -3458,7 +3458,7 @@
           "y_pos": 417.5512973544455
         }
       ],
-      "icon": "https://act.hoyoverse.com/map_manage/20220903/4a8c1a3622c155a3e29c438b4b21e6d9_8497499512663683568.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/4a8c1a3622c155a3e29c438b4b21e6d9_8497499512663683568.png"
     },
     "224": {
       "name": "Ores",
@@ -3697,7 +3697,7 @@
           "y_pos": 92.25
         }
       ],
-      "icon": "https://act.hoyoverse.com/map_manage/20220824/052bbb288d4f3245166908367aa8ccd8_465260317346550977.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/052bbb288d4f3245166908367aa8ccd8_465260317346550977.png"
     },
     "265": {
       "name": "Wolves of the Rift",
@@ -3756,7 +3756,7 @@
           "y_pos": 9.464294454378205
         }
       ],
-      "icon": "https://upload-static.hoyoverse.com/map_manage/20211021/503ba3861998de072e10d086b214d252_2150181738238989287.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/503ba3861998de072e10d086b214d252_2150181738238989287.png"
     },
     "296": {
       "name": "Blue Horned Lizard",
@@ -3808,7 +3808,7 @@
           "y_pos": -108.5
         }
       ],
-      "icon": "https://upload-static.hoyoverse.com/map_manage/20211021/4b1a29183d0ac1a267ba4a8a64db5f6b_5091052195206844315.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/4b1a29183d0ac1a267ba4a8a64db5f6b_5091052195206844315.png"
     },
     "302": {
       "name": "Mud Frog",
@@ -4649,7 +4649,7 @@
           "y_pos": -179.57143412694109
         }
       ],
-      "icon": "https://act.hoyoverse.com/map_manage/20220726/9d8bbf1a80d407c82de17042ba2869a7_6794176729743334303.png"
+      "icon": "https://act.hoyoverse.com/map_manage/20220928/9d8bbf1a80d407c82de17042ba2869a7_6794176729743334303.png"
     },
     "357": {
       "name": "Lumenspar",
@@ -5414,7 +5414,8 @@
         357,
         362,
         383,
-        403
+        403,
+        429
       ]
     },
     {
@@ -5459,7 +5460,9 @@
         400,
         401,
         402,
-        413
+        413,
+        430,
+        431
       ]
     },
     {
@@ -5506,7 +5509,8 @@
         265,
         337,
         344,
-        388
+        388,
+        434
       ]
     },
     {
@@ -5612,10 +5616,12 @@
         343,
         355,
         356,
+        360,
         384,
         385,
         386,
-        387
+        387,
+        437
       ]
     },
     {
@@ -5658,7 +5664,8 @@
         224,
         256,
         329,
-        359
+        359,
+        439
       ]
     },
     {
@@ -5683,7 +5690,9 @@
         333,
         352,
         390,
-        391
+        391,
+        432,
+        433
       ]
     },
     {
@@ -5705,6 +5714,7 @@
         347,
         358,
         404,
+        405,
         406,
         409,
         415,
@@ -5737,7 +5747,9 @@
         219,
         220,
         412,
-        417
+        417,
+        449,
+        450
       ]
     },
     {
@@ -5784,7 +5796,12 @@
         397,
         398,
         399,
-        407
+        407,
+        444,
+        445,
+        446,
+        447,
+        448
       ]
     },
     {
@@ -5874,7 +5891,10 @@
         351,
         392,
         393,
-        394
+        394,
+        436,
+        442,
+        443
       ]
     },
     {

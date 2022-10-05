@@ -1,12 +1,12 @@
 {
-  "game_version": "3.0",
+  "game_version": "3.1 CN",
   "modules": {
     "UnityPlayer.dll": {
-      "checksum": 2733807961186206404,
+      "checksum": 16346550770212240229,
       "timestamp": 0
     },
     "UserAssembly.dll": {
-      "checksum": 16409169546023337378,
+      "checksum": 7615934490373689495,
       "timestamp": 0
     }
   }
