@@ -21,6 +21,11 @@ namespace cheat::feature
 {
 
     static bool ActorAbilityPlugin_OnEvent_Hook(void* __this, app::BaseEvent* e, MethodInfo* method);
+    static void LuaShellManager_ReportLuaShellResult_Hook(void* __this, app::String* type, app::String* value, MethodInfo* method);
+    static void LuaShellManager_DoString_Hook(void* __this, app::Byte__Array* byteArray, MethodInfo* method);
+    static void* LuaEnv_DoString_Hook(void* __this, app::Byte__Array* chunk, app::String* chunkName, void* env, MethodInfo* method);
+    static void Lua_xlua_pushasciistring_Hook(void* L, app::String* str, MethodInfo* method);
+    static void SendInfo_Hook(app::MoleMole_NetworkManager* __this, app::GKOJAICIOPA* info, MethodInfo* method);
     void OnGameUpdate();
     static bool csvFriendly = true;
     static bool includeHeaders = true;
@@ -83,10 +88,10 @@ namespace cheat::feature
         CALL_ORIGIN(SendInfo_Hook, __this, info, method);
     }
 
-    static void Lua_xlua_pushasciistring_Hook(void* __this, void* L, app::String* str, MethodInfo* method)
+    static void Lua_xlua_pushasciistring_Hook(void* L, app::String* str, MethodInfo* method)
     {
         LOG_DEBUG("Pushed string: %s", il2cppi_to_string(str).c_str());
-        CALL_ORIGIN(Lua_xlua_pushasciistring_Hook, __this, L, str, method);
+        CALL_ORIGIN(Lua_xlua_pushasciistring_Hook, L, str, method);
     }
 
     static int checkCount = 0;

@@ -99,4 +99,8 @@ std::string to_hex_string(app::Byte__Array* barray, int length) {
     return util::to_hex_string(uarray->begin(), length);
 }
 
+UINT32 GCHandle_New(void* object, bool pinned) {
+    return il2cpp_gchandle_new((Il2CppObject*)object, pinned);
+}
+
 #endif

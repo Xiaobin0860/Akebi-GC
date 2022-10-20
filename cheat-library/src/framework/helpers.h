@@ -295,3 +295,10 @@ template<typename T> bool il2cppi_is_initialized(T* metadataItem) {
     return !((uintptr_t)*metadataItem & 1);
 #endif
 }
+
+UINT32 GCHandle_New(LPVOID object, bool pinned);
+
+template<class T>
+static T* GCHandle_GetObject(UINT handle) {
+    return (T*)il2cpp_gchandle_get_target(handle);
+}

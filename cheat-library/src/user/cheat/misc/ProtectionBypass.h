@@ -24,7 +24,7 @@ namespace cheat::feature
 
 	private:
 		ProtectionBypass();
-		std::map<int32_t, std::string> m_CorrectSignatures;
+		std::map<int32_t, UINT> m_CorrectSignatures;
 	};
 }
 

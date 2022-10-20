@@ -66,26 +66,13 @@ namespace cheat::feature
 	{
 		if (m_CorrectSignatures.count(nType))
 		{
-			auto byteClass = app::GetIl2Classes()[0x25];
-
-			auto& content = m_CorrectSignatures[nType];
-			auto newArray = (app::Byte__Array*)il2cpp_array_new(byteClass, content.size());
-			memmove_s(newArray->vector, content.size(), content.data(), content.size());
-
-			return newArray;
+			return GCHandle_GetObject<app::Byte__Array>(m_CorrectSignatures[nType]);
 		}
 
-		app::Byte__Array* result = CALL_ORIGIN(RecordUserData_Hook, nType);
-		auto resultArray = TO_UNI_ARRAY(result, byte);
+		auto result = CALL_ORIGIN(RecordUserData_Hook, nType);
+		m_CorrectSignatures[nType] = GCHandle_New(result, true);
 
-		auto length = resultArray->length();
-		if (length == 0)
-			return result;
-
-		auto stringValue = std::string((char*)result->vector, length);
-		m_CorrectSignatures[nType] = stringValue;
-
-		LOG_DEBUG("Sniffed correct signature for type %d value '%s'", nType, stringValue.c_str());
+		LOG_DEBUG("Sniffed correct signature for type %d", nType);
 
 		return result;
 	}
