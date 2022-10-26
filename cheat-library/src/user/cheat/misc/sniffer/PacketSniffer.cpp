@@ -82,7 +82,6 @@ namespace cheat::feature
 			delete[] data;
 
 			// Will be deleted by KcpNative_kcp_client_network_thread
-			// app::Kcp_KcpNative_kcp_packet_destroy(packet, nullptr);
 			packet = new_packet;
 		}
 		break;

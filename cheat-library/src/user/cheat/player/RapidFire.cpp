@@ -8,7 +8,6 @@
 
 namespace cheat::feature
 {
-	//static void LCBaseCombat_DoHitEntity_Hook(app::LCBaseCombat* __this, uint32_t targetID, app::AttackResult* attackResult, bool ignoreCheckCanBeHitInMP, MethodInfo* method);
 	static void VCAnimatorEvent_HandleProcessItem_Hook(app::MoleMole_VCAnimatorEvent* __this,
 		app::MoleMole_VCAnimatorEvent_MoleMole_VCAnimatorEvent_AnimatorEventPatternProcessItem* processItem,
 		app::AnimatorStateInfo processStateInfo, app::MoleMole_VCAnimatorEvent_MoleMole_VCAnimatorEvent_TriggerMode__Enum mode, MethodInfo* method);
@@ -37,7 +36,6 @@ namespace cheat::feature
 		NF(f_SpeedMultiplier, "Speed Multiplier", "RapidFire", 1.5f),
 		animationCounter(1)
 	{
-		// HookManager::install(app::MoleMole_LCBaseCombat_DoHitEntity, LCBaseCombat_DoHitEntity_Hook); -- Looks like FireBeingHitEvent is superior to this.
 		HookManager::install(app::MoleMole_VCAnimatorEvent_HandleProcessItem, VCAnimatorEvent_HandleProcessItem_Hook);
 		HookManager::install(app::MoleMole_LCBaseCombat_FireBeingHitEvent, LCBaseCombat_FireBeingHitEvent_Hook);
 	}
@@ -245,60 +243,6 @@ namespace cheat::feature
 			return true;
 		return false;
 	}
-
-	// Raises when any entity do hit event.
-	// Just recall attack few times (regulating by combatProp)
-	// It's not tested well, so, I think, anticheat can detect it.
-	/*static void LCBaseCombat_DoHitEntity_Hook(app::LCBaseCombat* __this, uint32_t targetID, app::AttackResult* attackResult, bool ignoreCheckCanBeHitInMP, MethodInfo* method)
-	{
-		auto attacker = game::Entity(__this->fields._._._entity);
-		RapidFire& rapidFire = RapidFire::GetInstance();
-		if (!IsConfigByAvatar(attacker) || !IsAttackByAvatar(attacker) || !rapidFire.f_Enabled)
-			return CALL_ORIGIN(LCBaseCombat_DoHitEntity_Hook, __this, targetID, attackResult, ignoreCheckCanBeHitInMP, method);
-
-		auto& manager = game::EntityManager::instance();
-		auto originalTarget = manager.entity(targetID);
-
-		if (!IsValidByFilter(originalTarget))
-			return CALL_ORIGIN(LCBaseCombat_DoHitEntity_Hook, __this, targetID, attackResult, ignoreCheckCanBeHitInMP, method);
-
-		std::vector<cheat::game::Entity*> validEntities;
-		validEntities.push_back(originalTarget);
-
-		if (rapidFire.f_MultiTarget)
-		{
-			auto filteredEntities = manager.entities();
-			for (const auto& entity : filteredEntities) {
-				auto distance = originalTarget->distance(entity);
-
-				if (entity->runtimeID() == manager.avatar()->runtimeID())
-					continue;
-
-				if (entity->runtimeID() == targetID)
-					continue;
-
-				if (distance > rapidFire.f_MultiTargetRadius)
-					continue;
-
-				if (!IsValidByFilter(entity))
-					continue;
-
-				validEntities.push_back(entity);
-			}
-		}
-
-		for (const auto& entity : validEntities) {
-
-			if (rapidFire.f_MultiHit) {
-				int attackCount = rapidFire.GetAttackCount(__this, entity->runtimeID(), attackResult);
-				for (int i = 0; i < attackCount; i++)
-					app::MoleMole_LCBaseCombat_FireBeingHitEvent(__this, entity->runtimeID(), attackResult, method);
-			}
-			else CALL_ORIGIN(LCBaseCombat_DoHitEntity_Hook, __this, entity->runtimeID(), attackResult, ignoreCheckCanBeHitInMP, method);
-		}
-
-		CALL_ORIGIN(LCBaseCombat_DoHitEntity_Hook, __this, targetID, attackResult, ignoreCheckCanBeHitInMP, method);
-	}*/
 
 	static void LCBaseCombat_FireBeingHitEvent_Hook(app::LCBaseCombat* __this, uint32_t attackeeRuntimeID, app::AttackResult* attackResult, MethodInfo* method)
 	{
