@@ -175,7 +175,7 @@ DO_APP_FUNC(0x05C3E6C0, Component_1*, GameObject_GetComponentByName, (GameObject
 DO_APP_FUNC(0x05C3EBA0, bool, GameObject_get_active, (GameObject* __this, MethodInfo* method));
 DO_APP_FUNC(0x05C3EC60, void, GameObject_set_active, (GameObject* __this, bool value, MethodInfo* method));
 DO_APP_FUNC(0x05C3EA60, void, GameObject_SetActive, (GameObject* __this, bool value, MethodInfo* method));
-DO_APP_FUNC(0x05B4D730, GameObject*, GameObject_CreatePrimitive, (PrimitiveType__Enum type, MethodInfo* method));
+DO_APP_FUNC(0x05C3E630, GameObject*, GameObject_CreatePrimitive, (PrimitiveType__Enum type, MethodInfo* method));
 DO_APP_FUNC(0x05C3EC40, Transform*, GameObject_get_transform, (GameObject* __this, MethodInfo* method));
 DO_APP_FUNC(0x05C3E5D0, Component_1*, GameObject_AddComponentInternal, (GameObject* __this, String* className, MethodInfo* method));
 DO_APP_FUNC(0x05C3E980, Component_1*, GameObject_AddComponent, (GameObject* __this, Type* componentType, MethodInfo* method));
