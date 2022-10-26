@@ -529,7 +529,7 @@ DO_APP_FUNC(0x02B10A90, void, VCHumanoidMove_NotifyLandVelocity, (VCHumanoidMove
 
 
 // VCMonsterAIController
-DO_APP_FUNC(0x02513960, void, MoleMole_VCMonsterAIController_TryDoSkill, (/* VCMonsterAIController */ void* __this, uint32_t skillID, MethodInfo* method)); // Manual
+DO_APP_FUNC(0x02513960, void, MoleMole_VCMonsterAIController_TryDoSkill, (/* VCMonsterAIController */ void* __this, uint32_t skillID, MethodInfo* method));
 
 
 // Vector2
