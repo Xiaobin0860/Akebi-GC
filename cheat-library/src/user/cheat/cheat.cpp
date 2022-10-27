@@ -84,7 +84,9 @@ namespace cheat
 			FEAT_INST(Hotkeys),
 			FEAT_INST(Debug),
 			FEAT_INST(About),
+#ifndef _PATTERN_SCANNER
 			FEAT_INST(PacketSniffer),
+#endif
 
 			FEAT_INST(GodMode),
 			FEAT_INST(InfiniteStamina),
