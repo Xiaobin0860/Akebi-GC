@@ -4336,6 +4336,7 @@ namespace app {
         struct RuntimeAnimatorController* _remoteRuntimeAnimatorController;
         uint32_t _authorityRuntimeAnimatorHandler;
         uint32_t _remoteRuntimeAnimatorHandler;
+        bool CNFCMHJGBFI;
         struct Dictionary_2_System_Int32_System_Boolean_* _boolPersistentParams;
         struct Dictionary_2_System_Int32_System_Int32_* _intPersistentParams;
         struct Dictionary_2_System_Int32_System_Single_* _floatPersistentParams;
@@ -6167,7 +6168,10 @@ namespace app {
         Rock = 0x00000008,
         AntiFire = 0x00000009,
         VehicleMuteIce = 0x0000000a,
-        COUNT = 0x0000000b,
+        Mushroom = 0x0000000b,
+        Overdose = 0x0000000c,
+        Wood = 0x0000000d,
+        COUNT = 0x0000000e,
     };
 
     enum class Config_WorldAreaType__Enum : int32_t {
@@ -7195,8 +7199,9 @@ namespace app {
         struct SafeFloat FFEAAPPMDOD;
         struct SafeFloat DAIAFOLPJPB;
         struct SafeFloat HNBPNIHBDJC;
-        struct SafeFloat level;
-        struct SafeFloat exp;
+        struct SafeFloat Ulevel;
+        struct SafeFloat Uexp;
+        struct SafeFloat UNK;
         ElementType__Enum elemType;
         struct SafeFloat weight;
         struct SafeFloat endure;
