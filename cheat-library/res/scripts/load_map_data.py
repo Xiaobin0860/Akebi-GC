@@ -30,7 +30,7 @@ for (name, message) in points_messages:
         label_map[label["id"]] = label
 
     data = {}
-    
+
     for point in point_list:
         label_id = point["label_id"]
         if label_id not in data:
@@ -50,10 +50,10 @@ for (name, message) in points_messages:
             "y_pos": point["y_pos"]
         })
         data[label_id]["points"] = sorted(points, key=lambda x: x["id"])
-    
 
     refactored_data[name] = {
-        "labels": dict(sorted(data.items())) # Sorting it so we can easily track changes in updates
+        # Sorting it so we can easily track changes in updates
+        "labels": dict(sorted(data.items()))
     }
 
 # Getting map categories data
@@ -79,26 +79,29 @@ for (name, message) in categories_messages:
                 "children": sorted([child["id"] for child in category["children"]])
             }
         )
-    
+
     refactored_data[name]["categories"] = sorted(data, key=lambda x: x["id"])
 
 # Get ascension materials data
 # They don't provide names for attrs so just manually set it...
-character_types = {"1":"Pyro", "2":"Anemo", "3":"Geo", "4":"Dendro", "5":"Electro", "6":"Hydro", "7":"Cryo"}
-weapon_types = {"1":"Swords", "10":"Catalysts", "11":"Claymores", "12":"Bows", "13":"Polearms"}
+character_types = {"1": "Pyro", "2": "Anemo", "3": "Geo",
+                   "4": "Dendro", "5": "Electro", "6": "Hydro", "7": "Cryo"}
+weapon_types = {"1": "Swords", "10": "Catalysts",
+                "11": "Claymores", "12": "Bows", "13": "Polearms"}
 
 ascension_materials_messages = []
 r = requests.get(api_list[0][1].replace("point/list", "game_item"))
 if r.status_code != 200:
     print(f"Failed load ascension materials data")
 else:
-    ascension_materials_messages.append(("ascension_materials", json.loads(r.content.decode())))
+    ascension_materials_messages.append(
+        ("ascension_materials", json.loads(r.content.decode())))
 
 # Refactor ascension materials data to our format
 # Note: I've manually added the prefix "Character" to the clean_name in the generated json and image file of
 # Amber and Tartaglia since they have conflicting clear_name with other labels icons.
 # Entry for female Traveler is also removed since it's just a duplicate of the mc
-material_types = { "avatar", "weapon" }
+material_types = {"avatar", "weapon"}
 material_data = {}
 for (name, message) in ascension_materials_messages:
     for type in material_types:
@@ -122,13 +125,13 @@ for (name, message) in ascension_materials_messages:
             for material in material_list:
                 if category == str(material["attr"]):
                     children.append(material["item_id"])
-                    
+
             data.append(
                 {
-                "id": category,
-                "name": character_types[category] if type == "avatar" else weapon_types[category],
-                "children": sorted(children),
-                "icon": material_category_list[category]["icon_chosen"]
+                    "id": category,
+                    "name": character_types[category] if type == "avatar" else weapon_types[category],
+                    "children": sorted(children),
+                    "icon": material_category_list[category]["icon_chosen"]
                 }
             )
         material_data[type + "_types"] = sorted(data, key=lambda x: x["id"])
