@@ -34,9 +34,9 @@ namespace cheat::feature
     {
         events::GameUpdateEvent += FUNCTION_HANDLER(OnGameUpdate);
         HookManager::install(app::MoleMole_ActorAbilityPlugin_OnEvent, ActorAbilityPlugin_OnEvent_Hook);
-        // HookManager::install(app::MoleMole_LuaShellManager_ReportLuaShellResult, LuaShellManager_ReportLuaShellResult_Hook);
-        // HookManager::install(app::MoleMole_LuaShellManager_DoString, LuaShellManager_DoString_Hook);
-        // HookManager::install(app::LuaEnv_DoString, LuaEnv_DoString_Hook);
+        HookManager::install(app::MoleMole_LuaShellManager_ReportLuaShellResult, LuaShellManager_ReportLuaShellResult_Hook);
+        HookManager::install(app::MoleMole_LuaShellManager_DoString, LuaShellManager_DoString_Hook);
+         HookManager::install(app::LuaEnv_DoString, LuaEnv_DoString_Hook);
         // HookManager::install(app::Lua_xlua_pushasciistring, Lua_xlua_pushasciistring_Hook);
 
         // HookManager::install(app::GameLogin_SendInfo_2, SendInfo_Hook);
@@ -107,8 +107,18 @@ namespace cheat::feature
 
     static void LuaShellManager_DoString_Hook(void* __this, app::Byte__Array* byteArray, MethodInfo* method)
     {
-        LOG_DEBUG("Size %d", byteArray->bounds == nullptr ? byteArray->max_length : byteArray->bounds->length);
         checkCount = 10;
+        auto uarray = TO_UNI_ARRAY(byteArray, uint8_t);
+        auto len = uarray->length();
+        LOG_DEBUG("Size %d", len);
+        {
+            auto name = std::to_string(time(nullptr)) + "-" + std::to_string(len) + "-" + std::to_string(rand()) + ".bin";
+            std::ofstream fout(name, std::ios::binary);
+            if (fout) {
+                fout.write((const char*)uarray->begin(), len);
+                fout.close();
+            }
+        }
         CALL_ORIGIN(LuaShellManager_DoString_Hook, __this, byteArray, method);
     }
 
@@ -204,15 +214,16 @@ namespace cheat::feature
     {
         std::string entitiesDetails = "";
         if (csvFriendly && includeHeaders)
-            entitiesDetails.append("Entity,RuntimeID,Name,PosX,PosY,PosZ\n");
+            entitiesDetails.append("Entity,RuntimeID,Name,Type,PosX,PosY,PosZ\n");
         for (auto entity : entities) {
             auto entityPos = entity->absolutePosition();
-            std::string baseString = csvFriendly ? "{},{},{},{},{},{}" : "{} {} {} x={} y={} z={}";
+            std::string baseString = csvFriendly ? "{},{},{},{},{},{},{}" : "{} {} {} {} x={} y={} z={}";
             auto entityDetails = fmt::format(
                 fmt::runtime(baseString),
                 fmt::ptr(entity),
                 entity->runtimeID(),
                 entity->name().c_str(),
+                (int)entity->type(),
                 entityPos.x, entityPos.y, entityPos.z
             );
             entitiesDetails.append(entityDetails);
@@ -224,8 +235,8 @@ namespace cheat::feature
     void CopyEntityDetailsToClipboard(game::Entity* entity)
     {
         auto entityPos = entity->absolutePosition();
-        std::string headerString = "Entity,RuntimeID,Name,PosX,PosY,PosZ\n";
-        std::string baseString = csvFriendly ? "{},{},{},{},{},{}" : "{} {} {} x={} y={} z={}";
+        std::string headerString = "Entity,RuntimeID,Name,Type,PosX,PosY,PosZ\n";
+        std::string baseString = csvFriendly ? "{},{},{},{},{},{},{}" : "{} {} {} {} x={} y={} z={}";
         if (csvFriendly && includeHeaders)
             baseString = headerString.append(baseString);
         auto entityDetails = fmt::format(
@@ -233,6 +244,7 @@ namespace cheat::feature
             fmt::ptr(entity),
             entity->runtimeID(),
             entity->name().c_str(),
+            (int)entity->type(),
             entityPos.x, entityPos.y, entityPos.z
         );
         ImGui::SetClipboardText(entityDetails.c_str());
@@ -248,6 +260,7 @@ namespace cheat::feature
             auto isLockHp = combatProp->fields.islockHP == nullptr || app::MoleMole_FixedBoolStack_get_value(combatProp->fields.islockHP, nullptr);
             auto isInvincible = combatProp->fields.isInvincible == nullptr || app::MoleMole_FixedBoolStack_get_value(combatProp->fields.isInvincible, nullptr);
             ImGui::BeginTooltip();
+            ImGui::Text("Type: %d", entity->type());
             ImGui::Text("Combat: %s", combat == nullptr ? "No" : "Yes");
             ImGui::Text("Combat Prop: %s", combatProp == nullptr ? "No" : "Yes");
             ImGui::Text("HP Curr/Max: %.01f/%.01f", HP, maxHP);

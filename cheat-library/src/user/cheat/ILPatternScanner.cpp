@@ -90,7 +90,7 @@ bool ILPatternScanner::LoadJson(const nlohmann::json & object)
 	if (object.contains("moduleInfo"))
 		PatternScanner::LoadJson(object["moduleInfo"]);
 
-	if (object.contains("monoHash") && !PatternScanner::IsValidModuleHash(GetMonoHandle(), object["monoHash"]))
+	if (object.contains("monoHash") && !PatternScanner::IsValidModuleHash("mono.dll", GetMonoHandle(), object["monoHash"]))
 	{
 		LOG_DEBUG("Mono module hash mismatch. Seems game was updated.");
 		return false;

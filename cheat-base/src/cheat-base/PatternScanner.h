@@ -28,7 +28,7 @@ public:
 
 	bool IsUpdated();
 
-	bool IsValidModuleHash(HMODULE HMODULE, const nlohmann::json& hashObject);
+	bool IsValidModuleHash(const std::string& moduleName, HMODULE HMODULE, const nlohmann::json& hashObject);
 	bool IsValidModuleHash(const std::string& moduleName, const nlohmann::json& hashObject);
 
 	int64_t GetModuleTimestamp(const std::string& moduleName);

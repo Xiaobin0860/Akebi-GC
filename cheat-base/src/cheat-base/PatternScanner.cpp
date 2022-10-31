@@ -302,6 +302,8 @@ size_t ComputeChecksum(const std::string& filename)
 		sum += word;
 	}
 
+	LOG_DEBUG("%s Checksum: %llu", filename.c_str(), sum);
+
 	return sum;
 }
 
@@ -322,10 +324,10 @@ int64_t PatternScanner::GetModuleTimestamp(HMODULE hModule)
 bool PatternScanner::IsValidModuleHash(const std::string& moduleName, const nlohmann::json& hashObject)
 {
 	auto& info = GetModuleInfo(moduleName);
-	return IsValidModuleHash(info.handle, hashObject);
+	return IsValidModuleHash(moduleName, info.handle, hashObject);
 }
 
-bool PatternScanner::IsValidModuleHash(HMODULE hModule, const nlohmann::json& hashObject)
+bool PatternScanner::IsValidModuleHash(const std::string& moduleName, HMODULE hModule, const nlohmann::json& hashObject)
 {
 	if (!hashObject.contains("timestamp") || !hashObject.contains("checksum"))
 		return false;
@@ -344,6 +346,8 @@ bool PatternScanner::IsValidModuleHash(HMODULE hModule, const nlohmann::json& ha
 
 	size_t currChecksum = m_ComputedHashes.count(hModule) > 0 ? m_ComputedHashes[hModule] : ComputeChecksum(GetModuleInfo(hModule).filePath);
 	m_ComputedHashes[hModule] = currChecksum;
+
+	LOG_DEBUG("%s checksum=%llu, currChecksum=%llu", moduleName.c_str(), checksum, currChecksum);
 
 	return checksum == currChecksum;
 }
