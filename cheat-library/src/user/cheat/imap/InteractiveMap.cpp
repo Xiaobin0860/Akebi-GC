@@ -2015,6 +2015,7 @@ namespace cheat::feature
 		//INIT_FILTER(featured, Electrogranum);
 		INIT_FILTER(featured, Geoculus);
 		INIT_FILTER(featured, KeySigil);
+		INIT_FILTER(featured, SacredSeal);
 		INIT_FILTER(featured, Lumenspar);
 		//INIT_FILTER(featured, ShrineOfDepth);
 		//INIT_FILTER(featured, TimeTrialChallenge);
@@ -2161,6 +2162,7 @@ namespace cheat::feature
 		INIT_DETECT_ITEM(Electroculus);
 		INIT_DETECT_ITEM(Geoculus);
 		INIT_DETECT_ITEM(KeySigil);
+		INIT_DETECT_ITEM(SacredSeal);
 		INIT_DETECT_ITEM(Lumenspar);
 
 #undef INIT_DETECT_ITEM

@@ -60,6 +60,7 @@ namespace cheat::game::filters
 		extern WhitelistFilter ItemDrops;
 		extern SimpleFilter Lumenspar;
 		extern SimpleFilter KeySigil;
+		extern SimpleFilter SacredSeal;
 		extern SimpleFilter ShrineOfDepth;
 		extern SimpleFilter TimeTrialChallenge;
 	}

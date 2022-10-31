@@ -633,6 +633,7 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(featured, Geoculus);
 		ADD_FILTER_FIELD(featured, ItemDrops);
 		ADD_FILTER_FIELD(featured, KeySigil);
+		ADD_FILTER_FIELD(featured, SacredSeal);
 		ADD_FILTER_FIELD(featured, Lumenspar);
 		ADD_FILTER_FIELD(featured, ShrineOfDepth);
 		ADD_FILTER_FIELD(featured, TimeTrialChallenge);

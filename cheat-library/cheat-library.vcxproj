@@ -229,6 +229,7 @@
   <ItemGroup>
     <Image Include="iconsHD\Brightwood.png" />
     <Image Include="iconsHD\Cave.png" />
+    <Image Include="iconsHD\SacredSeal.png" />
     <Image Include="icons\Anemoculus.png" />
     <Image Include="icons\Brightwood.png" />
     <Image Include="icons\Cave.png" />
@@ -650,6 +651,7 @@
     <Image Include="res\iconsHD\Rust.png" />
     <Image Include="res\iconsHD\RustyKoi.png" />
     <Image Include="res\iconsHD\SacredSakura.png" />
+    <Image Include="res\iconsHD\SacredSeal.png" />
     <Image Include="res\iconsHD\SacrificialBow.png" />
     <Image Include="res\iconsHD\SacrificialFragments.png" />
     <Image Include="res\iconsHD\SacrificialGreatsword.png" />

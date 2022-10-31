@@ -59,6 +59,7 @@ namespace cheat::game::filters
 		WhitelistFilter ItemDrops = { {EntityType__Enum_1::GatherObject, EntityType__Enum_1::DropItem }, {"_Food_BirdMeat", "_Food_Meat", "_DropItem" } };
 		SimpleFilter Lumenspar = { EntityType__Enum_1::GatherObject, "CelestiaSplinter" };
 		SimpleFilter KeySigil = { EntityType__Enum_1::GatherObject, "RuneContent" };
+		SimpleFilter SacredSeal = { EntityType__Enum_1::Chest, "DeshretRune" };
 		SimpleFilter ShrineOfDepth = { EntityType__Enum_1::Gadget, "Temple" };
 		SimpleFilter TimeTrialChallenge = { EntityType__Enum_1::Field, "Challengestarter_" };
 	}

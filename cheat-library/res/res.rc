@@ -83,11 +83,11 @@ HDADHIGAMAWOOD          PNG                     "iconsHD\\AdhigamaWood.png"
 
 HDADORNEDUNAGI          PNG                     "iconsHD\\AdornedUnagi.png"
 
-HDAEONBLIGHTDRAKE		PNG						"iconsHD\\AeonblightDrake.png"
+HDAEONBLIGHTDRAKE       PNG                     "iconsHD\\AeonblightDrake.png"
 
 HDAIZENMEDAKA           PNG                     "iconsHD\\AizenMedaka.png"
 
-HDAJILENAKH				PNG						"iconsHD\\Ajilenakh.png"
+HDAJILENAKH             PNG                     "iconsHD\\Ajilenakh.png"
 
 HDAKAIMAOU              PNG                     "iconsHD\\AkaiMaou.png"
 
@@ -922,6 +922,8 @@ HDRUST                  PNG                     "iconsHD\\Rust.png"
 HDRUSTYKOI              PNG                     "iconsHD\\RustyKoi.png"
 
 HDSACREDSAKURA          PNG                     "iconsHD\\SacredSakura.png"
+
+HDSACREDSEAL            PNG                     "iconsHD\\SacredSeal.png"
 
 HDSACRIFICIALBOW        PNG                     "iconsHD\\SacrificialBow.png"
 
@@ -1866,6 +1868,8 @@ RUKKHASHAVAMUSHROOM     PNG                     "icons\\RukkhashavaMushroom.png"
 RUSTYKOI                PNG                     "icons\\RustyKoi.png"
 
 SACREDSAKURA            PNG                     "icons\\SacredSakura.png"
+
+SACREDSEAL              PNG                     "icons\\SacredSeal.png"
 
 SAGHIRAMACHINE          PNG                     "icons\\SaghiraMachine.png"
 
