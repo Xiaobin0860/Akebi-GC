@@ -148,82 +148,82 @@ namespace cheat::feature
     // Taiga#5555: There might be an in-game function for this already I'm just not sure which one
     void SetMonsterCollider(bool v)
     {
-        UPDATE_DELAY(300);
+        //UPDATE_DELAY(300);
 
-        auto monsterRoot = app::GameObject_Find(string_to_il2cppi("/EntityRoot/MonsterRoot"), nullptr);
-        if (monsterRoot != nullptr)
-        {
-            auto transform = app::GameObject_GetComponentByName(monsterRoot, string_to_il2cppi("Transform"), nullptr);
-            auto monsterCount = app::Transform_get_childCount(reinterpret_cast<app::Transform*>(transform), nullptr);
-            for (int i = 0; i <= monsterCount - 1; i++)
-            {
-                auto monsters = app::Transform_GetChild(reinterpret_cast<app::Transform*>(transform), i, nullptr);
-                auto monsterGameObject = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(monsters), nullptr);
-                auto monsterTransform = app::GameObject_GetComponentByName(monsterGameObject, string_to_il2cppi("Transform"), nullptr);
-                auto transformChild = app::Transform_GetChild(reinterpret_cast<app::Transform*>(monsterTransform), 1, nullptr);
-                auto colliderGameObject = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(transformChild), nullptr);
-                if (app::GameObject_get_active(colliderGameObject, nullptr) == v)
-                    continue;
-                app::GameObject_SetActive(colliderGameObject, v, nullptr);
-            }
-        }
+        //auto monsterRoot = app::GameObject_Find(string_to_il2cppi("/EntityRoot/MonsterRoot"), nullptr);
+        //if (monsterRoot != nullptr)
+        //{
+        //    auto transform = app::GameObject_GetComponentByName(monsterRoot, string_to_il2cppi("Transform"), nullptr);
+        //    auto monsterCount = app::Transform_get_childCount(reinterpret_cast<app::Transform*>(transform), nullptr);
+        //    for (int i = 0; i <= monsterCount - 1; i++)
+        //    {
+        //        auto monsters = app::Transform_GetChild(reinterpret_cast<app::Transform*>(transform), i, nullptr);
+        //        auto monsterGameObject = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(monsters), nullptr);
+        //        auto monsterTransform = app::GameObject_GetComponentByName(monsterGameObject, string_to_il2cppi("Transform"), nullptr);
+        //        auto transformChild = app::Transform_GetChild(reinterpret_cast<app::Transform*>(monsterTransform), 1, nullptr);
+        //        auto colliderGameObject = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(transformChild), nullptr);
+        //        if (app::GameObject_get_active(colliderGameObject, nullptr) == v)
+        //            continue;
+        //        app::GameObject_SetActive(colliderGameObject, v, nullptr);
+        //    }
+        //}
     }
 
     // Mob vacuum update function.
     // Changes position of monster, if mob vacuum enabled.
     void MobVacuum::OnGameUpdate()
     {
-        static auto positions = new std::map<uint32_t, app::Vector3>();
+        //static auto positions = new std::map<uint32_t, app::Vector3>();
 
-        if (!f_Enabled)
-            return;
+        //if (!f_Enabled)
+        //    return;
 
-        app::Vector3 targetPos = CalcMobVacTargetPos();
-        if (IsVectorZero(targetPos))
-            return;
+        //app::Vector3 targetPos = CalcMobVacTargetPos();
+        //if (IsVectorZero(targetPos))
+        //    return;
 
-        UpdateFilters();
-        if (!f_IncludeMonsters && !f_IncludeAnimals)
-            return;
+        //UpdateFilters();
+        //if (!f_IncludeMonsters && !f_IncludeAnimals)
+        //    return;
 
-        if (m_Filters.empty())
-            return;
+        //if (m_Filters.empty())
+        //    return;
 
-        auto& manager = game::EntityManager::instance();
-        auto newPositions = new std::map<uint32_t, app::Vector3>();
-        for (const auto& entity : manager.entities())
-        {
-            if (!IsEntityForVac(entity))
-                continue;
+        //auto& manager = game::EntityManager::instance();
+        //auto newPositions = new std::map<uint32_t, app::Vector3>();
+        //for (const auto& entity : manager.entities())
+        //{
+        //    if (!IsEntityForVac(entity))
+        //        continue;
 
-            SetMonsterCollider(!f_SetCollider);
+        //    SetMonsterCollider(!f_SetCollider);
 
-            if (f_Instantly)
-            {
-                entity->setRelativePosition(targetPos);
-                continue;
-            }
+        //    if (f_Instantly)
+        //    {
+        //        entity->setRelativePosition(targetPos);
+        //        continue;
+        //    }
 
-            uint32_t entityId = entity->runtimeID();
-            app::Vector3 entityRelPos = positions->count(entityId) ? (*positions)[entityId] : entity->relativePosition();
-            app::Vector3 newPosition = {};
-            if (app::Vector3_Distance(entityRelPos, targetPos, nullptr) < 0.1)
-            {
-                newPosition = targetPos;
-            }
-            else
-            {
-                app::Vector3 dir = GetVectorDirection(entityRelPos, targetPos);
-                float deltaTime = app::Time_get_deltaTime(nullptr);
-                newPosition = entityRelPos + dir * f_Speed * deltaTime;
-            }
+        //    uint32_t entityId = entity->runtimeID();
+        //    app::Vector3 entityRelPos = positions->count(entityId) ? (*positions)[entityId] : entity->relativePosition();
+        //    app::Vector3 newPosition = {};
+        //    if (app::Vector3_Distance(entityRelPos, targetPos, nullptr) < 0.1)
+        //    {
+        //        newPosition = targetPos;
+        //    }
+        //    else
+        //    {
+        //        app::Vector3 dir = GetVectorDirection(entityRelPos, targetPos);
+        //        float deltaTime = app::Time_get_deltaTime(nullptr);
+        //        newPosition = entityRelPos + dir * f_Speed * deltaTime;
+        //    }
 
-            (*newPositions)[entityId] = newPosition;
-            entity->setRelativePosition(newPosition);
-        }
+        //    (*newPositions)[entityId] = newPosition;
+        //    entity->setRelativePosition(newPosition);
+        //}
 
-        delete positions;
-        positions = newPositions;
+        //delete positions;
+        //positions = newPositions;
     }
 
     // Mob vacuum sync packet replace.
@@ -232,36 +232,36 @@ namespace cheat::feature
     //           because for server monster don't change position instantly.
     void MobVacuum::OnMoveSync(uint32_t entityId, app::MotionInfo* syncInfo)
     {
-        if (!f_Enabled || f_Instantly)
-            return;
+        //if (!f_Enabled || f_Instantly)
+        //    return;
 
-        auto& manager = game::EntityManager::instance();
-        auto entity = manager.entity(entityId);
-        if (!IsEntityForVac(entity))
-            return;
+        //auto& manager = game::EntityManager::instance();
+        //auto entity = manager.entity(entityId);
+        //if (!IsEntityForVac(entity))
+        //    return;
 
-        SetMonsterCollider(!f_SetCollider);
+        //SetMonsterCollider(!f_SetCollider);
 
-        app::Vector3 targetPos = CalcMobVacTargetPos();
-        app::Vector3 entityPos = entity->relativePosition();
-        if (app::Vector3_Distance(targetPos, entityPos, nullptr) < 0.2)
-            return;
+        //app::Vector3 targetPos = CalcMobVacTargetPos();
+        //app::Vector3 entityPos = entity->relativePosition();
+        //if (app::Vector3_Distance(targetPos, entityPos, nullptr) < 0.2)
+        //    return;
 
-        app::Vector3 dir = GetVectorDirection(targetPos, entityPos);
-        app::Vector3 scaledDir = dir * f_Speed;
+        //app::Vector3 dir = GetVectorDirection(targetPos, entityPos);
+        //app::Vector3 scaledDir = dir * f_Speed;
 
-        syncInfo->fields.speed_->fields.x = scaledDir.x;
-        syncInfo->fields.speed_->fields.y = scaledDir.y;
-        syncInfo->fields.speed_->fields.z = scaledDir.z;
+        //syncInfo->fields.speed_->fields.x = scaledDir.x;
+        //syncInfo->fields.speed_->fields.y = scaledDir.y;
+        //syncInfo->fields.speed_->fields.z = scaledDir.z;
 
-        switch (syncInfo->fields.motionState)
-        {
-        case app::MotionState__Enum::MotionStandby:
-        case app::MotionState__Enum::MotionStandbyMove:
-        case app::MotionState__Enum::MotionWalk:
-        case app::MotionState__Enum::MotionDangerDash:
-            syncInfo->fields.motionState = app::MotionState__Enum::MotionRun;
-        }
+        //switch (syncInfo->fields.motionState)
+        //{
+        //case app::MotionState__Enum::MotionStandby:
+        //case app::MotionState__Enum::MotionStandbyMove:
+        //case app::MotionState__Enum::MotionWalk:
+        //case app::MotionState__Enum::MotionDangerDash:
+        //    syncInfo->fields.motionState = app::MotionState__Enum::MotionRun;
+        //}
     }
 }
 

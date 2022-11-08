@@ -10,7 +10,7 @@ namespace cheat::feature
     EnablePeeking::EnablePeeking() : Feature(),
         NF(f_Enabled, "Enable Peeking", "Visuals::EnablePeeking", false)
     {
-        HookManager::install(app::MoleMole_VCBaseSetDitherValue_set_ManagerDitherAlphaValue, MoleMole_VCBaseSetDitherValue_set_ManagerDitherAlphaValue_Hook);
+        //HookManager::install(app::MoleMole_VCBaseSetDitherValue_set_ManagerDitherAlphaValue, MoleMole_VCBaseSetDitherValue_set_ManagerDitherAlphaValue_Hook);
     }
 
     const FeatureGUIInfo& EnablePeeking::GetGUIInfo() const

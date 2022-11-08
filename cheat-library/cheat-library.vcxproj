@@ -76,7 +76,11 @@
     <ClInclude Include="src\user\cheat\game\IEntityFilter.h" />
     <ClInclude Include="src\user\cheat\game\SimpleFilter.h" />
     <ClInclude Include="src\user\cheat\game\util.h" />
-    <ClInclude Include="src\user\cheat\ILPatternScanner.h" />
+    <ClInclude Include="src\user\cheat\ILPatternScanner.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_WS|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="src\user\cheat\imap\InteractiveMap.h" />
     <ClInclude Include="src\user\cheat\misc\Debug.h" />
     <ClInclude Include="src\user\cheat\misc\Hotkeys.h" />
@@ -171,7 +175,11 @@
     <ClCompile Include="src\user\cheat\game\filters.cpp" />
     <ClCompile Include="src\user\cheat\game\SimpleFilter.cpp" />
     <ClCompile Include="src\user\cheat\game\util.cpp" />
-    <ClCompile Include="src\user\cheat\ILPatternScanner.cpp" />
+    <ClCompile Include="src\user\cheat\ILPatternScanner.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_WS|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\user\cheat\imap\InteractiveMap.cpp" />
     <ClCompile Include="src\user\cheat\misc\Debug.cpp" />
     <ClCompile Include="src\user\cheat\misc\Hotkeys.cpp" />

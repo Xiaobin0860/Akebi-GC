@@ -36,8 +36,8 @@ namespace cheat::feature
 		NF(f_SpeedMultiplier, "Speed Multiplier", "RapidFire", 1.5f),
 		animationCounter(1)
 	{
-		HookManager::install(app::MoleMole_VCAnimatorEvent_HandleProcessItem, VCAnimatorEvent_HandleProcessItem_Hook);
-		HookManager::install(app::MoleMole_LCBaseCombat_FireBeingHitEvent, LCBaseCombat_FireBeingHitEvent_Hook);
+		//HookManager::install(app::MoleMole_VCAnimatorEvent_HandleProcessItem, VCAnimatorEvent_HandleProcessItem_Hook);
+		//HookManager::install(app::MoleMole_LCBaseCombat_FireBeingHitEvent, LCBaseCombat_FireBeingHitEvent_Hook);
 	}
 
 	const FeatureGUIInfo& RapidFire::GetGUIInfo() const
@@ -136,69 +136,69 @@ namespace cheat::feature
 		return instance;
 	}
 
-	int RapidFire::CalcCountToKill(float attackDamage, uint32_t targetID)
-	{
-		if (attackDamage == 0)
-			return f_Multiplier;
+	//int RapidFire::CalcCountToKill(float attackDamage, uint32_t targetID)
+	//{
+	//	if (attackDamage == 0)
+	//		return f_Multiplier;
 
-		auto& manager = game::EntityManager::instance();
-		auto targetEntity = manager.entity(targetID);
-		if (targetEntity == nullptr)
-			return f_Multiplier;
+	//	auto& manager = game::EntityManager::instance();
+	//	auto targetEntity = manager.entity(targetID);
+	//	if (targetEntity == nullptr)
+	//		return f_Multiplier;
 
-		auto baseCombat = targetEntity->combat();
-		if (baseCombat == nullptr)
-			return f_Multiplier;
+	//	auto baseCombat = targetEntity->combat();
+	//	if (baseCombat == nullptr)
+	//		return f_Multiplier;
 
-		auto safeHP = baseCombat->fields._combatProperty_k__BackingField->fields.HP;
-		auto HP = app::MoleMole_SafeFloat_get_Value(safeHP, nullptr);
-		int attackCount = (int)ceil(HP / attackDamage);
-		return std::clamp(attackCount, 1, 200);
-	}
+	//	auto safeHP = baseCombat->fields._combatProperty_k__BackingField->fields.HP;
+	//	auto HP = app::MoleMole_SafeFloat_get_Value(safeHP, nullptr);
+	//	int attackCount = (int)ceil(HP / attackDamage);
+	//	return std::clamp(attackCount, 1, 200);
+	//}
 
-	int RapidFire::GetAttackCount(app::LCBaseCombat* combat, uint32_t targetID, app::AttackResult* attackResult)
-	{
-		if (!f_MultiHit)
-			return 1;
+	//int RapidFire::GetAttackCount(app::LCBaseCombat* combat, uint32_t targetID, app::AttackResult* attackResult)
+	//{
+	//	if (!f_MultiHit)
+	//		return 1;
 
-		auto& manager = game::EntityManager::instance();
-		auto targetEntity = manager.entity(targetID);
-		auto baseCombat = targetEntity->combat();
-		if (baseCombat == nullptr)
-			return 1;
+	//	auto& manager = game::EntityManager::instance();
+	//	auto targetEntity = manager.entity(targetID);
+	//	auto baseCombat = targetEntity->combat();
+	//	if (baseCombat == nullptr)
+	//		return 1;
 
-		int countOfAttacks = f_Multiplier;
-		if (f_OnePunch)
-		{
-			app::MoleMole_Formula_CalcAttackResult(combat->fields._combatProperty_k__BackingField,
-				baseCombat->fields._combatProperty_k__BackingField,
-				attackResult, manager.avatar()->raw(), targetEntity->raw(), nullptr);
-			countOfAttacks = CalcCountToKill(attackResult->fields.damage, targetID);
-		}
-		if (f_Randomize)
-		{
-			if (f_minMultiplier.value() >= f_maxMultiplier.value()) 
-				countOfAttacks = f_minMultiplier.value();
-			else
-				countOfAttacks = rand() % (f_maxMultiplier.value() - f_minMultiplier.value()) + f_minMultiplier.value();
-			return countOfAttacks;
-		}
+	//	int countOfAttacks = f_Multiplier;
+	//	if (f_OnePunch)
+	//	{
+	//		app::MoleMole_Formula_CalcAttackResult(combat->fields._combatProperty_k__BackingField,
+	//			baseCombat->fields._combatProperty_k__BackingField,
+	//			attackResult, manager.avatar()->raw(), targetEntity->raw(), nullptr);
+	//		countOfAttacks = CalcCountToKill(attackResult->fields.damage, targetID);
+	//	}
+	//	if (f_Randomize)
+	//	{
+	//		if (f_minMultiplier.value() >= f_maxMultiplier.value()) 
+	//			countOfAttacks = f_minMultiplier.value();
+	//		else
+	//			countOfAttacks = rand() % (f_maxMultiplier.value() - f_minMultiplier.value()) + f_minMultiplier.value();
+	//		return countOfAttacks;
+	//	}
 
-		return countOfAttacks;
-	}
+	//	return countOfAttacks;
+	//}
 
 	bool IsAvatarOwner(game::Entity entity)
 	{
-		auto& manager = game::EntityManager::instance();
-		auto avatarID = manager.avatar()->runtimeID();
+		//auto& manager = game::EntityManager::instance();
+		//auto avatarID = manager.avatar()->runtimeID();
 
-		while (entity.isGadget())
-		{
-			game::Entity temp = entity;
-			entity = game::Entity(app::MoleMole_GadgetEntity_GetOwnerEntity(reinterpret_cast<app::GadgetEntity*>(entity.raw()), nullptr));
-			if (entity.runtimeID() == avatarID)
-				return true;
-		}
+		//while (entity.isGadget())
+		//{
+		//	game::Entity temp = entity;
+		//	entity = game::Entity(app::MoleMole_GadgetEntity_GetOwnerEntity(reinterpret_cast<app::GadgetEntity*>(entity.raw()), nullptr));
+		//	if (entity.runtimeID() == avatarID)
+		//		return true;
+		//}
 
 		return false;
 
@@ -293,39 +293,39 @@ namespace cheat::feature
 		app::MoleMole_VCAnimatorEvent_MoleMole_VCAnimatorEvent_AnimatorEventPatternProcessItem* processItem,
 		app::AnimatorStateInfo processStateInfo, app::MoleMole_VCAnimatorEvent_MoleMole_VCAnimatorEvent_TriggerMode__Enum mode, MethodInfo* method)
 	{
-		auto attacker = game::Entity(__this->fields._._._entity);
-		RapidFire& rapidFire = RapidFire::GetInstance();
-		bool isAttackAnimation = std::any_of(std::begin(attackTags), std::end(attackTags),
-			[&](uint32_t tag) { return processStateInfo.m_Tag == tag; });
-		bool isAttacking = IsAttackByAvatar(attacker) && isAttackAnimation;
+		//auto attacker = game::Entity(__this->fields._._._entity);
+		//RapidFire& rapidFire = RapidFire::GetInstance();
+		//bool isAttackAnimation = std::any_of(std::begin(attackTags), std::end(attackTags),
+		//	[&](uint32_t tag) { return processStateInfo.m_Tag == tag; });
+		//bool isAttacking = IsAttackByAvatar(attacker) && isAttackAnimation;
 
-		if (rapidFire.f_MultiAnimation && isAttacking)
-		{
-			// Set counter back to 1 when any new attack animation is invoked
-			if (processStateInfo.m_NormalizedTime <= 0.01f)
-				rapidFire.animationCounter = 1;
+		//if (rapidFire.f_MultiAnimation && isAttacking)
+		//{
+		//	// Set counter back to 1 when any new attack animation is invoked
+		//	if (processStateInfo.m_NormalizedTime <= 0.01f)
+		//		rapidFire.animationCounter = 1;
 
-			if (rapidFire.animationCounter <= rapidFire.f_AnimationMultiplier)
-			{
-				// Can be configured up to 1.0 but 0.1 to 0.9 you can barely notice the difference
-				// So 0 - 0.2 is enough.
-				processItem->fields.lastTime = (rapidFire.f_AnimationState / 10);
-				rapidFire.animationCounter++;
-			}
-		}
+		//	if (rapidFire.animationCounter <= rapidFire.f_AnimationMultiplier)
+		//	{
+		//		// Can be configured up to 1.0 but 0.1 to 0.9 you can barely notice the difference
+		//		// So 0 - 0.2 is enough.
+		//		processItem->fields.lastTime = (rapidFire.f_AnimationState / 10);
+		//		rapidFire.animationCounter++;
+		//	}
+		//}
 
-		static bool isFastSpeed = false;
-		if (rapidFire.f_AttackSpeed && isAttacking)
-		{
-			if (!isinf(processStateInfo.m_Length))
-				app::Animator_set_speed(attacker.animator(), rapidFire.f_SpeedMultiplier, nullptr);
-			isFastSpeed = true;
-		}
-		else if (IsAttackByAvatar(attacker) && isFastSpeed) {
-			//LOG_DEBUG("Speed Reverted");
-			app::Animator_set_speed(attacker.animator(), processStateInfo.m_SpeedMultiplier, nullptr);
-			isFastSpeed = false;
-		}
+		//static bool isFastSpeed = false;
+		//if (rapidFire.f_AttackSpeed && isAttacking)
+		//{
+		//	if (!isinf(processStateInfo.m_Length))
+		//		app::Animator_set_speed(attacker.animator(), rapidFire.f_SpeedMultiplier, nullptr);
+		//	isFastSpeed = true;
+		//}
+		//else if (IsAttackByAvatar(attacker) && isFastSpeed) {
+		//	//LOG_DEBUG("Speed Reverted");
+		//	app::Animator_set_speed(attacker.animator(), processStateInfo.m_SpeedMultiplier, nullptr);
+		//	isFastSpeed = false;
+		//}
 
 		CALL_ORIGIN(VCAnimatorEvent_HandleProcessItem_Hook, __this, processItem, processStateInfo, mode, method);
 	}

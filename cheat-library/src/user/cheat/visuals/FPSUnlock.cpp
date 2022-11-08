@@ -43,19 +43,19 @@ namespace cheat::feature
 
     void FPSUnlock::OnGameUpdate()
     {
-        static bool _lastEnabledStatus = false;
-        static int _originFPS = 30;
-        if (_lastEnabledStatus && !f_Enabled)
-        {
-            app::Application_set_targetFrameRate(_originFPS, nullptr);
-        }
-        else if (!_lastEnabledStatus && f_Enabled)
-        {
-            _originFPS = app::Application_get_targetFrameRate(nullptr);
-        }
-        _lastEnabledStatus = f_Enabled;
+   //     static bool _lastEnabledStatus = false;
+   //     static int _originFPS = 30;
+   //     if (_lastEnabledStatus && !f_Enabled)
+   //     {
+   //         app::Application_set_targetFrameRate(_originFPS, nullptr);
+   //     }
+   //     else if (!_lastEnabledStatus && f_Enabled)
+   //     {
+   //         _originFPS = app::Application_get_targetFrameRate(nullptr);
+   //     }
+   //     _lastEnabledStatus = f_Enabled;
 
-        if (f_Enabled)
-			app::Application_set_targetFrameRate(f_Fps, nullptr);
+   //     if (f_Enabled)
+			//app::Application_set_targetFrameRate(f_Fps, nullptr);
     }
 }

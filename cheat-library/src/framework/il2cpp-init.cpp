@@ -37,12 +37,15 @@ void init_static_offsets()
 {
 	// Get base address of IL2CPP module
 	uintptr_t baseAddress = il2cppi_get_base_address();
+	LOG_DEBUG("baseAddress: 0x%X", baseAddress);
 
+	LOG_TRACE("init il2cpp-api-functions ...");
 	// Define IL2CPP API function addresses
 	#define DO_API(r, n, p) n = (r (*) p)(baseAddress + n ## _ptr)
 	#include "il2cpp-api-functions.h"
 	#undef DO_API
 
+	LOG_TRACE("init il2cpp-functions ...");
 	// Define function addresses
 	#define DO_APP_FUNC(a, r, n, p) n = (r (*) p)(baseAddress + a)
 	#define DO_APP_FUNC_METHODINFO(a, n) n = (struct MethodInfo **)(baseAddress + a)
@@ -51,6 +54,7 @@ void init_static_offsets()
 	#undef DO_APP_FUNC_METHODINFO
 
 	// Define TypeInfo variables
+	LOG_TRACE("init il2cpp-types-ptr ...");
 	#define DO_SINGLETONEDEF(a, n) n ## __TypeInfo = (Singleton_1__Class**) (baseAddress + a)
 	#define DO_TYPEDEF(a, n) n ## __TypeInfo = (n ## __Class**) (baseAddress + a)
 	#include "il2cpp-types-ptr.h"
@@ -58,6 +62,8 @@ void init_static_offsets()
 	#undef DO_SINGLETONEDEF
 
 	uintptr_t unityPlayerAddress = il2cppi_get_unity_address();
+	LOG_DEBUG("unityPlayerAddress: 0x%X", unityPlayerAddress);
+	LOG_TRACE("init il2cpp-unityplayer-functions ...");
 	// Define UnityPlayer functions
 	#define DO_APP_FUNC(a, r, n, p) n = (r (*) p)(unityPlayerAddress + a)
 	#define DO_APP_FUNC_METHODINFO(a, n) n = (struct MethodInfo **)(unityPlayerAddress + a)
@@ -66,6 +72,7 @@ void init_static_offsets()
 	#undef DO_APP_FUNC_METHODINFO
 }
 
+#ifdef _PATTERN_SCANNER
 void init_scanned_offsets()
 {
 	// Get base address of IL2CPP module
@@ -120,6 +127,7 @@ void init_scanned_offsets()
 
 #undef SELECT_OR
 }
+#endif
 
 bool IsStaticCheckSumValid()
 {

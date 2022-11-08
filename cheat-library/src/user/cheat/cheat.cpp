@@ -82,75 +82,75 @@ namespace cheat
 			&protectionBypass,
 			FEAT_INST(Settings),
 			FEAT_INST(Hotkeys),
-			FEAT_INST(Debug),
-			FEAT_INST(About),
-#ifndef _PATTERN_SCANNER
-			FEAT_INST(PacketSniffer),
-#endif
-
-			FEAT_INST(GodMode),
-			FEAT_INST(InfiniteStamina),
-			FEAT_INST(NoCD),
-			FEAT_INST(NoClip),
-			FEAT_INST(RapidFire),
-			FEAT_INST(AutoRun),
-			FEAT_INST(FallControl),
-
-			FEAT_INST(AutoLoot),
-			FEAT_INST(AutoTreeFarm),
-			FEAT_INST(AutoDestroy),
-			FEAT_INST(AutoSeelie),
-			FEAT_INST(OpenTeamImmediately),
-			FEAT_INST(VacuumLoot),
-			FEAT_INST(DialogSkip),
-			FEAT_INST(DumbEnemies),
-			FEAT_INST(FreezeEnemies),
-			FEAT_INST(ElementalSight),
-			FEAT_INST(KillAura),
-			FEAT_INST(AutoChallenge),
-			FEAT_INST(MobVacuum),
-			FEAT_INST(FakeTime),
-			FEAT_INST(GameSpeed),
-
-			FEAT_INST(ChestTeleport),
-			FEAT_INST(OculiTeleport),
-			FEAT_INST(MapTeleport),
-			FEAT_INST(CustomTeleports),
-
+//			FEAT_INST(Debug),
+//			FEAT_INST(About),
+//#ifndef _PATTERN_SCANNER
+//			FEAT_INST(PacketSniffer),
+//#endif
+//
+//			FEAT_INST(GodMode),
+//			FEAT_INST(InfiniteStamina),
+//			FEAT_INST(NoCD),
+//			FEAT_INST(NoClip),
+//			FEAT_INST(RapidFire),
+//			FEAT_INST(AutoRun),
+//			FEAT_INST(FallControl),
+//
+//			FEAT_INST(AutoLoot),
+//			FEAT_INST(AutoTreeFarm),
+//			FEAT_INST(AutoDestroy),
+//			FEAT_INST(AutoSeelie),
+//			FEAT_INST(OpenTeamImmediately),
+//			FEAT_INST(VacuumLoot),
+//			FEAT_INST(DialogSkip),
+//			FEAT_INST(DumbEnemies),
+//			FEAT_INST(FreezeEnemies),
+//			FEAT_INST(ElementalSight),
+//			FEAT_INST(KillAura),
+//			FEAT_INST(AutoChallenge),
+//			FEAT_INST(MobVacuum),
+//			FEAT_INST(FakeTime),
+//			FEAT_INST(GameSpeed),
+//
+//			FEAT_INST(ChestTeleport),
+//			FEAT_INST(OculiTeleport),
+//			FEAT_INST(MapTeleport),
+//			FEAT_INST(CustomTeleports),
+//
 			FEAT_INST(ESP),
-			FEAT_INST(InteractiveMap),
-
-			FEAT_INST(AutoFish),
-			FEAT_INST(AutoCook),
-
-			FEAT_INST(CustomWeather),
-
-			FEAT_INST(NoFog),
-			FEAT_INST(FPSUnlock),
-			FEAT_INST(CameraZoom),
-			FEAT_INST(ChestIndicator),
-			FEAT_INST(ProfileChanger),
-			FEAT_INST(PaimonFollow),
-			FEAT_INST(HideUI),
-			FEAT_INST(Browser),
-			FEAT_INST(EnablePeeking),
-			FEAT_INST(TextureChanger),
-			FEAT_INST(FreeCamera),
-			FEAT_INST(AnimationChanger)
+//			FEAT_INST(InteractiveMap),
+//
+//			FEAT_INST(AutoFish),
+//			FEAT_INST(AutoCook),
+//
+//			FEAT_INST(CustomWeather),
+//
+//			FEAT_INST(NoFog),
+//			FEAT_INST(FPSUnlock),
+//			FEAT_INST(CameraZoom),
+//			FEAT_INST(ChestIndicator),
+//			FEAT_INST(ProfileChanger),
+//			FEAT_INST(PaimonFollow),
+//			FEAT_INST(HideUI),
+//			FEAT_INST(Browser),
+//			FEAT_INST(EnablePeeking),
+//			FEAT_INST(TextureChanger),
+//			FEAT_INST(FreeCamera),
+//			FEAT_INST(AnimationChanger)
 			
 			});
 #undef FEAT_INST
 
 		manager.SetModuleOrder({
-			"Player",
-			"World",
-			"Teleport",
-			"ESP",
-			"Visuals",
+			//"Player",
+			//"World",
+			//"Teleport",
+			//"ESP",
+			//"Visuals",
 			"Hotkeys",
 			"Settings",
-			"About",
-			"Debug"
+			//"About",
+			//"Debug"
 			});
 
 		LPBYTE pFontData = nullptr;
@@ -174,8 +174,10 @@ namespace cheat
 			return;
 
 		auto& accountData = playerModule->fields._accountData_k__BackingField->fields;
-		if (_lastUserID != accountData.userId)
+		if (_lastUserID != accountData.userId) {
+			LOG_INFO("UserID=%d", accountData.userId);
 			events::AccountChangedEvent(accountData.userId);
+		}
 
 		_lastUserID = accountData.userId;
 	}
@@ -183,6 +185,7 @@ namespace cheat
 	static void GameManager_Update_Hook(app::GameManager* __this, MethodInfo* method)
 	{
 		SAFE_BEGIN();
+		//LOG_TRACE("Game Update ...");
 		events::GameUpdateEvent();
 		CheckAccountChanged();
 		SAFE_EEND();
@@ -193,6 +196,7 @@ namespace cheat
 	static void LevelSyncCombatPlugin_RequestSceneEntityMoveReq_Hook(app::LevelSyncCombatPlugin* __this, uint32_t entityId, app::MotionInfo* syncInfo,
 		bool isReliable, uint32_t relseq, MethodInfo* method)
 	{
+		LOG_TRACE("Entity Move id=%d, relialbe=%d, seq=%d", entityId, isReliable, relseq);
 		events::MoveSyncEvent(entityId, syncInfo);
 		CALL_ORIGIN(LevelSyncCombatPlugin_RequestSceneEntityMoveReq_Hook, __this, entityId, syncInfo, isReliable, relseq, method);
 	}

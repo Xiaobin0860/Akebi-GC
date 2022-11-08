@@ -44,51 +44,51 @@ namespace cheat::feature
 
 	bool PacketSniffer::ProcessModifiedData(app::KcpPacket_1*& packet)
 	{
-		auto modify_data = client.WaitFor<PipeModifyData>();
-		if (!modify_data)
-			return false;
+		//auto modify_data = client.WaitFor<PipeModifyData>();
+		//if (!modify_data)
+		//	return false;
 
-		switch (modify_data->modifyType)
-		{
-		case ModifyType::Blocked:
-			return true;
+		//switch (modify_data->modifyType)
+		//{
+		//case ModifyType::Blocked:
+		//	return true;
 
-		case ModifyType::Modified:
-		{
-			auto data_size = modify_data->head.size() + modify_data->content.size() + 12;
-			char* data = new char[data_size];
+		//case ModifyType::Modified:
+		//{
+		//	auto data_size = modify_data->head.size() + modify_data->content.size() + 12;
+		//	char* data = new char[data_size];
 
-			auto head_size = static_cast<uint16_t>(modify_data->head.size());
-			auto message_size = static_cast<uint32_t>(modify_data->content.size());
+		//	auto head_size = static_cast<uint16_t>(modify_data->head.size());
+		//	auto message_size = static_cast<uint32_t>(modify_data->content.size());
 
-			util::WriteMapped(data, 0, static_cast<uint16_t>(0x4567)); // Magic number
-			util::WriteMapped(data, 2, modify_data->messageID); // Message id
-			util::WriteMapped(data, 4, head_size); // Head size
-			util::WriteMapped(data, 6, message_size); // Message size
+		//	util::WriteMapped(data, 0, static_cast<uint16_t>(0x4567)); // Magic number
+		//	util::WriteMapped(data, 2, modify_data->messageID); // Message id
+		//	util::WriteMapped(data, 4, head_size); // Head size
+		//	util::WriteMapped(data, 6, message_size); // Message size
 
-			// Fill content
-			char* ptr_head_content = data + 10;
-			memcpy_s(ptr_head_content, head_size, modify_data->head.data(), head_size);
+		//	// Fill content
+		//	char* ptr_head_content = data + 10;
+		//	memcpy_s(ptr_head_content, head_size, modify_data->head.data(), head_size);
 
-			char* ptr_message_content = ptr_head_content + modify_data->head.size();
-			memcpy_s(ptr_message_content, message_size, modify_data->content.data(), message_size);
-			
-			util::WriteMapped(ptr_message_content, message_size, static_cast<uint16_t>(0x89AB));
+		//	char* ptr_message_content = ptr_head_content + modify_data->head.size();
+		//	memcpy_s(ptr_message_content, message_size, modify_data->content.data(), message_size);
+		//	
+		//	util::WriteMapped(ptr_message_content, message_size, static_cast<uint16_t>(0x89AB));
 
-			EncryptXor(data, data_size);
+		//	EncryptXor(data, data_size);
 
-			// Can be memory leak.
-			auto new_packet = app::Kcp_KcpNative_kcp_packet_create(reinterpret_cast<uint8_t*>(data), static_cast<int32_t>(data_size), nullptr);
-			delete[] data;
+		//	// Can be memory leak.
+		//	auto new_packet = app::Kcp_KcpNative_kcp_packet_create(reinterpret_cast<uint8_t*>(data), static_cast<int32_t>(data_size), nullptr);
+		//	delete[] data;
 
-			// Will be deleted by KcpNative_kcp_client_network_thread
-			packet = new_packet;
-		}
-		break;
-		case ModifyType::Unchanged:
-		default:
-			break;
-		}
+		//	// Will be deleted by KcpNative_kcp_client_network_thread
+		//	packet = new_packet;
+		//}
+		//break;
+		//case ModifyType::Unchanged:
+		//default:
+		//	break;
+		//}
 		return false;
 	}
 

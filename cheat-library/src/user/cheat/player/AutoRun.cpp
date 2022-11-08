@@ -47,25 +47,25 @@ namespace cheat::feature
 
 	void EnableAutoRun(float speed) {
 		
-		auto& manager = game::EntityManager::instance();
-		auto avatarEntity = manager.avatar();
+		//auto& manager = game::EntityManager::instance();
+		//auto avatarEntity = manager.avatar();
 
-		auto baseMove = avatarEntity->moveComponent();
-		auto rigidBody = avatarEntity->rigidbody();
+		//auto baseMove = avatarEntity->moveComponent();
+		//auto rigidBody = avatarEntity->rigidbody();
 
-		if (baseMove == nullptr || rigidBody == nullptr || renderer::IsInputLocked())
-			return;
+		//if (baseMove == nullptr || rigidBody == nullptr || renderer::IsInputLocked())
+		//	return;
 
-		auto cameraEntity = game::Entity(reinterpret_cast<app::BaseEntity*>(manager.mainCamera()));
-		auto relativeEntity = &cameraEntity;
+		//auto cameraEntity = game::Entity(reinterpret_cast<app::BaseEntity*>(manager.mainCamera()));
+		//auto relativeEntity = &cameraEntity;
 
-		app::Vector3 dir = relativeEntity->forward();
-		app::Vector3 prevPos = avatarEntity->relativePosition();
+		//app::Vector3 dir = relativeEntity->forward();
+		//app::Vector3 prevPos = avatarEntity->relativePosition();
 
-		float deltaTime = app::Time_get_deltaTime(nullptr);
-		app::Vector3 newPos = prevPos + dir * speed * deltaTime;
+		//float deltaTime = app::Time_get_deltaTime(nullptr);
+		//app::Vector3 newPos = prevPos + dir * speed * deltaTime;
 
-		avatarEntity->setRelativePosition(newPos);
+		//avatarEntity->setRelativePosition(newPos);
 	}
 
 	void AutoRun::OnGameUpdate() {

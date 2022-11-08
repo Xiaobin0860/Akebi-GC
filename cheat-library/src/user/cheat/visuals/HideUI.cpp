@@ -43,23 +43,23 @@ namespace cheat::feature
 
     void HideUI::OnGameUpdate()
     {
-        if (f_Enabled)
-        {
-            if (ui_camera == nullptr)
-                ui_camera = app::GameObject_Find(string_to_il2cppi("/UICamera"), nullptr);
+        //if (f_Enabled)
+        //{
+        //    if (ui_camera == nullptr)
+        //        ui_camera = app::GameObject_Find(string_to_il2cppi("/UICamera"), nullptr);
   
-            if (ui_camera->fields._.m_CachedPtr != nullptr)
-                app::GameObject_SetActive(ui_camera, false, nullptr);
-        }
-        else
-        {
-            if (ui_camera)
-            {
-                if (ui_camera->fields._.m_CachedPtr != nullptr)
-                    app::GameObject_SetActive(ui_camera, true, nullptr);
+        //    if (ui_camera->fields._.m_CachedPtr != nullptr)
+        //        app::GameObject_SetActive(ui_camera, false, nullptr);
+        //}
+        //else
+        //{
+        //    if (ui_camera)
+        //    {
+        //        if (ui_camera->fields._.m_CachedPtr != nullptr)
+        //            app::GameObject_SetActive(ui_camera, true, nullptr);
 
-                ui_camera = nullptr;
-            }
-        }
+        //        ui_camera = nullptr;
+        //    }
+        //}
     }
 }

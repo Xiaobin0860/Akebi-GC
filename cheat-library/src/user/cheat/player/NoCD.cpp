@@ -23,12 +23,11 @@ namespace cheat::feature
         NF(f_Sprint,             "No Sprint Cooldown",           "NoCD", false),
 		NF(f_InstantBow,         "Instant bow",                  "NoCD", false)
     {
-		HookManager::install(app::MoleMole_LCAvatarCombat_IsEnergyMax, LCAvatarCombat_IsEnergyMax_Hook);
-		HookManager::install(app::MoleMole_LCAvatarCombat_IsSkillInCD_1, LCAvatarCombat_IsSkillInCD_1);
+		//HookManager::install(app::MoleMole_LCAvatarCombat_IsEnergyMax, LCAvatarCombat_IsEnergyMax_Hook);
+		//HookManager::install(app::MoleMole_LCAvatarCombat_IsSkillInCD_1, LCAvatarCombat_IsSkillInCD_1);
 
-		HookManager::install(app::MoleMole_HumanoidMoveFSM_CheckSprintCooldown, HumanoidMoveFSM_CheckSprintCooldown_Hook);
-		HookManager::install(app::MoleMole_ActorAbilityPlugin_AddDynamicFloatWithRange, ActorAbilityPlugin_AddDynamicFloatWithRange_Hook);
-		 
+		//HookManager::install(app::MoleMole_HumanoidMoveFSM_CheckSprintCooldown, HumanoidMoveFSM_CheckSprintCooldown_Hook);
+		//HookManager::install(app::MoleMole_ActorAbilityPlugin_AddDynamicFloatWithRange, ActorAbilityPlugin_AddDynamicFloatWithRange_Hook);
     }
 
     const FeatureGUIInfo& NoCD::GetGUIInfo() const
@@ -126,17 +125,17 @@ namespace cheat::feature
 
 	// Timer Speed Up / CoolDown Reduce New | RyujinZX#6666
 	static bool LCAvatarCombat_IsSkillInCD_1(app::LCAvatarCombat* __this, app::LCAvatarCombat_LCAvatarCombat_SkillInfo* skillInfo, MethodInfo* method) {
-		NoCD& noCD = NoCD::GetInstance();
-		if (noCD.f_AbilityReduce)
-		{
-			auto cdTimer = app::MoleMole_SafeFloat_get_Value(skillInfo->fields.cdTimer, nullptr); // Timer start value in the game
+		//NoCD& noCD = NoCD::GetInstance();
+		//if (noCD.f_AbilityReduce)
+		//{
+		//	auto cdTimer = app::MoleMole_SafeFloat_get_Value(skillInfo->fields.cdTimer, nullptr); // Timer start value in the game
 
-			if (cdTimer > noCD.f_TimerReduce)
-			{
-				struct app::SafeFloat MyValueProtect = app::MoleMole_SafeFloat_set_Value(noCD.f_TimerReduce - 1.0f, nullptr); // Subtract -1 from the current timer value
-				skillInfo->fields.cdTimer = MyValueProtect; 
-			}
-		}
+		//	if (cdTimer > noCD.f_TimerReduce)
+		//	{
+		//		struct app::SafeFloat MyValueProtect = app::MoleMole_SafeFloat_set_Value(noCD.f_TimerReduce - 1.0f, nullptr); // Subtract -1 from the current timer value
+		//		skillInfo->fields.cdTimer = MyValueProtect; 
+		//	}
+		//}
 		return CALL_ORIGIN(LCAvatarCombat_IsSkillInCD_1, __this, skillInfo, method);
 	}
 

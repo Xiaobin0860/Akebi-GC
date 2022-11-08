@@ -48,46 +48,46 @@ namespace cheat::feature
     // Detects and moves avatar when movement keys are pressed.
     void FallControl::OnGameUpdate()
     {
-        if (!f_Enabled || !isFalling)
-            return;
+        //if (!f_Enabled || !isFalling)
+        //    return;
 
-        auto& manager = game::EntityManager::instance();
+        //auto& manager = game::EntityManager::instance();
 
-        const auto avatarEntity = manager.avatar();
-        auto rigidBody = avatarEntity->rigidbody();
-        if (rigidBody == nullptr)
-            return;
+        //const auto avatarEntity = manager.avatar();
+        //auto rigidBody = avatarEntity->rigidbody();
+        //if (rigidBody == nullptr)
+        //    return;
 
-        const auto cameraEntity = game::Entity(reinterpret_cast<app::BaseEntity*>(manager.mainCamera()));
-        app::Vector3 direction = {};
-        if (Hotkey(ImGuiKey_W).IsPressed())
-            direction = direction + cameraEntity.forward();;
-        if (Hotkey(ImGuiKey_S).IsPressed())
-            direction = direction + cameraEntity.back();;
-        if (Hotkey(ImGuiKey_D).IsPressed())
-            direction = direction + cameraEntity.right();;
-        if (Hotkey(ImGuiKey_A).IsPressed())
-            direction = direction + cameraEntity.left();;
-        if (IsVectorZero(direction))
-            return;
-        // Do not change falling velocity when camera relative
-        direction.y = 0;
+        //const auto cameraEntity = game::Entity(reinterpret_cast<app::BaseEntity*>(manager.mainCamera()));
+        //app::Vector3 direction = {};
+        //if (Hotkey(ImGuiKey_W).IsPressed())
+        //    direction = direction + cameraEntity.forward();;
+        //if (Hotkey(ImGuiKey_S).IsPressed())
+        //    direction = direction + cameraEntity.back();;
+        //if (Hotkey(ImGuiKey_D).IsPressed())
+        //    direction = direction + cameraEntity.right();;
+        //if (Hotkey(ImGuiKey_A).IsPressed())
+        //    direction = direction + cameraEntity.left();;
+        //if (IsVectorZero(direction))
+        //    return;
+        //// Do not change falling velocity when camera relative
+        //direction.y = 0;
 
-        // Alternative, using set_velocity. Does not work while falling?
-        // const float speed = f_Speed.value();
-        // const auto currentVelocity = app::Rigidbody_get_velocity(rigidBody, nullptr);
-        // const auto desiredvelocity = currentVelocity + direction * speed;
-        // LOG_DEBUG("Current velocity: [%.1f,%.1f,%.1f]", currentVelocity.x, currentVelocity.y, currentVelocity.z);
-        // LOG_DEBUG("Desired velocity: [%.1f,%.1f,%.1f]\n", desiredvelocity.x, desiredvelocity.y, desiredvelocity.z);
-        // app::Rigidbody_set_collisionDetectionMode(rigidBody, app::CollisionDetectionMode__Enum::Continuous, nullptr);
-        // app::Rigidbody_set_velocity(rigidBody, desiredvelocity, nullptr);
+        //// Alternative, using set_velocity. Does not work while falling?
+        //// const float speed = f_Speed.value();
+        //// const auto currentVelocity = app::Rigidbody_get_velocity(rigidBody, nullptr);
+        //// const auto desiredvelocity = currentVelocity + direction * speed;
+        //// LOG_DEBUG("Current velocity: [%.1f,%.1f,%.1f]", currentVelocity.x, currentVelocity.y, currentVelocity.z);
+        //// LOG_DEBUG("Desired velocity: [%.1f,%.1f,%.1f]\n", desiredvelocity.x, desiredvelocity.y, desiredvelocity.z);
+        //// app::Rigidbody_set_collisionDetectionMode(rigidBody, app::CollisionDetectionMode__Enum::Continuous, nullptr);
+        //// app::Rigidbody_set_velocity(rigidBody, desiredvelocity, nullptr);
 
-        const app::Vector3 prevPos = avatarEntity->relativePosition();
-        const auto currentVelocity = app::Rigidbody_get_velocity(rigidBody, nullptr);
-        const float speed = f_Speed.value();
-        const float deltaTime = app::Time_get_deltaTime(nullptr);
-        const app::Vector3 newPos = prevPos + (currentVelocity + direction * speed) * deltaTime;
-        avatarEntity->setRelativePosition(newPos);
+        //const app::Vector3 prevPos = avatarEntity->relativePosition();
+        //const auto currentVelocity = app::Rigidbody_get_velocity(rigidBody, nullptr);
+        //const float speed = f_Speed.value();
+        //const float deltaTime = app::Time_get_deltaTime(nullptr);
+        //const app::Vector3 newPos = prevPos + (currentVelocity + direction * speed) * deltaTime;
+        //avatarEntity->setRelativePosition(newPos);
     }
 
     // Detects when player is falling and enables the FallControl cheat

@@ -62,31 +62,31 @@ namespace cheat::feature
 
     void CustomWeather::OnGameUpdate()
     {
-        if (!f_Enabled)
-            return;
+        //if (!f_Enabled)
+        //    return;
 
-        UPDATE_DELAY(100);
+        //UPDATE_DELAY(100);
 
-        auto Enviro = app::EnviroSky_get_Instance(nullptr);
-        if (Enviro != nullptr)
-        {
-            app::EnviroSky_ChangeWeather(Enviro, string_to_il2cppi(weather.at(f_WeatherType.value())), 1, 1, nullptr);
+        //auto Enviro = app::EnviroSky_get_Instance(nullptr);
+        //if (Enviro != nullptr)
+        //{
+        //    app::EnviroSky_ChangeWeather(Enviro, string_to_il2cppi(weather.at(f_WeatherType.value())), 1, 1, nullptr);
 
-            if (f_Lightning && f_WeatherType.value() == CustomWeather::WeatherType::RainHeavy)
-            {
-                auto& manager = game::EntityManager::instance();
+        //    if (f_Lightning && f_WeatherType.value() == CustomWeather::WeatherType::RainHeavy)
+        //    {
+        //        auto& manager = game::EntityManager::instance();
 
-                for (auto& Monsters : manager.entities(game::filters::combined::Monsters))
-                {
-                    if (manager.avatar()->distance(Monsters) >= 30)
-                        continue;
+        //        for (auto& Monsters : manager.entities(game::filters::combined::Monsters))
+        //        {
+        //            if (manager.avatar()->distance(Monsters) >= 30)
+        //                continue;
 
-                    for (auto& entity : manager.entities(game::filters::combined::Lightning))
-                    {
-                        entity->setRelativePosition(Monsters->relativePosition());
-                    }
-                }
-            }
-        }
+        //            for (auto& entity : manager.entities(game::filters::combined::Lightning))
+        //            {
+        //                entity->setRelativePosition(Monsters->relativePosition());
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

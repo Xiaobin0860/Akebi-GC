@@ -31,10 +31,10 @@ namespace cheat::feature
 		NF(f_AltSpeed,			"Alt speed",			"NoClip", 1.0f)
 
 	{
-		HookManager::install(app::MoleMole_HumanoidMoveFSM_LateTick, HumanoidMoveFSM_LateTick_Hook);
+		//HookManager::install(app::MoleMole_HumanoidMoveFSM_LateTick, HumanoidMoveFSM_LateTick_Hook);
 
-		events::GameUpdateEvent += MY_METHOD_HANDLER(NoClip::OnGameUpdate);
-		events::MoveSyncEvent += MY_METHOD_HANDLER(NoClip::OnMoveSync);
+		//events::GameUpdateEvent += MY_METHOD_HANDLER(NoClip::OnGameUpdate);
+		//events::MoveSyncEvent += MY_METHOD_HANDLER(NoClip::OnMoveSync);
 	}
 
 	const FeatureGUIInfo& NoClip::GetGUIInfo() const
@@ -107,86 +107,86 @@ namespace cheat::feature
 	// We just disabling collision detect and move avatar when no clip moving keys pressed.
 	void NoClip::OnGameUpdate()
 	{
-		static bool isApplied = false;
+		//static bool isApplied = false;
 
-		auto& manager = game::EntityManager::instance();
+		//auto& manager = game::EntityManager::instance();
 
-		if (!f_Enabled && isApplied)
-		{
-			auto avatarEntity = manager.avatar();
-			auto rigidBody = avatarEntity->rigidbody();
-			if (rigidBody == nullptr)
-				return;
+		//if (!f_Enabled && isApplied)
+		//{
+		//	auto avatarEntity = manager.avatar();
+		//	auto rigidBody = avatarEntity->rigidbody();
+		//	if (rigidBody == nullptr)
+		//		return;
 
-			app::Rigidbody_set_detectCollisions(rigidBody, true, nullptr);
+		//	app::Rigidbody_set_detectCollisions(rigidBody, true, nullptr);
 
-			isApplied = false;
-		}
+		//	isApplied = false;
+		//}
 
-		if (!f_Enabled)
-			return;
+		//if (!f_Enabled)
+		//	return;
 
-		isApplied = true;
+		//isApplied = true;
 
-		auto avatarEntity = manager.avatar();
-		auto baseMove = avatarEntity->moveComponent();
-		if (baseMove == nullptr)
-			return;
+		//auto avatarEntity = manager.avatar();
+		//auto baseMove = avatarEntity->moveComponent();
+		//if (baseMove == nullptr)
+		//	return;
 
-		if (renderer::IsInputLocked())
-			return;
+		//if (renderer::IsInputLocked())
+		//	return;
 
-		auto rigidBody = avatarEntity->rigidbody();
-		if (rigidBody == nullptr)
-			return;
+		//auto rigidBody = avatarEntity->rigidbody();
+		//if (rigidBody == nullptr)
+		//	return;
 
-		if (!f_FreeflightMode)
-		{
-			app::Rigidbody_set_collisionDetectionMode(rigidBody, app::CollisionDetectionMode__Enum::Continuous, nullptr);
-			app::Rigidbody_set_detectCollisions(rigidBody, false, nullptr);
-		}
+		//if (!f_FreeflightMode)
+		//{
+		//	app::Rigidbody_set_collisionDetectionMode(rigidBody, app::CollisionDetectionMode__Enum::Continuous, nullptr);
+		//	app::Rigidbody_set_detectCollisions(rigidBody, false, nullptr);
+		//}
 
-		if (!f_VelocityMode)
-			app::Rigidbody_set_velocity(rigidBody, zero, nullptr);
+		//if (!f_VelocityMode)
+		//	app::Rigidbody_set_velocity(rigidBody, zero, nullptr);
 
-		auto cameraEntity = game::Entity(reinterpret_cast<app::BaseEntity*>(manager.mainCamera()));
-		auto relativeEntity = f_CameraRelative ? &cameraEntity : avatarEntity;
+		//auto cameraEntity = game::Entity(reinterpret_cast<app::BaseEntity*>(manager.mainCamera()));
+		//auto relativeEntity = f_CameraRelative ? &cameraEntity : avatarEntity;
 
-		float speed = f_Speed.value();
-		if (f_AltSpeedEnabled ? f_UseCustomKeys ? f_AltSpeedKey.value().IsPressed() : Hotkey(ImGuiKey_ModCtrl).IsPressed() : NULL)
-			speed = f_AltSpeed.value();
+		//float speed = f_Speed.value();
+		//if (f_AltSpeedEnabled ? f_UseCustomKeys ? f_AltSpeedKey.value().IsPressed() : Hotkey(ImGuiKey_ModCtrl).IsPressed() : NULL)
+		//	speed = f_AltSpeed.value();
 
-		app::Vector3 dir = {};
+		//app::Vector3 dir = {};
 
-		if (f_UseCustomKeys ? f_ForwardKey.value().IsPressed() : Hotkey(ImGuiKey_W).IsPressed())
-			dir = dir + relativeEntity->forward();
+		//if (f_UseCustomKeys ? f_ForwardKey.value().IsPressed() : Hotkey(ImGuiKey_W).IsPressed())
+		//	dir = dir + relativeEntity->forward();
 
-		if (f_UseCustomKeys ? f_BackKey.value().IsPressed() : Hotkey(ImGuiKey_S).IsPressed())
-			dir = dir + relativeEntity->back();
+		//if (f_UseCustomKeys ? f_BackKey.value().IsPressed() : Hotkey(ImGuiKey_S).IsPressed())
+		//	dir = dir + relativeEntity->back();
 
-		if (f_UseCustomKeys ? f_RightKey.value().IsPressed() : Hotkey(ImGuiKey_D).IsPressed())
-			dir = dir + relativeEntity->right();
+		//if (f_UseCustomKeys ? f_RightKey.value().IsPressed() : Hotkey(ImGuiKey_D).IsPressed())
+		//	dir = dir + relativeEntity->right();
 
-		if (f_UseCustomKeys ? f_LeftKey.value().IsPressed() : Hotkey(ImGuiKey_A).IsPressed())
-			dir = dir + relativeEntity->left();
+		//if (f_UseCustomKeys ? f_LeftKey.value().IsPressed() : Hotkey(ImGuiKey_A).IsPressed())
+		//	dir = dir + relativeEntity->left();
 
-		if (f_UseCustomKeys ? f_AscendKey.value().IsPressed() : Hotkey(ImGuiKey_Space).IsPressed())
-			dir = dir + avatarEntity->up();
+		//if (f_UseCustomKeys ? f_AscendKey.value().IsPressed() : Hotkey(ImGuiKey_Space).IsPressed())
+		//	dir = dir + avatarEntity->up();
 
-		if (f_UseCustomKeys ? f_DescendKey.value().IsPressed() : Hotkey(ImGuiKey_ModShift).IsPressed())
-			dir = dir + avatarEntity->down();
+		//if (f_UseCustomKeys ? f_DescendKey.value().IsPressed() : Hotkey(ImGuiKey_ModShift).IsPressed())
+		//	dir = dir + avatarEntity->down();
 
-		app::Vector3 prevPos = avatarEntity->relativePosition();
-		if (IsVectorZero(prevPos))
-			return;
+		//app::Vector3 prevPos = avatarEntity->relativePosition();
+		//if (IsVectorZero(prevPos))
+		//	return;
 
-		float deltaTime = app::Time_get_deltaTime(nullptr);
+		//float deltaTime = app::Time_get_deltaTime(nullptr);
 
-		app::Vector3 newPos = prevPos + dir * speed * deltaTime;
-		if (!f_VelocityMode)
-			avatarEntity->setRelativePosition(newPos);
-		else
-			app::Rigidbody_set_velocity(rigidBody, dir * speed, nullptr);
+		//app::Vector3 newPos = prevPos + dir * speed * deltaTime;
+		//if (!f_VelocityMode)
+		//	avatarEntity->setRelativePosition(newPos);
+		//else
+		//	app::Rigidbody_set_velocity(rigidBody, dir * speed, nullptr);
 	}
 
 	// Fixing player sync packets when no clip

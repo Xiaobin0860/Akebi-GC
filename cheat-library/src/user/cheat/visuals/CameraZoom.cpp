@@ -12,7 +12,7 @@ namespace cheat::feature
         NF(f_Enabled, "Camera Zoom", "Visuals::CameraZoom", false),
         NF(f_Zoom, "Zoom", "Visuals::CameraZoom", 200)
     {
-        HookManager::install(app::MoleMole_SCameraModuleInitialize_SetWarningLocateRatio, SCameraModuleInitialize_SetWarningLocateRatio_Hook);
+        //HookManager::install(app::MoleMole_SCameraModuleInitialize_SetWarningLocateRatio, SCameraModuleInitialize_SetWarningLocateRatio_Hook);
     }
 
     const FeatureGUIInfo& CameraZoom::GetGUIInfo() const

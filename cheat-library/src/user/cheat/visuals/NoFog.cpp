@@ -42,11 +42,11 @@ namespace cheat::feature
 
     void NoFog::OnGameUpdate()
     {
-		if (_prevEnabledState != f_Enabled)
-		{
-			app::RenderSettings_set_fog(!f_Enabled, nullptr);
-			_prevEnabledState = f_Enabled;
-		}
+		//if (_prevEnabledState != f_Enabled)
+		//{
+		//	app::RenderSettings_set_fog(!f_Enabled, nullptr);
+		//	_prevEnabledState = f_Enabled;
+		//}
     }
 }
 

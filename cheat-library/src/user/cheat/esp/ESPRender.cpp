@@ -130,144 +130,144 @@ namespace cheat::feature::esp::render
 		return { entityPosition, { minSize, minSize, minSize } };
 	}
 
-	static app::Bounds GetObjectBounds(game::Entity* entity)
-	{
-		auto& esp = ESP::GetInstance();
-		auto gameObject = entity->gameObject();
-		if (gameObject == nullptr)
-			return GetEntityMinBounds(entity, esp.f_MinSize);
+	//static app::Bounds GetObjectBounds(game::Entity* entity)
+	//{
+	//	auto& esp = ESP::GetInstance();
+	//	auto gameObject = entity->gameObject();
+	//	if (gameObject == nullptr)
+	//		return GetEntityMinBounds(entity, esp.f_MinSize);
 
-		SAFE_BEGIN();
+	//	SAFE_BEGIN();
 
-		// Sometimes occurs access violation in UnityPlayer.dll
-		// Callow: Have no idea what to do with it unless just catch exception
-		auto bounds = app::Utils_4_GetBounds(gameObject, nullptr);
-		if (bounds.m_Extents.x < esp.f_MinSize &&
-			bounds.m_Extents.y < esp.f_MinSize &&
-			bounds.m_Extents.z < esp.f_MinSize)
-			bounds.m_Extents = { esp.f_MinSize, esp.f_MinSize, esp.f_MinSize };
+	//	// Sometimes occurs access violation in UnityPlayer.dll
+	//	// Callow: Have no idea what to do with it unless just catch exception
+	//	auto bounds = app::Utils_4_GetBounds(gameObject, nullptr);
+	//	if (bounds.m_Extents.x < esp.f_MinSize &&
+	//		bounds.m_Extents.y < esp.f_MinSize &&
+	//		bounds.m_Extents.z < esp.f_MinSize)
+	//		bounds.m_Extents = { esp.f_MinSize, esp.f_MinSize, esp.f_MinSize };
 
-		auto min = bounds.m_Center - bounds.m_Extents;
-		auto max = bounds.m_Center + bounds.m_Extents;
+	//	auto min = bounds.m_Center - bounds.m_Extents;
+	//	auto max = bounds.m_Center + bounds.m_Extents;
 
-		// When monster or some another object in a far from player - they disappear
-		// And for some reason game object extends
-		if ((min.x == 0 || min.y == 0 || min.z == 0))
-			return GetEntityMinBounds(entity, 1);
+	//	// When monster or some another object in a far from player - they disappear
+	//	// And for some reason game object extends
+	//	if ((min.x == 0 || min.y == 0 || min.z == 0))
+	//		return GetEntityMinBounds(entity, 1);
 
-		return bounds;
-		
-		SAFE_ERROR();
-		
-		return GetEntityMinBounds(entity, esp.f_MinSize);
-		
-		SAFE_END();
-	}
+	//	return bounds;
+	//	
+	//	SAFE_ERROR();
+	//	
+	//	return GetEntityMinBounds(entity, esp.f_MinSize);
+	//	
+	//	SAFE_END();
+	//}
 
-	static std::optional<BoxScreen> GetEntityScreenBox(game::Entity* entity)
-	{
-		if (s_Camera == nullptr)
-			return {};
+//	static std::optional<BoxScreen> GetEntityScreenBox(game::Entity* entity)
+//	{
+//		if (s_Camera == nullptr)
+//			return {};
+//
+//		app::Bounds bounds = GetObjectBounds(entity);
+//
+//		auto min = bounds.m_Center - bounds.m_Extents;
+//		auto max = bounds.m_Center + bounds.m_Extents;
+//
+//		BoxScreen box;
+//		app::Vector3 temp;
+//#define BOX_FIELD_SET(field, px, py, pz) temp = app::Camera_WorldToScreenPoint(s_Camera, { px, py, pz }, nullptr);\
+//			if (temp.z < 1) return {};\
+//			box.##field = FromVec3(temp);
+//
+//		BOX_FIELD_SET(lowerTopLeft, min.x, min.y, max.z);
+//		BOX_FIELD_SET(lowerTopRight, max.x, min.y, max.z);
+//		BOX_FIELD_SET(lowerBottomLeft, min.x, min.y, min.z);
+//		BOX_FIELD_SET(lowerBottomRight, max.x, min.y, min.z);
+//
+//		BOX_FIELD_SET(upperTopLeft, min.x, max.y, max.z);
+//		BOX_FIELD_SET(upperTopRight, max.x, max.y, max.z);
+//		BOX_FIELD_SET(upperBottomLeft, min.x, max.y, min.z);
+//		BOX_FIELD_SET(upperBottomRight, max.x, max.y, min.z);
+//
+//#undef BOX_FIELD_SET
+//
+//		return box;
+//	}
 
-		app::Bounds bounds = GetObjectBounds(entity);
+//	static void ScaleBoxScreen(BoxScreen& boxScreen)
+//	{
+//		if (s_ResolutionScale.x != 0)
+//		{
+//
+//#define SCALE_FIELD(field) boxScreen.##field##.x *= s_ResolutionScale.x; boxScreen.##field##.y *= s_ResolutionScale.y
+//
+//			SCALE_FIELD(lowerTopLeft);
+//			SCALE_FIELD(lowerTopRight);
+//			SCALE_FIELD(lowerBottomLeft);
+//			SCALE_FIELD(lowerBottomRight);
+//
+//			SCALE_FIELD(upperTopLeft);
+//			SCALE_FIELD(upperTopRight);
+//			SCALE_FIELD(upperBottomLeft);
+//			SCALE_FIELD(upperBottomRight);
+//
+//#undef SCALE_FIELD
+//
+//		}
+//
+//		auto screenHeight = app::Screen_get_height(nullptr);
+//
+//#define FIX_Y(field) boxScreen.##field##.y = screenHeight - boxScreen.##field##.y
+//
+//		FIX_Y(lowerTopLeft);
+//		FIX_Y(lowerTopRight);
+//		FIX_Y(lowerBottomLeft);
+//		FIX_Y(lowerBottomRight);
+//
+//		FIX_Y(upperTopLeft);
+//		FIX_Y(upperTopRight);
+//		FIX_Y(upperBottomLeft);
+//		FIX_Y(upperBottomRight);
+//
+//#undef FIX_Y
+//
+//	}
 
-		auto min = bounds.m_Center - bounds.m_Extents;
-		auto max = bounds.m_Center + bounds.m_Extents;
+	//static Rect GetEntityScreenRect(const BoxScreen& box, bool scalling = true)
+	//{
+	//	Rect boxRect{};
 
-		BoxScreen box;
-		app::Vector3 temp;
-#define BOX_FIELD_SET(field, px, py, pz) temp = app::Camera_WorldToScreenPoint(s_Camera, { px, py, pz }, nullptr);\
-			if (temp.z < 1) return {};\
-			box.##field = FromVec3(temp);
+	//	boxRect.xMin = std::min({ box.lowerTopLeft.x, box.lowerTopRight.x, box.lowerBottomLeft.x, box.lowerBottomRight.x,
+	//		box.upperTopLeft.x, box.upperTopRight.x, box.upperBottomRight.x, box.upperBottomLeft.x });
+	//	boxRect.xMax = std::max({ box.lowerTopLeft.x, box.lowerTopRight.x, box.lowerBottomLeft.x, box.lowerBottomRight.x,
+	//		box.upperTopLeft.x, box.upperTopRight.x, box.upperBottomRight.x, box.upperBottomLeft.x });
 
-		BOX_FIELD_SET(lowerTopLeft, min.x, min.y, max.z);
-		BOX_FIELD_SET(lowerTopRight, max.x, min.y, max.z);
-		BOX_FIELD_SET(lowerBottomLeft, min.x, min.y, min.z);
-		BOX_FIELD_SET(lowerBottomRight, max.x, min.y, min.z);
+	//	boxRect.yMin = std::max({ box.lowerTopLeft.y, box.lowerTopRight.y, box.lowerBottomLeft.y, box.lowerBottomRight.y,
+	//		box.upperTopLeft.y, box.upperTopRight.y, box.upperBottomRight.y, box.upperBottomLeft.y });
+	//	boxRect.yMax = std::min({ box.lowerTopLeft.y, box.lowerTopRight.y, box.lowerBottomLeft.y, box.lowerBottomRight.y,
+	//		box.upperTopLeft.y, box.upperTopRight.y, box.upperBottomRight.y, box.upperBottomLeft.y });
 
-		BOX_FIELD_SET(upperTopLeft, min.x, max.y, max.z);
-		BOX_FIELD_SET(upperTopRight, max.x, max.y, max.z);
-		BOX_FIELD_SET(upperBottomLeft, min.x, max.y, min.z);
-		BOX_FIELD_SET(upperBottomRight, max.x, max.y, min.z);
+	//	if (!scalling)
+	//	{
+	//		std::swap(boxRect.yMin, boxRect.yMax);
+	//		return boxRect;
+	//	}
 
-#undef BOX_FIELD_SET
+	//	if (s_ResolutionScale.x != 0)
+	//	{
+	//		boxRect.xMin *= s_ResolutionScale.x;
+	//		boxRect.xMax *= s_ResolutionScale.x;
 
-		return box;
-	}
+	//		boxRect.yMin *= s_ResolutionScale.y;
+	//		boxRect.yMax *= s_ResolutionScale.y;
+	//	}
 
-	static void ScaleBoxScreen(BoxScreen& boxScreen)
-	{
-		if (s_ResolutionScale.x != 0)
-		{
-
-#define SCALE_FIELD(field) boxScreen.##field##.x *= s_ResolutionScale.x; boxScreen.##field##.y *= s_ResolutionScale.y
-
-			SCALE_FIELD(lowerTopLeft);
-			SCALE_FIELD(lowerTopRight);
-			SCALE_FIELD(lowerBottomLeft);
-			SCALE_FIELD(lowerBottomRight);
-
-			SCALE_FIELD(upperTopLeft);
-			SCALE_FIELD(upperTopRight);
-			SCALE_FIELD(upperBottomLeft);
-			SCALE_FIELD(upperBottomRight);
-
-#undef SCALE_FIELD
-
-		}
-
-		auto screenHeight = app::Screen_get_height(nullptr);
-
-#define FIX_Y(field) boxScreen.##field##.y = screenHeight - boxScreen.##field##.y
-
-		FIX_Y(lowerTopLeft);
-		FIX_Y(lowerTopRight);
-		FIX_Y(lowerBottomLeft);
-		FIX_Y(lowerBottomRight);
-
-		FIX_Y(upperTopLeft);
-		FIX_Y(upperTopRight);
-		FIX_Y(upperBottomLeft);
-		FIX_Y(upperBottomRight);
-
-#undef FIX_Y
-
-	}
-
-	static Rect GetEntityScreenRect(const BoxScreen& box, bool scalling = true)
-	{
-		Rect boxRect{};
-
-		boxRect.xMin = std::min({ box.lowerTopLeft.x, box.lowerTopRight.x, box.lowerBottomLeft.x, box.lowerBottomRight.x,
-			box.upperTopLeft.x, box.upperTopRight.x, box.upperBottomRight.x, box.upperBottomLeft.x });
-		boxRect.xMax = std::max({ box.lowerTopLeft.x, box.lowerTopRight.x, box.lowerBottomLeft.x, box.lowerBottomRight.x,
-			box.upperTopLeft.x, box.upperTopRight.x, box.upperBottomRight.x, box.upperBottomLeft.x });
-
-		boxRect.yMin = std::max({ box.lowerTopLeft.y, box.lowerTopRight.y, box.lowerBottomLeft.y, box.lowerBottomRight.y,
-			box.upperTopLeft.y, box.upperTopRight.y, box.upperBottomRight.y, box.upperBottomLeft.y });
-		boxRect.yMax = std::min({ box.lowerTopLeft.y, box.lowerTopRight.y, box.lowerBottomLeft.y, box.lowerBottomRight.y,
-			box.upperTopLeft.y, box.upperTopRight.y, box.upperBottomRight.y, box.upperBottomLeft.y });
-
-		if (!scalling)
-		{
-			std::swap(boxRect.yMin, boxRect.yMax);
-			return boxRect;
-		}
-
-		if (s_ResolutionScale.x != 0)
-		{
-			boxRect.xMin *= s_ResolutionScale.x;
-			boxRect.xMax *= s_ResolutionScale.x;
-
-			boxRect.yMin *= s_ResolutionScale.y;
-			boxRect.yMax *= s_ResolutionScale.y;
-		}
-
-		auto screenHeight = app::Screen_get_height(nullptr);
-		boxRect.yMin = screenHeight - boxRect.yMin;
-		boxRect.yMax = screenHeight - boxRect.yMax;
-		return boxRect;
-	}
+	//	auto screenHeight = app::Screen_get_height(nullptr);
+	//	boxRect.yMin = screenHeight - boxRect.yMin;
+	//	boxRect.yMax = screenHeight - boxRect.yMax;
+	//	return boxRect;
+	//}
 
 	static void DrawQuadLines(const ImVec2& p1, const ImVec2& p2, const ImVec2& p3, const ImVec2& p4, ImU32 col)
 	{
@@ -287,82 +287,82 @@ namespace cheat::feature::esp::render
 			rect.yMin < centerPoint.y&& centerPoint.y < rect.yMax;
 	}
 
-	static Rect DrawRect(game::Entity* entity, const ImColor& color)
-	{
-		auto box = GetEntityScreenBox(entity);
-		if (!box)
-			return {};
+	//static Rect DrawRect(game::Entity* entity, const ImColor& color)
+	//{
+	//	auto box = GetEntityScreenBox(entity);
+	//	if (!box)
+	//		return {};
 
-		auto entityRect = GetEntityScreenRect(*box);
-		if (entityRect.empty())
-			return {};
+	//	auto entityRect = GetEntityScreenRect(*box);
+	//	if (entityRect.empty())
+	//		return {};
 
-		auto& esp = ESP::GetInstance();
-		auto draw = ImGui::GetBackgroundDrawList();
+	//	auto& esp = ESP::GetInstance();
+	//	auto draw = ImGui::GetBackgroundDrawList();
 
-		auto pMin = ImVec2(entityRect.xMin, entityRect.yMin);
-		auto pMax = ImVec2(entityRect.xMax, entityRect.yMax);
-		if (esp.f_Fill)
-		{
-			ImColor newColor = color;
-			newColor.Value.w = 1.0f - esp.f_FillTransparency;
-			draw->AddRectFilled(pMin, pMax, newColor);
-		}
-		draw->AddRect(pMin, pMax, color);
+	//	auto pMin = ImVec2(entityRect.xMin, entityRect.yMin);
+	//	auto pMax = ImVec2(entityRect.xMax, entityRect.yMax);
+	//	if (esp.f_Fill)
+	//	{
+	//		ImColor newColor = color;
+	//		newColor.Value.w = 1.0f - esp.f_FillTransparency;
+	//		draw->AddRectFilled(pMin, pMax, newColor);
+	//	}
+	//	draw->AddRect(pMin, pMax, color);
 
-		return entityRect;
-	}
+	//	return entityRect;
+	//}
 
 	// Callow: This way to drawing is slower than native
-	static Rect DrawBox(game::Entity* entity, const ImColor& color)
-	{
-		auto box = GetEntityScreenBox(entity);
-		if (!box)
-			return {};
-
-		ScaleBoxScreen(*box);
-		auto& esp = ESP::GetInstance();
-		auto draw = ImGui::GetBackgroundDrawList();
-
-		if (esp.f_Fill)
-		{
-			ImColor newColor = color;
-			newColor.Value.w = 1.0f - esp.f_FillTransparency;
-
-			float threshold = 2.0f;
-#define ADD_FIXED_QUAD(p1, p2, p3, p4, col) {\
-                                                ImVec2 p13 { std::abs(p3.x - p1.x), std::abs(p3.y - p1.y) };\
-                                                ImVec2 p24 { std::abs(p2.x - p4.x), std::abs(p2.y - p4.y) };\
-                                                if ((p13.x > threshold && p13.y > threshold) || \
-                                                    (p24.x > threshold && p24.y > threshold) || \
-                                                    (p13.x > threshold && p24.y > threshold) || \
-                                                    (p24.x > threshold && p13.y > threshold))\
-                                                        draw->AddQuadFilled(p1, p2, p3, p4, newColor);\
-                                            }
-
-			ADD_FIXED_QUAD(box->lowerBottomLeft, box->lowerTopLeft, box->lowerTopRight, box->lowerBottomRight, newColor);
-			ADD_FIXED_QUAD(box->upperBottomLeft, box->upperTopLeft, box->upperTopRight, box->upperBottomRight, newColor);
-
-			ADD_FIXED_QUAD(box->lowerBottomLeft, box->upperBottomLeft, box->upperBottomRight, box->lowerBottomRight, newColor);
-			ADD_FIXED_QUAD(box->lowerTopLeft, box->upperTopLeft, box->upperTopRight, box->lowerTopRight, newColor);
-
-			ADD_FIXED_QUAD(box->lowerBottomLeft, box->lowerTopLeft, box->upperTopLeft, box->upperBottomLeft, newColor);
-			ADD_FIXED_QUAD(box->lowerBottomRight, box->lowerTopRight, box->upperTopRight, box->upperBottomRight, newColor);
-
-#undef ADD_FIXED_QUAD
-		}
-
-		DrawQuadLines(box->lowerBottomLeft, box->lowerTopLeft, box->lowerTopRight, box->lowerBottomRight, color);
-		DrawQuadLines(box->upperBottomLeft, box->upperTopLeft, box->upperTopRight, box->upperBottomRight, color);
-
-		draw->AddLine(box->lowerBottomLeft, box->upperBottomLeft, color);
-		draw->AddLine(box->lowerTopLeft, box->upperTopLeft, color);
-		draw->AddLine(box->lowerTopRight, box->upperTopRight, color);
-		draw->AddLine(box->lowerBottomRight, box->upperBottomRight, color);
-
-		auto rect = GetEntityScreenRect(*box, false);
-		return rect;
-	}
+//	static Rect DrawBox(game::Entity* entity, const ImColor& color)
+//	{
+//		auto box = GetEntityScreenBox(entity);
+//		if (!box)
+//			return {};
+//
+//		ScaleBoxScreen(*box);
+//		auto& esp = ESP::GetInstance();
+//		auto draw = ImGui::GetBackgroundDrawList();
+//
+//		if (esp.f_Fill)
+//		{
+//			ImColor newColor = color;
+//			newColor.Value.w = 1.0f - esp.f_FillTransparency;
+//
+//			float threshold = 2.0f;
+//#define ADD_FIXED_QUAD(p1, p2, p3, p4, col) {\
+//                                                ImVec2 p13 { std::abs(p3.x - p1.x), std::abs(p3.y - p1.y) };\
+//                                                ImVec2 p24 { std::abs(p2.x - p4.x), std::abs(p2.y - p4.y) };\
+//                                                if ((p13.x > threshold && p13.y > threshold) || \
+//                                                    (p24.x > threshold && p24.y > threshold) || \
+//                                                    (p13.x > threshold && p24.y > threshold) || \
+//                                                    (p24.x > threshold && p13.y > threshold))\
+//                                                        draw->AddQuadFilled(p1, p2, p3, p4, newColor);\
+//                                            }
+//
+//			ADD_FIXED_QUAD(box->lowerBottomLeft, box->lowerTopLeft, box->lowerTopRight, box->lowerBottomRight, newColor);
+//			ADD_FIXED_QUAD(box->upperBottomLeft, box->upperTopLeft, box->upperTopRight, box->upperBottomRight, newColor);
+//
+//			ADD_FIXED_QUAD(box->lowerBottomLeft, box->upperBottomLeft, box->upperBottomRight, box->lowerBottomRight, newColor);
+//			ADD_FIXED_QUAD(box->lowerTopLeft, box->upperTopLeft, box->upperTopRight, box->lowerTopRight, newColor);
+//
+//			ADD_FIXED_QUAD(box->lowerBottomLeft, box->lowerTopLeft, box->upperTopLeft, box->upperBottomLeft, newColor);
+//			ADD_FIXED_QUAD(box->lowerBottomRight, box->lowerTopRight, box->upperTopRight, box->upperBottomRight, newColor);
+//
+//#undef ADD_FIXED_QUAD
+//		}
+//
+//		DrawQuadLines(box->lowerBottomLeft, box->lowerTopLeft, box->lowerTopRight, box->lowerBottomRight, color);
+//		DrawQuadLines(box->upperBottomLeft, box->upperTopLeft, box->upperTopRight, box->upperBottomRight, color);
+//
+//		draw->AddLine(box->lowerBottomLeft, box->upperBottomLeft, color);
+//		draw->AddLine(box->lowerTopLeft, box->upperTopLeft, color);
+//		draw->AddLine(box->lowerTopRight, box->upperTopRight, color);
+//		draw->AddLine(box->lowerBottomRight, box->upperBottomRight, color);
+//
+//		auto rect = GetEntityScreenRect(*box, false);
+//		return rect;
+//	}
 
 	static void UpdateAvatarPosition()
 	{
@@ -514,12 +514,12 @@ namespace cheat::feature::esp::render
 		Rect rect;
 		switch (esp.f_DrawBoxMode.value())
 		{
-		case ESP::DrawMode::Box:
-			rect = DrawBox(entity, esp.f_GlobalBoxColor ? esp.f_GlobalBoxColor : color);
-			break;
-		case ESP::DrawMode::Rectangle:
-			rect = DrawRect(entity, esp.f_GlobalRectColor ? esp.f_GlobalRectColor : color);
-			break;
+		//case ESP::DrawMode::Box:
+		//	rect = DrawBox(entity, esp.f_GlobalBoxColor ? esp.f_GlobalBoxColor : color);
+		//	break;
+		//case ESP::DrawMode::Rectangle:
+		//	rect = DrawRect(entity, esp.f_GlobalRectColor ? esp.f_GlobalRectColor : color);
+		//	break;
 		default:
 			rect = {};
 			break;

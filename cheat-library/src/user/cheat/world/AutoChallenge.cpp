@@ -55,38 +55,38 @@ namespace cheat::feature
 
 	void AutoChallenge::OnGameUpdate()
 	{
-		static uint64_t lastTime = 0;
-		auto timestamp = app::MoleMole_TimeUtil_get_LocalNowMsTimeStamp(nullptr);
+		//static uint64_t lastTime = 0;
+		//auto timestamp = app::MoleMole_TimeUtil_get_LocalNowMsTimeStamp(nullptr);
 
-		if (!f_Enabled || lastTime + f_Delay > timestamp)
-			return;
+		//if (!f_Enabled || lastTime + f_Delay > timestamp)
+		//	return;
 
-		auto& entityManager = game::EntityManager::instance();
-		auto avatarEntity = entityManager.avatar();
+		//auto& entityManager = game::EntityManager::instance();
+		//auto avatarEntity = entityManager.avatar();
 
-		for (auto& entity : entityManager.entities(game::filters::puzzle::TimeTrialChallengeCollection))
-		{
-			if (avatarEntity->distance(entity) > f_Range)
-				continue;
+		//for (auto& entity : entityManager.entities(game::filters::puzzle::TimeTrialChallengeCollection))
+		//{
+		//	if (avatarEntity->distance(entity) > f_Range)
+		//		continue;
 
-			auto combat = entity->combat();
-			if (combat != nullptr)
-			{
-				if (entity->name().find("SkillObj_EmptyGadget") != std::string::npos)
-				{
-					auto combatProp = combat->fields._combatProperty_k__BackingField;
-					auto maxHP = app::MoleMole_SafeFloat_get_Value(combatProp->fields.maxHP, nullptr);
-					// so many entities named "SkillObj_EmptyGadget", but the collection's hp is 99999.f
-					if (maxHP > 99998 && maxHP < 99999.9)
-					{
-						entity->setRelativePosition(avatarEntity->relativePosition());
-					}
-				}
-				else
-				{
-					entity->setRelativePosition(avatarEntity->relativePosition());
-				}
-			}
-		}
+		//	auto combat = entity->combat();
+		//	if (combat != nullptr)
+		//	{
+		//		if (entity->name().find("SkillObj_EmptyGadget") != std::string::npos)
+		//		{
+		//			auto combatProp = combat->fields._combatProperty_k__BackingField;
+		//			auto maxHP = app::MoleMole_SafeFloat_get_Value(combatProp->fields.maxHP, nullptr);
+		//			// so many entities named "SkillObj_EmptyGadget", but the collection's hp is 99999.f
+		//			if (maxHP > 99998 && maxHP < 99999.9)
+		//			{
+		//				entity->setRelativePosition(avatarEntity->relativePosition());
+		//			}
+		//		}
+		//		else
+		//		{
+		//			entity->setRelativePosition(avatarEntity->relativePosition());
+		//		}
+		//	}
+		//}
 	}
 }

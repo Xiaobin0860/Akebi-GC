@@ -4281,21 +4281,21 @@ namespace app {
         struct GameObject* _preLoadObject;
         struct Action_1_BaseEntity_* _jsonConfigLoadedCallback;
         struct MonoVisualEntityTool* _visualEntityTool_k__BackingField;
-        struct GameObject* _rootGameObject_k__BackingField;
+        struct GameObject* _rootGameObject_k__BackingField; //290h
         struct GameObject* _offsetDummyObject;
         struct GameObject* _animatorObject;
         bool _isForceDisableGameObjectPool;
         struct MaterialGroup* _defaultGroup;
         struct MaterialGroup* _instancedMaterialGroup;
-        struct GameObject* _gameObject_k__BackingField;
+        struct GameObject* _gameObject_k__BackingField; //2C0h
         bool _enableSyncFromTransform_k__BackingField;
         struct Transform* _transform_k__BackingField;
         struct Transform* _gameObjectParent_k__BackingField;
         bool forceUpdateRigidbodyRotationCurFrame;
-        struct Rigidbody* _mRigidbody;
+        struct Rigidbody* _mRigidbody; //0x2E8
         CollisionDetectionMode__Enum _defaultCollisionDetectionMode;
         CollisionDetectionMode__Enum _curCollisionDetectionMode;
-        struct Animator* _animator;
+        struct Animator* _animator; //2F8h
         bool _animatorCullModeExternal;
         struct Action_1_BaseEntity_* finishLoadCallback;
         float cachedEntityDist;

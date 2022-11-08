@@ -12,9 +12,9 @@ namespace cheat::feature
 		NF(f_TimeHour, "FakeTime", "TimeHour", 12),
 		NF(f_TimeMinute, "FakeTime", "TimeMinute", 0)
 	{
-		HookManager::install(app::LevelTimeManager_SetInternalTimeOfDay, LevelTimeManager_SetInternalTimeOfDay_Hook);
+		//HookManager::install(app::LevelTimeManager_SetInternalTimeOfDay, LevelTimeManager_SetInternalTimeOfDay_Hook);
 
-		events::GameUpdateEvent += MY_METHOD_HANDLER(FakeTime::OnGameUpdate);
+		//events::GameUpdateEvent += MY_METHOD_HANDLER(FakeTime::OnGameUpdate);
 	}
 	FakeTime& FakeTime::GetInstance()
 	{

@@ -134,22 +134,22 @@ namespace cheat::feature
 
 		void InitializeFromTransform(app::Transform* t)
 		{
-			auto t_eulerAngles = app::Transform_get_eulerAngles(t, nullptr);
-			pitch = t_eulerAngles.x;
-			yaw = t_eulerAngles.y;
-			roll = t_eulerAngles.z;
+			//auto t_eulerAngles = app::Transform_get_eulerAngles(t, nullptr);
+			//pitch = t_eulerAngles.x;
+			//yaw = t_eulerAngles.y;
+			//roll = t_eulerAngles.z;
 		}
 
 		void LerpTowards(CameraRotation target, float lookRotationLerpPct, float rollRotationLerpPct)
 		{
-			yaw = app::Mathf_Lerp(yaw, target.yaw, lookRotationLerpPct, nullptr);
-			pitch = app::Mathf_Lerp(pitch, target.pitch, lookRotationLerpPct, nullptr);
-			roll = app::Mathf_Lerp(roll, target.roll, rollRotationLerpPct, nullptr);
+			//yaw = app::Mathf_Lerp(yaw, target.yaw, lookRotationLerpPct, nullptr);
+			//pitch = app::Mathf_Lerp(pitch, target.pitch, lookRotationLerpPct, nullptr);
+			//roll = app::Mathf_Lerp(roll, target.roll, rollRotationLerpPct, nullptr);
 		}
 
 		void UpdateTransform(app::Transform* t)
 		{
-			app::Transform_set_eulerAngles(t, app::Vector3{ pitch, yaw, roll }, nullptr);
+			//app::Transform_set_eulerAngles(t, app::Vector3{ pitch, yaw, roll }, nullptr);
 		}
 	};
 
@@ -158,182 +158,182 @@ namespace cheat::feature
 
 	void EnableFreeCam()
 	{
-		auto& settings = FreeCamera::GetInstance();
-		freeCam = reinterpret_cast<app::GameObject*>(freeCamObj);
+		//auto& settings = FreeCamera::GetInstance();
+		//freeCam = reinterpret_cast<app::GameObject*>(freeCamObj);
 
-		freeCam_Transform = app::GameObject_get_transform(freeCam, nullptr);
-		auto freeCam_Transform_position = app::Transform_get_position(freeCam_Transform, nullptr);
+		//freeCam_Transform = app::GameObject_get_transform(freeCam, nullptr);
+		//auto freeCam_Transform_position = app::Transform_get_position(freeCam_Transform, nullptr);
 
-		freeCam_Camera = app::GameObject_GetComponentByName(freeCam, string_to_il2cppi("Camera"), nullptr);
-		mainCam_Camera = app::GameObject_GetComponentByName(mainCam, string_to_il2cppi("Camera"), nullptr);
+		//freeCam_Camera = app::GameObject_GetComponentByName(freeCam, string_to_il2cppi("Camera"), nullptr);
+		//mainCam_Camera = app::GameObject_GetComponentByName(mainCam, string_to_il2cppi("Camera"), nullptr);
 
-		if (isEnabled == false)
-		{
-			targetRotation.InitializeFromTransform(freeCam_Transform);
-			currentRotation.InitializeFromTransform(freeCam_Transform);
-			app::Camera_CopyFrom(reinterpret_cast<app::Camera*>(freeCam_Camera), reinterpret_cast<app::Camera*>(mainCam_Camera), nullptr);
+		//if (isEnabled == false)
+		//{
+		//	targetRotation.InitializeFromTransform(freeCam_Transform);
+		//	currentRotation.InitializeFromTransform(freeCam_Transform);
+		//	app::Camera_CopyFrom(reinterpret_cast<app::Camera*>(freeCam_Camera), reinterpret_cast<app::Camera*>(mainCam_Camera), nullptr);
 
-			targetPosition = freeCam_Transform_position;
-			isEnabled = true;
-		}
+		//	targetPosition = freeCam_Transform_position;
+		//	isEnabled = true;
+		//}
 
-		app::GameObject_set_active(mainCam, false, nullptr);
-		app::GameObject_set_active(freeCam, true, nullptr);
+		//app::GameObject_set_active(mainCam, false, nullptr);
+		//app::GameObject_set_active(freeCam, true, nullptr);
 
-		// MOVEMENT
-		if (settings.f_Forward.value().IsPressed())
-			targetPosition = targetPosition + app::Transform_get_forward(freeCam_Transform, nullptr) * settings.f_Speed;
-		if (settings.f_Backward.value().IsPressed())
-			targetPosition = targetPosition - app::Transform_get_forward(freeCam_Transform, nullptr) * settings.f_Speed;
-		if (settings.f_Right.value().IsPressed())
-			targetPosition = targetPosition + app::Transform_get_right(freeCam_Transform, nullptr) * settings.f_Speed;
-		if (settings.f_Left.value().IsPressed())
-			targetPosition = targetPosition - app::Transform_get_right(freeCam_Transform, nullptr) * settings.f_Speed;
+		//// MOVEMENT
+		//if (settings.f_Forward.value().IsPressed())
+		//	targetPosition = targetPosition + app::Transform_get_forward(freeCam_Transform, nullptr) * settings.f_Speed;
+		//if (settings.f_Backward.value().IsPressed())
+		//	targetPosition = targetPosition - app::Transform_get_forward(freeCam_Transform, nullptr) * settings.f_Speed;
+		//if (settings.f_Right.value().IsPressed())
+		//	targetPosition = targetPosition + app::Transform_get_right(freeCam_Transform, nullptr) * settings.f_Speed;
+		//if (settings.f_Left.value().IsPressed())
+		//	targetPosition = targetPosition - app::Transform_get_right(freeCam_Transform, nullptr) * settings.f_Speed;
 
-		if (settings.f_LeftRoll.value().IsPressed())
-			targetRotation.roll += settings.f_RollSpeed;
-		if (settings.f_RightRoll.value().IsPressed())
-			targetRotation.roll -= settings.f_RollSpeed;
-		if (settings.f_ResetRoll.value().IsPressed())
-			targetRotation.roll = 0.0f;
+		//if (settings.f_LeftRoll.value().IsPressed())
+		//	targetRotation.roll += settings.f_RollSpeed;
+		//if (settings.f_RightRoll.value().IsPressed())
+		//	targetRotation.roll -= settings.f_RollSpeed;
+		//if (settings.f_ResetRoll.value().IsPressed())
+		//	targetRotation.roll = 0.0f;
 
-		if (settings.f_Up.value().IsPressed())
-			targetPosition = targetPosition + app::Transform_get_up(freeCam_Transform, nullptr) * settings.f_Speed;
-		if (settings.f_Down.value().IsPressed())
-			targetPosition = targetPosition - app::Transform_get_up(freeCam_Transform, nullptr) * settings.f_Speed;
+		//if (settings.f_Up.value().IsPressed())
+		//	targetPosition = targetPosition + app::Transform_get_up(freeCam_Transform, nullptr) * settings.f_Speed;
+		//if (settings.f_Down.value().IsPressed())
+		//	targetPosition = targetPosition - app::Transform_get_up(freeCam_Transform, nullptr) * settings.f_Speed;
 
-		if (settings.f_DecFOV.value().IsPressed())
-			settings.f_FOV -= settings.f_FOVSpeed;
-		if (settings.f_IncFOV.value().IsPressed())
-			settings.f_FOV += settings.f_FOVSpeed;
+		//if (settings.f_DecFOV.value().IsPressed())
+		//	settings.f_FOV -= settings.f_FOVSpeed;
+		//if (settings.f_IncFOV.value().IsPressed())
+		//	settings.f_FOV += settings.f_FOVSpeed;
 
-		// Update the target rotation based on mouse input
-		auto mouseX = app::Input_GetAxis(string_to_il2cppi("Mouse X"), nullptr);
-		auto mouseY = app::Input_GetAxis(string_to_il2cppi("Mouse Y"), nullptr);
-		auto mouseInput = app::Vector2{ mouseX, mouseY * -1.0f };
-		targetRotation.yaw += mouseInput.x * settings.f_LookSens;
-		targetRotation.pitch += mouseInput.y * settings.f_LookSens;
+		//// Update the target rotation based on mouse input
+		//auto mouseX = app::Input_GetAxis(string_to_il2cppi("Mouse X"), nullptr);
+		//auto mouseY = app::Input_GetAxis(string_to_il2cppi("Mouse Y"), nullptr);
+		//auto mouseInput = app::Vector2{ mouseX, mouseY * -1.0f };
+		//targetRotation.yaw += mouseInput.x * settings.f_LookSens;
+		//targetRotation.pitch += mouseInput.y * settings.f_LookSens;
 
-		// Commit the rotation changes to the transform
-		currentRotation.UpdateTransform(freeCam_Transform);
+		//// Commit the rotation changes to the transform
+		//currentRotation.UpdateTransform(freeCam_Transform);
 
-		smoothPosition = app::Vector3_Lerp(freeCam_Transform_position, targetPosition, settings.f_MovSmoothing, nullptr);
-		app::Transform_set_position(freeCam_Transform, smoothPosition, nullptr);
-		smoothFOV = app::Mathf_Lerp(app::Camera_get_fieldOfView(reinterpret_cast<app::Camera*>(freeCam_Camera), nullptr), settings.f_FOV, settings.f_FovSmoothing, nullptr);
-		app::Camera_set_fieldOfView(reinterpret_cast<app::Camera*>(freeCam_Camera), smoothFOV, nullptr);
-		currentRotation.LerpTowards(targetRotation, settings.f_LookSmoothing, settings.f_RollSmoothing);
+		//smoothPosition = app::Vector3_Lerp(freeCam_Transform_position, targetPosition, settings.f_MovSmoothing, nullptr);
+		//app::Transform_set_position(freeCam_Transform, smoothPosition, nullptr);
+		//smoothFOV = app::Mathf_Lerp(app::Camera_get_fieldOfView(reinterpret_cast<app::Camera*>(freeCam_Camera), nullptr), settings.f_FOV, settings.f_FovSmoothing, nullptr);
+		//app::Camera_set_fieldOfView(reinterpret_cast<app::Camera*>(freeCam_Camera), smoothFOV, nullptr);
+		//currentRotation.LerpTowards(targetRotation, settings.f_LookSmoothing, settings.f_RollSmoothing);
 	}
 
 	void DisableFreeCam()
 	{
-		if (!isEnabled)
-			return;
+		//if (!isEnabled)
+		//	return;
 
-		if (mainCam)
-		{
-			app::GameObject_set_active(mainCam, true, nullptr);
-			mainCam = nullptr;
-		}
-		if (freeCamObj)
-		{
-			app::Object_1_Destroy_1(freeCamObj, nullptr);
-			freeCamObj = nullptr;
-		}
-		isEnabled = false;
+		//if (mainCam)
+		//{
+		//	app::GameObject_set_active(mainCam, true, nullptr);
+		//	mainCam = nullptr;
+		//}
+		//if (freeCamObj)
+		//{
+		//	app::Object_1_Destroy_1(freeCamObj, nullptr);
+		//	freeCamObj = nullptr;
+		//}
+		//isEnabled = false;
 	}
 
 	void FreeCamera::OnGameUpdate()
 	{
-		auto uiManager = GET_SINGLETON(MoleMole_UIManager);
-		if (uiManager == nullptr)
-			return;
+		//auto uiManager = GET_SINGLETON(MoleMole_UIManager);
+		//if (uiManager == nullptr)
+		//	return;
 
-		static bool isBlock = false;
+		//static bool isBlock = false;
 
-		if (f_Enabled)
-		{
-			if (mainCam == nullptr)
-				mainCam = app::GameObject_Find(string_to_il2cppi("/EntityRoot/MainCamera(Clone)"), nullptr);
-			if (freeCamObj == nullptr && mainCam)
-			{
-				freeCamObj = app::Object_1_Instantiate_2(reinterpret_cast<app::Object_1*>(mainCam), nullptr);
+		//if (f_Enabled)
+		//{
+		//	if (mainCam == nullptr)
+		//		mainCam = app::GameObject_Find(string_to_il2cppi("/EntityRoot/MainCamera(Clone)"), nullptr);
+		//	if (freeCamObj == nullptr && mainCam)
+		//	{
+		//		freeCamObj = app::Object_1_Instantiate_2(reinterpret_cast<app::Object_1*>(mainCam), nullptr);
 
-				auto mainCamTransform = app::GameObject_get_transform(mainCam, nullptr);
-				auto mainCamPos = app::Transform_get_position(mainCamTransform, nullptr);
-				auto freeCamObjTransform = app::GameObject_get_transform(reinterpret_cast<app::GameObject*>(freeCamObj), nullptr);
-				app::Transform_set_position(freeCamObjTransform, mainCamPos, nullptr);
+		//		auto mainCamTransform = app::GameObject_get_transform(mainCam, nullptr);
+		//		auto mainCamPos = app::Transform_get_position(mainCamTransform, nullptr);
+		//		auto freeCamObjTransform = app::GameObject_get_transform(reinterpret_cast<app::GameObject*>(freeCamObj), nullptr);
+		//		app::Transform_set_position(freeCamObjTransform, mainCamPos, nullptr);
 
-				auto CinemachineBrain = app::GameObject_GetComponentByName(reinterpret_cast<app::GameObject*>(freeCamObj), string_to_il2cppi("CinemachineBrain"), nullptr);
-				auto CinemachineExternalCamera = app::GameObject_GetComponentByName(reinterpret_cast<app::GameObject*>(freeCamObj), string_to_il2cppi("CinemachineExternalCamera"), nullptr);
-				app::Object_1_Destroy_1(reinterpret_cast<app::Object_1*>(CinemachineBrain), nullptr);
-				app::Object_1_Destroy_1(reinterpret_cast<app::Object_1*>(CinemachineExternalCamera), nullptr);
+		//		auto CinemachineBrain = app::GameObject_GetComponentByName(reinterpret_cast<app::GameObject*>(freeCamObj), string_to_il2cppi("CinemachineBrain"), nullptr);
+		//		auto CinemachineExternalCamera = app::GameObject_GetComponentByName(reinterpret_cast<app::GameObject*>(freeCamObj), string_to_il2cppi("CinemachineExternalCamera"), nullptr);
+		//		app::Object_1_Destroy_1(reinterpret_cast<app::Object_1*>(CinemachineBrain), nullptr);
+		//		app::Object_1_Destroy_1(reinterpret_cast<app::Object_1*>(CinemachineExternalCamera), nullptr);
 
-				app::GameObject_set_active(mainCam, false, nullptr);
-				app::GameObject_set_active(mainCam, true, nullptr);
-				app::GameObject_set_active(reinterpret_cast<app::GameObject*>(freeCamObj), false, nullptr);
-			}
-			if (freeCamObj)
-				EnableFreeCam();
+		//		app::GameObject_set_active(mainCam, false, nullptr);
+		//		app::GameObject_set_active(mainCam, true, nullptr);
+		//		app::GameObject_set_active(reinterpret_cast<app::GameObject*>(freeCamObj), false, nullptr);
+		//	}
+		//	if (freeCamObj)
+		//		EnableFreeCam();
 
-			if (damageOverlay == nullptr)
-				damageOverlay = app::GameObject_Find(string_to_il2cppi("/Canvas/Pages/InLevelMainPage/GrpMainPage/ParticleDamageTextContainer"), nullptr);
-			else
-				app::GameObject_SetActive(damageOverlay, !f_DamageOverlay, nullptr);
+		//	if (damageOverlay == nullptr)
+		//		damageOverlay = app::GameObject_Find(string_to_il2cppi("/Canvas/Pages/InLevelMainPage/GrpMainPage/ParticleDamageTextContainer"), nullptr);
+		//	else
+		//		app::GameObject_SetActive(damageOverlay, !f_DamageOverlay, nullptr);
 
-			if (hpOverlay == nullptr)
-				hpOverlay = app::GameObject_Find(string_to_il2cppi("AvatarBoardCanvasV2(Clone)"), nullptr);
-			else
-				app::GameObject_SetActive(hpOverlay, !f_DamageOverlay, nullptr);
-		}
-		else
-		{
-			DisableFreeCam();
-			damageOverlay = nullptr;
-			hpOverlay = nullptr;
-		}
+		//	if (hpOverlay == nullptr)
+		//		hpOverlay = app::GameObject_Find(string_to_il2cppi("AvatarBoardCanvasV2(Clone)"), nullptr);
+		//	else
+		//		app::GameObject_SetActive(hpOverlay, !f_DamageOverlay, nullptr);
+		//}
+		//else
+		//{
+		//	DisableFreeCam();
+		//	damageOverlay = nullptr;
+		//	hpOverlay = nullptr;
+		//}
 
-		if (f_BlockInput)
-		{
-			if (!isBlock)
-			{
-				app::MoleMole_UIManager_EnableInput(uiManager, false, false, false, nullptr);
-				isBlock = true;
-			}
-		}
-		else
-		{
-			if (isBlock)
-			{
-				app::MoleMole_UIManager_EnableInput(uiManager, true, false, false, nullptr);
-				isBlock = false;
-			}
-		}
+		//if (f_BlockInput)
+		//{
+		//	if (!isBlock)
+		//	{
+		//		app::MoleMole_UIManager_EnableInput(uiManager, false, false, false, nullptr);
+		//		isBlock = true;
+		//	}
+		//}
+		//else
+		//{
+		//	if (isBlock)
+		//	{
+		//		app::MoleMole_UIManager_EnableInput(uiManager, true, false, false, nullptr);
+		//		isBlock = false;
+		//	}
+		//}
 
-		// Taiga#5555: There's probably be a better way of implementing this. But for now, this is just what I came up with.
-		auto& manager = game::EntityManager::instance();
-		auto animator = manager.avatar()->animator();
-		auto rigidBody = manager.avatar()->rigidbody();
-		if (animator == nullptr && rigidBody == nullptr)
-			return;
+		//// Taiga#5555: There's probably be a better way of implementing this. But for now, this is just what I came up with.
+		//auto& manager = game::EntityManager::instance();
+		//auto animator = manager.avatar()->animator();
+		//auto rigidBody = manager.avatar()->rigidbody();
+		//if (animator == nullptr && rigidBody == nullptr)
+		//	return;
 
-		static bool changed = false;
+		//static bool changed = false;
 
-		if (f_FreezeAnimation)
-		{
-			//auto constraints = app::Rigidbody_get_constraints(rigidBody, nullptr);
-			//LOG_DEBUG("%s", magic_enum::enum_name(constraints).data());
-			app::Rigidbody_set_constraints(rigidBody, app::RigidbodyConstraints__Enum::FreezePosition, nullptr);
-			app::Animator_set_speed(animator, 0.f, nullptr);
-			changed = false;
-		}
-		else
-		{
-			app::Rigidbody_set_constraints(rigidBody, app::RigidbodyConstraints__Enum::FreezeRotation, nullptr);
-			if (!changed)
-			{
-				app::Animator_set_speed(animator, 1.f, nullptr);
-				changed = true;
-			}
-		}
+		//if (f_FreezeAnimation)
+		//{
+		//	//auto constraints = app::Rigidbody_get_constraints(rigidBody, nullptr);
+		//	//LOG_DEBUG("%s", magic_enum::enum_name(constraints).data());
+		//	app::Rigidbody_set_constraints(rigidBody, app::RigidbodyConstraints__Enum::FreezePosition, nullptr);
+		//	app::Animator_set_speed(animator, 0.f, nullptr);
+		//	changed = false;
+		//}
+		//else
+		//{
+		//	app::Rigidbody_set_constraints(rigidBody, app::RigidbodyConstraints__Enum::FreezeRotation, nullptr);
+		//	if (!changed)
+		//	{
+		//		app::Animator_set_speed(animator, 1.f, nullptr);
+		//		changed = true;
+		//	}
+		//}
 	}
 }

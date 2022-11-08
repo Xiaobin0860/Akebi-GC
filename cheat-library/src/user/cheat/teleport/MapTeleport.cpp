@@ -15,20 +15,20 @@ namespace cheat::feature
 		NF(f_DefaultHeight, "Default teleport height", "MapTeleport", 300.0f),
 		NF(f_Key, "Teleport key", "MapTeleport", Hotkey('T'))
 	{
-		// Map touch
-		HookManager::install(app::MoleMole_InLevelMapPageContext_OnMarkClicked, InLevelMapPageContext_OnMarkClicked_Hook);
-		HookManager::install(app::MoleMole_InLevelMapPageContext_OnMapClicked, InLevelMapPageContext_OnMapClicked_Hook);
+		//// Map touch
+		//HookManager::install(app::MoleMole_InLevelMapPageContext_OnMarkClicked, InLevelMapPageContext_OnMarkClicked_Hook);
+		//HookManager::install(app::MoleMole_InLevelMapPageContext_OnMapClicked, InLevelMapPageContext_OnMapClicked_Hook);
 
-		// Stage 1
-		HookManager::install(app::MoleMole_LoadingManager_NeedTransByServer, LoadingManager_NeedTransByServer_Hook);
+		//// Stage 1
+		//HookManager::install(app::MoleMole_LoadingManager_NeedTransByServer, LoadingManager_NeedTransByServer_Hook);
 
-		// Stage 2
-		HookManager::install(app::MoleMole_LoadingManager_PerformPlayerTransmit, LoadingManager_PerformPlayerTransmit_Hook);
+		//// Stage 2
+		//HookManager::install(app::MoleMole_LoadingManager_PerformPlayerTransmit, LoadingManager_PerformPlayerTransmit_Hook);
 
-		// Stage 3
-		HookManager::install(app::MoleMole_BaseEntity_SetAbsolutePosition, MoleMole_BaseEntity_SetAbsolutePosition_Hook);
+		//// Stage 3
+		//HookManager::install(app::MoleMole_BaseEntity_SetAbsolutePosition, MoleMole_BaseEntity_SetAbsolutePosition_Hook);
 
-		events::GameUpdateEvent += MY_METHOD_HANDLER(MapTeleport::OnGameUpdate);
+		//events::GameUpdateEvent += MY_METHOD_HANDLER(MapTeleport::OnGameUpdate);
 	}
 
 	const FeatureGUIInfo& MapTeleport::GetGUIInfo() const
@@ -76,76 +76,76 @@ namespace cheat::feature
 	// but to prev selected location.
 	void MapTeleport::OnGameUpdate()
 	{
-		if (taskInfo.waitingThread)
-		{
-			taskInfo.waitingThread = false;
-			auto someSingleton = GET_SINGLETON(MoleMole_LoadingManager);
-			app::MoleMole_LoadingManager_RequestSceneTransToPoint(someSingleton, taskInfo.sceneId, taskInfo.waypointId, nullptr, nullptr);
-		}
+		//if (taskInfo.waitingThread)
+		//{
+		//	taskInfo.waitingThread = false;
+		//	auto someSingleton = GET_SINGLETON(MoleMole_LoadingManager);
+		//	app::MoleMole_LoadingManager_RequestSceneTransToPoint(someSingleton, taskInfo.sceneId, taskInfo.waypointId, nullptr, nullptr);
+		//}
 	}
 
 	// Finding nearest waypoint to position, and request teleport to it.
 	// After, in teleport events, change waypoint position to target position.
 	void MapTeleport::TeleportTo(app::Vector3 position, bool needHeightCalc, uint32_t sceneId)
 	{
-		LOG_DEBUG("Stage 0. Target location at %s", il2cppi_to_string(position).c_str());
+		//LOG_DEBUG("Stage 0. Target location at %s", il2cppi_to_string(position).c_str());
 
-		auto avatarPosition = app::ActorUtils_GetAvatarPos(nullptr);
-		auto nearestWaypoint = game::FindNearestWaypoint(position, sceneId);
+		//auto avatarPosition = app::ActorUtils_GetAvatarPos(nullptr);
+		//auto nearestWaypoint = game::FindNearestWaypoint(position, sceneId);
 
-		if (nearestWaypoint.data == nullptr)
-		{
-			LOG_ERROR("Stage 0. Failed to find the nearest unlocked waypoint. Maybe you haven't unlocked anyone or the scene has no waypoints.");
-			return;
-		}
-		else
-		{
-			float dist = app::Vector3_Distance(position, nearestWaypoint.position, nullptr);
-			LOG_DEBUG("Stage 0. Found nearest waypoint { sceneId: %d; waypointId: %d } with distance %fm.",
-				nearestWaypoint.sceneId, nearestWaypoint.waypointId, dist);
-		}
-		taskInfo = { true, needHeightCalc, 3, position, nearestWaypoint.sceneId, nearestWaypoint.waypointId };
+		//if (nearestWaypoint.data == nullptr)
+		//{
+		//	LOG_ERROR("Stage 0. Failed to find the nearest unlocked waypoint. Maybe you haven't unlocked anyone or the scene has no waypoints.");
+		//	return;
+		//}
+		//else
+		//{
+		//	float dist = app::Vector3_Distance(position, nearestWaypoint.position, nullptr);
+		//	LOG_DEBUG("Stage 0. Found nearest waypoint { sceneId: %d; waypointId: %d } with distance %fm.",
+		//		nearestWaypoint.sceneId, nearestWaypoint.waypointId, dist);
+		//}
+		//taskInfo = { true, needHeightCalc, 3, position, nearestWaypoint.sceneId, nearestWaypoint.waypointId };
 	}
 
 	static bool ScreenToMapPosition(app::InLevelMapPageContext* context, app::Vector2 screenPos, app::Vector2* outMapPos)
 	{
-		auto mapBackground = app::MonoInLevelMapPage_get_mapBackground(context->fields._pageMono, nullptr);
-		if (!mapBackground)
-			return false;
+		//auto mapBackground = app::MonoInLevelMapPage_get_mapBackground(context->fields._pageMono, nullptr);
+		//if (!mapBackground)
+		//	return false;
 
-		auto uimanager = GET_SINGLETON(MoleMole_UIManager);
-		if (uimanager == nullptr)
-			return false;
+		//auto uimanager = GET_SINGLETON(MoleMole_UIManager);
+		//if (uimanager == nullptr)
+		//	return false;
 
-		auto screenCamera = uimanager->fields._uiCamera;
-		if (screenCamera == nullptr)
-			return false;
+		//auto screenCamera = uimanager->fields._uiCamera;
+		//if (screenCamera == nullptr)
+		//	return false;
 
-		bool result = app::RectTransformUtility_ScreenPointToLocalPointInRectangle(mapBackground, screenPos, screenCamera, outMapPos, nullptr);
-		if (!result)
-			return false;
+		//bool result = app::RectTransformUtility_ScreenPointToLocalPointInRectangle(mapBackground, screenPos, screenCamera, outMapPos, nullptr);
+		//if (!result)
+		//	return false;
 
-		auto mapRect = app::MonoInLevelMapPage_get_mapRect(context->fields._pageMono, nullptr);
-		auto mapViewRect = context->fields._mapViewRect;
+		//auto mapRect = app::MonoInLevelMapPage_get_mapRect(context->fields._pageMono, nullptr);
+		//auto mapViewRect = context->fields._mapViewRect;
 
-		// Map rect pos to map view rect pos
-		outMapPos->x = (outMapPos->x - mapRect.m_XMin) / mapRect.m_Width;
-		outMapPos->x = (outMapPos->x * mapViewRect.m_Width) + mapViewRect.m_XMin;
+		//// Map rect pos to map view rect pos
+		//outMapPos->x = (outMapPos->x - mapRect.m_XMin) / mapRect.m_Width;
+		//outMapPos->x = (outMapPos->x * mapViewRect.m_Width) + mapViewRect.m_XMin;
 
-		outMapPos->y = (outMapPos->y - mapRect.m_YMin) / mapRect.m_Height;
-		outMapPos->y = (outMapPos->y * mapViewRect.m_Height) + mapViewRect.m_YMin;
+		//outMapPos->y = (outMapPos->y - mapRect.m_YMin) / mapRect.m_Height;
+		//outMapPos->y = (outMapPos->y * mapViewRect.m_Height) + mapViewRect.m_YMin;
 
 		return true;
 	}
 
 	void MapTeleport::TeleportTo(app::Vector2 mapPosition)
 	{
-		auto worldPosition = app::Miscs_GenWorldPos(mapPosition, nullptr);
+		//auto worldPosition = app::Miscs_GenWorldPos(mapPosition, nullptr);
 
-		auto relativePos = app::WorldShiftManager_GetRelativePosition(worldPosition, nullptr);
-		auto groundHeight = app::Miscs_CalcCurrentGroundHeight(relativePos.x, relativePos.z, nullptr);
+		//auto relativePos = app::WorldShiftManager_GetRelativePosition(worldPosition, nullptr);
+		//auto groundHeight = app::Miscs_CalcCurrentGroundHeight(relativePos.x, relativePos.z, nullptr);
 
-		TeleportTo({ worldPosition.x, groundHeight > 0 ? groundHeight + 5 : f_DefaultHeight, worldPosition.z }, true, game::GetCurrentMapSceneID());
+		//TeleportTo({ worldPosition.x, groundHeight > 0 ? groundHeight + 5 : f_DefaultHeight, worldPosition.z }, true, game::GetCurrentMapSceneID());
 	}
 
 	// Calling teleport if map clicked.
@@ -209,37 +209,37 @@ namespace cheat::feature
 	// waypoint location to teleport location. And also recalculate ground position if it needed.
 	void MapTeleport::OnSetAvatarPosition(app::Vector3& position)
 	{
-		if (taskInfo.currentStage == 1)
-		{
-			app::Vector3 originPosition = position;
-			position = taskInfo.targetPosition;
-			LOG_DEBUG("Stage 3. Changing avatar entity position.");
+	//	if (taskInfo.currentStage == 1)
+	//	{
+	//		app::Vector3 originPosition = position;
+	//		position = taskInfo.targetPosition;
+	//		LOG_DEBUG("Stage 3. Changing avatar entity position.");
 
-			if (taskInfo.needHeightCalculation)
-			{
-				auto relativePos = app::WorldShiftManager_GetRelativePosition(position, nullptr);
-				float groundHeight;
-				switch (taskInfo.sceneId)
-				{
-					// Underground mines has tunnel structure, so we need to calculate height from waypoint height to prevent tp above world.
-				case 6: // Underground mines scene id, if it was changed, please create issue
-					groundHeight = app::Miscs_CalcCurrentGroundHeight_1(relativePos.x, relativePos.z, originPosition.y, 100,
-						app::Miscs_GetSceneGroundLayerMask(nullptr), nullptr);
-					break;
-				default:
-					groundHeight = app::Miscs_CalcCurrentGroundWaterHeight(relativePos.x, relativePos.z, nullptr);
-					break;
-				}
-				if (groundHeight > 0 && position.y != groundHeight)
-				{
-					position.y = groundHeight + 5;
-					LOG_DEBUG("Stage 3. Changing height to %f", position.y);
-				}
-			}
+	//		if (taskInfo.needHeightCalculation)
+	//		{
+	//			auto relativePos = app::WorldShiftManager_GetRelativePosition(position, nullptr);
+	//			float groundHeight;
+	//			switch (taskInfo.sceneId)
+	//			{
+	//				// Underground mines has tunnel structure, so we need to calculate height from waypoint height to prevent tp above world.
+	//			case 6: // Underground mines scene id, if it was changed, please create issue
+	//				groundHeight = app::Miscs_CalcCurrentGroundHeight_1(relativePos.x, relativePos.z, originPosition.y, 100,
+	//					app::Miscs_GetSceneGroundLayerMask(nullptr), nullptr);
+	//				break;
+	//			default:
+	//				groundHeight = app::Miscs_CalcCurrentGroundWaterHeight(relativePos.x, relativePos.z, nullptr);
+	//				break;
+	//			}
+	//			if (groundHeight > 0 && position.y != groundHeight)
+	//			{
+	//				position.y = groundHeight + 5;
+	//				LOG_DEBUG("Stage 3. Changing height to %f", position.y);
+	//			}
+	//		}
 
-			LOG_DEBUG("Finish.  Teleport to mark finished.");
-			taskInfo.currentStage--;
-		}
+	//		LOG_DEBUG("Finish.  Teleport to mark finished.");
+	//		taskInfo.currentStage--;
+	//	}
 	}
 
 	bool MapTeleport::LoadingManager_NeedTransByServer_Hook(app::MoleMole_LoadingManager* __this, uint32_t sceneId, app::Vector3 position, MethodInfo* method)

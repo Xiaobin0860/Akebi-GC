@@ -21,7 +21,7 @@ void Run(HMODULE* phModule)
 
 	// Init logger
 	auto& settings = cheat::feature::Settings::GetInstance();
-	if (settings.f_FileLogging)
+	//if (settings.f_FileLogging)
 	{
 		Logger::PrepareFileLogging((util::GetCurrentPath() / "logs").string());
 		Logger::SetLevel(Logger::Level::Trace, Logger::LoggerType::FileLogger);
@@ -29,7 +29,7 @@ void Run(HMODULE* phModule)
 
 	if (settings.f_ConsoleLogging)
 	{
-		Logger::SetLevel(Logger::Level::Debug, Logger::LoggerType::ConsoleLogger);
+		Logger::SetLevel(Logger::Level::Trace, Logger::LoggerType::ConsoleLogger);
 		il2cppi_new_console();
 	}
 

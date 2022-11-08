@@ -16,7 +16,7 @@
 #define il2cpp_array_new_full_ptr 0x0069D490
 #define il2cpp_array_new_specific_ptr 0x0069D4A0
 #define il2cpp_array_object_header_size_ptr 0x0069D4B0
-#define il2cpp_assembly_get_image_ptr 0x0069D4C0
+#define il2cpp_assembly_get_image_ptr 0x027737C0
 #define il2cpp_bounded_array_class_get_ptr 0x0069D4D0
 #define il2cpp_capture_memory_snapshot_ptr 0x0069D4E0
 #define il2cpp_class_array_element_size_ptr 0x0069D4F0
@@ -39,7 +39,7 @@
 #define il2cpp_class_get_image_ptr 0x0069D4C0
 #define il2cpp_class_get_interfaces_ptr 0x0069D5F0
 #define il2cpp_class_get_method_from_name_ptr 0x0069D600
-#define il2cpp_class_get_methods_ptr 0x0069D610
+#define il2cpp_class_get_methods_ptr 0x027738D0
 #define il2cpp_class_get_name_ptr 0x0069D8E0
 #define il2cpp_class_get_namespace_ptr 0x0069E030
 #define il2cpp_class_get_nested_types_ptr 0x0069D620
@@ -80,7 +80,7 @@
 #define il2cpp_debug_get_method_info_ptr 0x0069D840
 #define il2cpp_debugger_set_agent_options_ptr 0x0076A070
 #define il2cpp_domain_assembly_open_ptr 0x0069D850
-#define il2cpp_domain_get_ptr 0x0069D860
+#define il2cpp_domain_get_ptr 0x02773A70
 #define il2cpp_domain_get_assemblies_ptr 0x0069D870
 #define il2cpp_enable_object_type_mutex_ptr 0x0069D8A0
 #define il2cpp_exception_from_name_msg_ptr 0x0069D8B0
@@ -125,8 +125,8 @@
 #define il2cpp_gc_wbarrier_set_field_ptr 0x0069DBD0
 #define il2cpp_gchandle_foreach_get_target_ptr 0x0069DBE0
 #define il2cpp_gchandle_free_ptr 0x0069DC10
-#define il2cpp_gchandle_get_target_ptr 0x006B7DA0
-#define il2cpp_gchandle_new_ptr 0x0069DC20
+#define il2cpp_gchandle_get_target_ptr 0x02773D70
+#define il2cpp_gchandle_new_ptr 0x02773D80
 #define il2cpp_gchandle_new_weakref_ptr 0x0069DC30
 #define il2cpp_get_committed_memory_size_ptr 0x0069DC40
 #define il2cpp_get_corlib_ptr 0x0069DC50
@@ -148,7 +148,7 @@
 #define il2cpp_method_get_declaring_type_ptr 0x0069E020
 #define il2cpp_method_get_flags_ptr 0x0069DDE0
 #define il2cpp_method_get_from_reflection_ptr 0x0069D8E0
-#define il2cpp_method_get_name_ptr 0x0069DE10
+#define il2cpp_method_get_name_ptr 0x02773E40
 #define il2cpp_method_get_object_ptr 0x0069DE20
 #define il2cpp_method_get_param_ptr 0x0069DE30
 #define il2cpp_method_get_param_count_ptr 0x0069DE40
@@ -222,11 +222,11 @@
 #define il2cpp_string_intern_ptr 0x0069E210
 #define il2cpp_string_is_interned_ptr 0x0069E220
 #define il2cpp_string_length_ptr 0x0069E230
-#define il2cpp_string_new_ptr 0x007290A0
+#define il2cpp_string_new_ptr 0x027741B0
 #define il2cpp_string_new_len_ptr 0x0069E240
 #define il2cpp_string_new_utf16_ptr 0x0069E250
 #define il2cpp_string_new_wrapper_ptr 0x007290A0
-#define il2cpp_thread_attach_ptr 0x0069E260
+#define il2cpp_thread_attach_ptr 0x027741C0
 #define il2cpp_thread_current_ptr 0x0069E270
 #define il2cpp_thread_detach_ptr 0x0069E280
 #define il2cpp_thread_get_all_attached_threads_ptr 0x0069E290
@@ -238,7 +238,7 @@
 #define il2cpp_type_get_assembly_qualified_name_ptr 0x0069E2F0
 #define il2cpp_type_get_attrs_ptr 0x0069E3B0
 #define il2cpp_type_get_class_or_element_class_ptr 0x0069E3C0
-#define il2cpp_type_get_name_ptr 0x0069E3D0
+#define il2cpp_type_get_name_ptr 0x02774200
 #define il2cpp_type_get_name_chunked_ptr 0x0069E490
 #define il2cpp_type_get_object_ptr 0x0069E4A0
 #define il2cpp_type_get_type_ptr 0x0069E4B0
@@ -251,4 +251,4 @@
 #define il2cpp_unity_liveness_calculation_end_ptr 0x0069E510
 #define il2cpp_unity_liveness_calculation_from_root_ptr 0x0069E520
 #define il2cpp_unity_liveness_calculation_from_statics_ptr 0x0069E530
-#define il2cpp_value_box_ptr 0x00728BC0
+#define il2cpp_value_box_ptr 0x02774340

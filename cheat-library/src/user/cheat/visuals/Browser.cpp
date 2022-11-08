@@ -52,58 +52,58 @@ namespace cheat::feature
 
     void Browser::OnGameUpdate()
     {
-        auto currentTime = util::GetCurrentTimeMillisec();
-        if (currentTime < nextUpdate)
-            return;
+        //auto currentTime = util::GetCurrentTimeMillisec();
+        //if (currentTime < nextUpdate)
+        //    return;
 
-        if (f_Enabled) {
-            auto entityRoot = app::GameObject_Find(string_to_il2cppi("EntityRoot/AvatarRoot/"), nullptr);
-            if (!app::GameObject_get_active(entityRoot, nullptr))
-                return;
+        //if (f_Enabled) {
+        //    auto entityRoot = app::GameObject_Find(string_to_il2cppi("EntityRoot/AvatarRoot/"), nullptr);
+        //    if (!app::GameObject_get_active(entityRoot, nullptr))
+        //        return;
 
-            if (planeObject == nullptr) {
-                auto PrimitiveType = app::PrimitiveType__Enum::Plane;
-                planeObject = app::GameObject_CreatePrimitive(PrimitiveType, nullptr);
+        //    if (planeObject == nullptr) {
+        //        auto PrimitiveType = app::PrimitiveType__Enum::Plane;
+        //        planeObject = app::GameObject_CreatePrimitive(PrimitiveType, nullptr);
 
-                app::Transform* planeObject_Transform = app::GameObject_get_transform(planeObject, nullptr);
-                app::Quaternion planeObject_Transform_Quaternion = { 0.5, 0.5, -0.5, 0.5 };
+        //        app::Transform* planeObject_Transform = app::GameObject_get_transform(planeObject, nullptr);
+        //        app::Quaternion planeObject_Transform_Quaternion = { 0.5, 0.5, -0.5, 0.5 };
 
-                auto avatarPos = app::ActorUtils_GetAvatarPos(nullptr);
-                auto relativePos = app::WorldShiftManager_GetRelativePosition(avatarPos, nullptr);
-                app::Vector3 planeObject_Transform_Vector3 = { relativePos.x, relativePos.y + 3, relativePos.z };
-                app::Vector3 planeObject_Transform_Scale = { f_planeWidth, 1, f_planeHeight };
+        //        auto avatarPos = app::ActorUtils_GetAvatarPos(nullptr);
+        //        auto relativePos = app::WorldShiftManager_GetRelativePosition(avatarPos, nullptr);
+        //        app::Vector3 planeObject_Transform_Vector3 = { relativePos.x, relativePos.y + 3, relativePos.z };
+        //        app::Vector3 planeObject_Transform_Scale = { f_planeWidth, 1, f_planeHeight };
 
-                app::Transform_set_localPosition(planeObject_Transform, planeObject_Transform_Vector3, nullptr);
-                app::Transform_set_localScale(planeObject_Transform, planeObject_Transform_Scale, nullptr);
-                app::Transform_set_localRotation(planeObject_Transform, planeObject_Transform_Quaternion, nullptr);
-            }
+        //        app::Transform_set_localPosition(planeObject_Transform, planeObject_Transform_Vector3, nullptr);
+        //        app::Transform_set_localScale(planeObject_Transform, planeObject_Transform_Scale, nullptr);
+        //        app::Transform_set_localRotation(planeObject_Transform, planeObject_Transform_Quaternion, nullptr);
+        //    }
 
-            if (planeObject != nullptr) {
-                if (BrowserComponents == nullptr) {
-                    std::string custom_url = f_URL.length() < 2 || f_URL.c_str() == "" ? "https://www.baidu.com/" : f_URL.c_str();
+        //    if (planeObject != nullptr) {
+        //        if (BrowserComponents == nullptr) {
+        //            std::string custom_url = f_URL.length() < 2 || f_URL.c_str() == "" ? "https://www.baidu.com/" : f_URL.c_str();
 
-                    BrowserComponents = app::GameObject_AddComponentInternal(planeObject, string_to_il2cppi("Browser"), nullptr);
-                    reinterpret_cast<app::Browser*>(BrowserComponents)->fields._url = string_to_il2cppi(custom_url);
-                    reinterpret_cast<app::Browser*>(BrowserComponents)->fields._width = 1920;
-                    reinterpret_cast<app::Browser*>(BrowserComponents)->fields._height = 1080;
-                    reinterpret_cast<app::Browser*>(BrowserComponents)->fields.forceNextRender = true;
-                    reinterpret_cast<app::Browser*>(BrowserComponents)->fields._EnableInput_k__BackingField = true;
-                }
+        //            BrowserComponents = app::GameObject_AddComponentInternal(planeObject, string_to_il2cppi("Browser"), nullptr);
+        //            reinterpret_cast<app::Browser*>(BrowserComponents)->fields._url = string_to_il2cppi(custom_url);
+        //            reinterpret_cast<app::Browser*>(BrowserComponents)->fields._width = 1920;
+        //            reinterpret_cast<app::Browser*>(BrowserComponents)->fields._height = 1080;
+        //            reinterpret_cast<app::Browser*>(BrowserComponents)->fields.forceNextRender = true;
+        //            reinterpret_cast<app::Browser*>(BrowserComponents)->fields._EnableInput_k__BackingField = true;
+        //        }
 
-                //Set the scale at update interval for dynamic scaling instead of re-initialize the plane again
-                app::Transform* planeObject_Transform = app::GameObject_get_transform(planeObject, nullptr);
-                app::Vector3 planeObject_Transform_Scale = { f_planeWidth, 1, f_planeHeight };
-                app::Transform_set_localScale(planeObject_Transform, planeObject_Transform_Scale, nullptr);
-            }
-        }
-        else {
-            if (planeObject != nullptr && BrowserComponents != nullptr) {
-                app::Object_1_DestroyImmediate_1(reinterpret_cast<app::Object_1*>(planeObject), nullptr);
-                app::Object_1_DestroyImmediate_1(reinterpret_cast<app::Object_1*>(BrowserComponents), nullptr);
-                planeObject = nullptr;
-                BrowserComponents = nullptr;
-            }
-        }
-        nextUpdate = currentTime + (int)f_DelayUpdate;
+        //        //Set the scale at update interval for dynamic scaling instead of re-initialize the plane again
+        //        app::Transform* planeObject_Transform = app::GameObject_get_transform(planeObject, nullptr);
+        //        app::Vector3 planeObject_Transform_Scale = { f_planeWidth, 1, f_planeHeight };
+        //        app::Transform_set_localScale(planeObject_Transform, planeObject_Transform_Scale, nullptr);
+        //    }
+        //}
+        //else {
+        //    if (planeObject != nullptr && BrowserComponents != nullptr) {
+        //        app::Object_1_DestroyImmediate_1(reinterpret_cast<app::Object_1*>(planeObject), nullptr);
+        //        app::Object_1_DestroyImmediate_1(reinterpret_cast<app::Object_1*>(BrowserComponents), nullptr);
+        //        planeObject = nullptr;
+        //        BrowserComponents = nullptr;
+        //    }
+        //}
+        //nextUpdate = currentTime + (int)f_DelayUpdate;
     }
 }

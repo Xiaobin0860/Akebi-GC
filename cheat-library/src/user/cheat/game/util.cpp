@@ -6,52 +6,52 @@
 
 namespace cheat::game
 {
-	std::vector<WaypointInfo> GetUnlockedWaypoints(uint32_t targetSceneId)
-	{
-		auto mapModule = GET_SINGLETON(MoleMole_MapModule);
-		if (mapModule == nullptr)
-			return {};
+	//std::vector<WaypointInfo> GetUnlockedWaypoints(uint32_t targetSceneId)
+	//{
+	//	auto mapModule = GET_SINGLETON(MoleMole_MapModule);
+	//	if (mapModule == nullptr)
+	//		return {};
 
-		if (targetSceneId == 0)
-			targetSceneId = GetCurrentPlayerSceneID();
+	//	if (targetSceneId == 0)
+	//		targetSceneId = GetCurrentPlayerSceneID();
 
-		auto result = std::vector<WaypointInfo>();
+	//	auto result = std::vector<WaypointInfo>();
 
-		auto waypointGroups = TO_UNI_DICT(mapModule->fields._scenePointDics, uint32_t, UniDict<uint32_t COMMA app::MapModule_ScenePointData>*);
-		for (const auto& [sceneId, waypoints] : waypointGroups->pairs())
-		{
-			if (sceneId != targetSceneId)
-				continue;
+	//	auto waypointGroups = TO_UNI_DICT(mapModule->fields._scenePointDics, uint32_t, UniDict<uint32_t COMMA app::MapModule_ScenePointData>*);
+	//	for (const auto& [sceneId, waypoints] : waypointGroups->pairs())
+	//	{
+	//		if (sceneId != targetSceneId)
+	//			continue;
 
-			for (const auto& [waypointId, waypoint] : waypoints->pairs())
-			{
-				if (waypoint.config == nullptr)
-					continue;
+	//		for (const auto& [waypointId, waypoint] : waypoints->pairs())
+	//		{
+	//			if (waypoint.config == nullptr)
+	//				continue;
 
-				auto& config = waypoint.config->fields;
-				uint16_t areaId = app::MoleMole_SimpleSafeUInt16_get_Value(config.areaIdRawNum, nullptr);
-				bool isAreaUnlocked = app::MoleMole_MapModule_IsAreaUnlock(mapModule, sceneId, areaId, nullptr);
+	//			auto& config = waypoint.config->fields;
+	//			uint16_t areaId = app::MoleMole_SimpleSafeUInt16_get_Value(config.areaIdRawNum, nullptr);
+	//			bool isAreaUnlocked = app::MoleMole_MapModule_IsAreaUnlock(mapModule, sceneId, areaId, nullptr);
 
-				if (waypoint.isUnlocked && isAreaUnlocked && !config._unlocked && !waypoint.isGroupLimit && !waypoint.isModelHidden)
-					result.push_back(WaypointInfo{ sceneId, waypointId, waypoint.config->fields._tranPos, (app::MapModule_ScenePointData*)&waypoint });
-			}
-		}
-		return result;
-	}
+	//			if (waypoint.isUnlocked && isAreaUnlocked && !config._unlocked && !waypoint.isGroupLimit && !waypoint.isModelHidden)
+	//				result.push_back(WaypointInfo{ sceneId, waypointId, waypoint.config->fields._tranPos, (app::MapModule_ScenePointData*)&waypoint });
+	//		}
+	//	}
+	//	return result;
+	//}
 
 	// Finding nearest unlocked waypoint to the position
 	WaypointInfo FindNearestWaypoint(app::Vector3& position, uint32_t targetSceneId)
 	{
 		float minDistance = -1;
 		WaypointInfo result{};
-		for (const auto& info : GetUnlockedWaypoints(targetSceneId)) {
-			float distance = app::Vector3_Distance(position, info.position, nullptr);
-			if (minDistance < 0 || distance < minDistance)
-			{
-				minDistance = distance;
-				result = info;
-			}
-		}
+		//for (const auto& info : GetUnlockedWaypoints(targetSceneId)) {
+		//	float distance = app::Vector3_Distance(position, info.position, nullptr);
+		//	if (minDistance < 0 || distance < minDistance)
+		//	{
+		//		minDistance = distance;
+		//		result = info;
+		//	}
+		//}
 		return result;
 	}
 

@@ -134,38 +134,38 @@ namespace cheat::feature
 
 	void CustomTeleports::TeleportTo(app::Vector3 position, bool interpolate)
 	{
-		auto &manager = game::EntityManager::instance();
-		auto avatar = manager.avatar();
-		if (avatar->moveComponent() == nullptr)
-		{
-			LOG_ERROR("Avatar has no move component, Is scene loaded?");
-			return;
-		}
-		if (interpolate)
-		{
-			float speed = this->f_Speed;
-			auto avatarPos = manager.avatar()->absolutePosition();
-			auto endPos = position;
-			std::thread interpolate([avatarPos, endPos, &manager, speed]()
-									{
-                            float t = 0.0f;
-							app::Vector3 zero = {0,0,0};
-							auto newPos = zero;
-                            while (t < 1.0f) {
-                                newPos = app::Vector3_Lerp(avatarPos, endPos, t, nullptr);
-                                manager.avatar()->setAbsolutePosition(newPos);
-								t += speed / 100.0f;
-                                Sleep(10); 
-                            } });
-			interpolate.detach();
-		}
-		else
-		{
-			if (PositionDistance(position, app::ActorUtils_GetAvatarPos(nullptr)) > 60.0f)
-				MapTeleport::GetInstance().TeleportTo(position);
-			else
-				manager.avatar()->setAbsolutePosition(position);
-		}
+		//auto &manager = game::EntityManager::instance();
+		//auto avatar = manager.avatar();
+		//if (avatar->moveComponent() == nullptr)
+		//{
+		//	LOG_ERROR("Avatar has no move component, Is scene loaded?");
+		//	return;
+		//}
+		//if (interpolate)
+		//{
+		//	float speed = this->f_Speed;
+		//	auto avatarPos = manager.avatar()->absolutePosition();
+		//	auto endPos = position;
+		//	std::thread interpolate([avatarPos, endPos, &manager, speed]()
+		//							{
+  //                          float t = 0.0f;
+		//					app::Vector3 zero = {0,0,0};
+		//					auto newPos = zero;
+  //                          while (t < 1.0f) {
+  //                              newPos = app::Vector3_Lerp(avatarPos, endPos, t, nullptr);
+  //                              manager.avatar()->setAbsolutePosition(newPos);
+		//						t += speed / 100.0f;
+  //                              Sleep(10); 
+  //                          } });
+		//	interpolate.detach();
+		//}
+		//else
+		//{
+		//	if (PositionDistance(position, app::ActorUtils_GetAvatarPos(nullptr)) > 60.0f)
+		//		MapTeleport::GetInstance().TeleportTo(position);
+		//	else
+		//		manager.avatar()->setAbsolutePosition(position);
+		//}
 	}
 
 	void CustomTeleports::OnTeleportKeyPressed(bool next)
@@ -208,25 +208,25 @@ namespace cheat::feature
 
 	void CustomTeleports::OnGameUpdate()
 	{
-		if (!f_Enabled || !f_Auto)
-			return;
+		//if (!f_Enabled || !f_Auto)
+		//	return;
 
-		auto currentTime = util::GetCurrentTimeMillisec();
-		if (currentTime < nextTime)
-			return;
+		//auto currentTime = util::GetCurrentTimeMillisec();
+		//if (currentTime < nextTime)
+		//	return;
 
-		auto loadingManager = GET_SINGLETON(MoleMole_LoadingManager);
-		if (loadingManager == nullptr || !app::MoleMole_LoadingManager_IsLoaded(loadingManager, nullptr))
-			return;
+		//auto loadingManager = GET_SINGLETON(MoleMole_LoadingManager);
+		//if (loadingManager == nullptr || !app::MoleMole_LoadingManager_IsLoaded(loadingManager, nullptr))
+		//	return;
 
-		auto camera = app::Camera_get_main(nullptr);
-		if (camera == nullptr) return;
+		//auto camera = app::Camera_get_main(nullptr);
+		//if (camera == nullptr) return;
 
-		if (!app::Behaviour_get_isActiveAndEnabled(reinterpret_cast<app::Behaviour*>(camera), nullptr))
-			return;
+		//if (!app::Behaviour_get_isActiveAndEnabled(reinterpret_cast<app::Behaviour*>(camera), nullptr))
+		//	return;
 
-		nextTime = currentTime + (int64_t)f_DelayTime * 1000;
-		OnTeleportKeyPressed(true); 
+		//nextTime = currentTime + (int64_t)f_DelayTime * 1000;
+		//OnTeleportKeyPressed(true); 
 	}
 
 	void itr(std::regex exp, std::string name, std::string s)
@@ -270,7 +270,7 @@ namespace cheat::feature
 		{
 			selectedIndex = -1;
 			UpdateIndexName();
-			SerializeTeleport(Teleport_(nameBuffer_, app::ActorUtils_GetAvatarPos(nullptr), descriptionBuffer_));
+			//SerializeTeleport(Teleport_(nameBuffer_, app::ActorUtils_GetAvatarPos(nullptr), descriptionBuffer_));
 			nameBuffer_ = "";
 			descriptionBuffer_ = "";
 		}
@@ -457,7 +457,7 @@ namespace cheat::feature
 					{
 						ImGui::BeginTooltip();
 						ImGui::Text("%s", description.c_str());
-						ImGui::Text("Distance: %.2f", PositionDistance(position, app::ActorUtils_GetAvatarPos(nullptr)));
+						//ImGui::Text("Distance: %.2f", PositionDistance(position, app::ActorUtils_GetAvatarPos(nullptr)));
 						ImGui::EndTooltip();
 					}
 					ImGui::TableNextColumn();

@@ -56,36 +56,36 @@ namespace cheat::feature
 
 	bool AutoSeelie::IsEntityForVac(game::Entity* entity)
 	{
-		auto& manager = game::EntityManager::instance();
-		auto distance = manager.avatar()->distance(entity);
-		float radius = 100.0f;
+		//auto& manager = game::EntityManager::instance();
+		//auto distance = manager.avatar()->distance(entity);
+		//float radius = 100.0f;
 
-		if (game::filters::puzzle::Seelie.IsValid(entity) || 
-			game::filters::puzzle::WarmingSeelie.IsValid(entity) || 
-			game::filters::puzzle::LuminousSeelie.IsValid(entity) ||
-			game::filters::puzzle::ElectroSeelie.IsValid(entity))
-		{
-			if (entity->name().find("ElectricSeelie") != std::string::npos)
-			{
+		//if (game::filters::puzzle::Seelie.IsValid(entity) || 
+		//	game::filters::puzzle::WarmingSeelie.IsValid(entity) || 
+		//	game::filters::puzzle::LuminousSeelie.IsValid(entity) ||
+		//	game::filters::puzzle::ElectroSeelie.IsValid(entity))
+		//{
+		//	if (entity->name().find("ElectricSeelie") != std::string::npos)
+		//	{
 
-				if (f_ElectroSeelie)
-				{
-					auto EntityGameObject = app::MoleMole_BaseEntity_get_rootGameObject(entity->raw(), nullptr);
-					auto Transform = app::GameObject_GetComponentByName(EntityGameObject, string_to_il2cppi("Transform"), nullptr);
-					auto child = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform), 1, nullptr);
-					auto pre_status = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child), nullptr);
-					auto status = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status), nullptr);
+		//		if (f_ElectroSeelie)
+		//		{
+		//			auto EntityGameObject = app::MoleMole_BaseEntity_get_rootGameObject(entity->raw(), nullptr);
+		//			auto Transform = app::GameObject_GetComponentByName(EntityGameObject, string_to_il2cppi("Transform"), nullptr);
+		//			auto child = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform), 1, nullptr);
+		//			auto pre_status = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child), nullptr);
+		//			auto status = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status), nullptr);
 
-					if (status)
-					{
-						return false;
-					}
-					return distance <= radius;
-				}
-				return false;
-			}
-			return distance <= radius;
-		}
+		//			if (status)
+		//			{
+		//				return false;
+		//			}
+		//			return distance <= radius;
+		//		}
+		//		return false;
+		//	}
+		//	return distance <= radius;
+		//}
 		return false;
 	}
 
