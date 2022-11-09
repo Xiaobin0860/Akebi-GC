@@ -3,11 +3,11 @@ using namespace app;
 // ActorAbilityPlugin
 //DO_APP_FUNC(0x0236C560, bool, MoleMole_ActorAbilityPlugin_HanlderModifierThinkTimerUp, (ActorAbilityPlugin* __this, float delay, Object* arg, MethodInfo* method));
 //DO_APP_FUNC(0x023757E0, void, MoleMole_ActorAbilityPlugin_AddDynamicFloatWithRange, (MoleMole_ActorAbilityPlugin* __this, String* key, float value, float min, float max, bool forceDoAtRemote, MethodInfo* method));
-//DO_APP_FUNC(0x02378100, bool, MoleMole_ActorAbilityPlugin_OnEvent, (void* __this, BaseEvent* e, MethodInfo* method));
+DO_APP_FUNC(0x0514CEE0, bool, MoleMole_ActorAbilityPlugin_OnEvent, (void* __this, BaseEvent* e, MethodInfo* method));
 
 
 // ActorUtils
-//DO_APP_FUNC(0x00C9BB90, Vector3, ActorUtils_GetAvatarPos, (MethodInfo* method));
+DO_APP_FUNC(0x02F5A7D0, Vector3, ActorUtils_GetAvatarPos, (MethodInfo* method));
 //DO_APP_FUNC(0x00CA3EC0, void, ActorUtils_SetAvatarPos, (Vector3 pos, MethodInfo* method));
 //DO_APP_FUNC(0x00CA9EC0, void, ActorUtils_SyncAvatarMotion, (int32_t state, MethodInfo* method));
 
@@ -146,7 +146,7 @@ DO_APP_FUNC(0x02B50040, List_1_MoleMole_BaseEntity_*, MoleMole_EntityManager_Get
 
 
 // FixedBoolStack
-//DO_APP_FUNC(0x02FE90B0, bool, MoleMole_FixedBoolStack_get_value, (FixedBoolStack* __this, MethodInfo* method));
+DO_APP_FUNC(0x096C9840, bool, MoleMole_FixedBoolStack_get_value, (FixedBoolStack* __this, MethodInfo* method));
 
 
 // Formula
@@ -406,8 +406,8 @@ DO_APP_FUNC(0x096527D0, Rect, RectTransform_get_rect, (RectTransform* __this, Me
 
 
 // SafeFloat
-//DO_APP_FUNC(0x02F72E90, float, MoleMole_SafeFloat_get_Value, (SafeFloat safeFloat, MethodInfo* method));
-//DO_APP_FUNC(0x02F72D20, SafeFloat, MoleMole_SafeFloat_set_Value, (float value, MethodInfo* method));
+DO_APP_FUNC(0x040A4DC0, float, MoleMole_SafeFloat_get_Value, (SafeFloat safeFloat, MethodInfo* method));
+DO_APP_FUNC(0x040A4EB0, SafeFloat, MoleMole_SafeFloat_set_Value, (float value, MethodInfo* method));
 
 
 // SCameraModuleInitialize
@@ -415,7 +415,7 @@ DO_APP_FUNC(0x096527D0, Rect, RectTransform_get_rect, (RectTransform* __this, Me
 
 
 // ScenePropManager
-//DO_APP_FUNC(0x02A73370, bool, MoleMole_ScenePropManager_GetTreeTypeByPattern, (MoleMole_ScenePropManager* __this, String* pattern, MoleMole_Config_TreeType__Enum* treeType, MethodInfo* method));
+DO_APP_FUNC(0x05446A60, bool, MoleMole_ScenePropManager_GetTreeTypeByPattern, (MoleMole_ScenePropManager* __this, String* pattern, MoleMole_Config_TreeType__Enum* treeType, MethodInfo* method));
 
 
 // Screen
@@ -434,7 +434,7 @@ DO_APP_FUNC(0x03CB79F0, uint16_t, MoleMole_SimpleSafeUInt16_get_Value, (SimpleSa
 // Singleton
 DO_APP_FUNC(0x020ADA60, void*, Singleton_GetInstance, (MethodInfo* method));
 DO_APP_FUNC_METHODINFO(0x0CEAC9B0, Singleton_1_MoleMole_UIManager__get_Instance__MethodInfo);
-//DO_APP_FUNC_METHODINFO(0x0A48E090, Singleton_1_InteractionManager__get_Instance__MethodInfo);
+DO_APP_FUNC_METHODINFO(0x0CEAD2E8, Singleton_1_InteractionManager__get_Instance__MethodInfo);
 DO_APP_FUNC_METHODINFO(0x0CEACDC0, Singleton_1_MoleMole_EntityManager__get_Instance__MethodInfo);
 DO_APP_FUNC_METHODINFO(0x0CEB38D8, Singleton_1_MoleMole_ItemModule__get_Instance__MethodInfo);
 DO_APP_FUNC_METHODINFO(0x0CEAD308, Singleton_1_MoleMole_MapModule__get_Instance__MethodInfo);
@@ -443,7 +443,7 @@ DO_APP_FUNC_METHODINFO(0x0CEAD018, Singleton_1_MoleMole_PlayerModule__get_Instan
 DO_APP_FUNC_METHODINFO(0x0CEB1D08, Singleton_1_MoleMole_LoadingManager__get_Instance__MethodInfo);
 DO_APP_FUNC_METHODINFO(0x0CEB09F0, Singleton_1_MoleMole_MapManager__get_Instance__MethodInfo);
 //DO_APP_FUNC_METHODINFO(0x0A48DF20, Singleton_1_MoleMole_EventManager__get_Instance__MethodInfo);
-//DO_APP_FUNC_METHODINFO(0x0A48E098, Singleton_1_MoleMole_ScenePropManager__get_Instance__MethodInfo);
+DO_APP_FUNC_METHODINFO(0x0CEB00C0, Singleton_1_MoleMole_ScenePropManager__get_Instance__MethodInfo);
 
 
 // Slider
@@ -543,6 +543,6 @@ DO_APP_FUNC(0x09738890, float, Vector3_Distance, (Vector3 a, Vector3 b, MethodIn
 
 // WorldShiftManager
 //DO_APP_FUNC(0x051118A0, Vector3, WorldShiftManager_GetAbsolutePosition, (Vector3 pos, MethodInfo* method));
-//DO_APP_FUNC(0x05111A40, Vector3, WorldShiftManager_GetRelativePosition, (Vector3 pos, MethodInfo* method));
+DO_APP_FUNC(0x08B62E80, Vector3, WorldShiftManager_GetRelativePosition, (Vector3 pos, MethodInfo* method));
 
 

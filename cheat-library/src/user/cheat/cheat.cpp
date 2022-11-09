@@ -82,7 +82,7 @@ namespace cheat
 			&protectionBypass,
 			FEAT_INST(Settings),
 			FEAT_INST(Hotkeys),
-//			FEAT_INST(Debug),
+			FEAT_INST(Debug),
 //			FEAT_INST(About),
 //#ifndef _PATTERN_SCANNER
 //			FEAT_INST(PacketSniffer),
