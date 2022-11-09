@@ -9008,6 +9008,7 @@ namespace app {
         struct Dictionary_2_System_Int32_UniRx_Tuple_3_* _storedJoypadIconStateIns;
         struct Dictionary_2_System_String_HHOMOPLIOLJ_* _name2JoypadController;
         int32_t _pcCursorMode;
+        bool _doJoypadLostFocusBeforeClearView;
         bool _updateJoypadUIModule;
         bool _contextClosed;
         struct List_1_MoleMole_BaseContext_JoypadUIModulesList_* _joypadUIModules;
@@ -9047,6 +9048,7 @@ namespace app {
         struct Action* _loadingCallback;
         struct Dictionary_2_System_UInt32_MoleMole_MonoMapMark_* _transPointMarks;
         struct Dictionary_2_System_Int32_Dictionary_2_System_UInt32_MoleMole_MonoMapMark_* _markType2markDic;
+        void* xx;
         struct Rect _mapViewRect;
         struct MonoMapMark* _localAvatarMark;
         struct Rect _markContainerViewport;
@@ -9073,6 +9075,8 @@ namespace app {
         struct MoleMole_ZoomAudioComponent* _zoomAudioComp;
         struct Dictionary_2_MoleMole_MonoMapMark_UnityEngine_GameObject_* trackingIndictor;
         struct Coroutine* GEAEMOFMCKM;
+        struct List_1_UnityEngine_Vector3_* FOBMCLBMHBB;
+        struct List_1_System_Single_* MBPIODEADAM;
         bool _FDMGGBLMOGI_k__BackingField;
         bool EFMEIJLJOLD;
         float BJKOGCAPLDL;

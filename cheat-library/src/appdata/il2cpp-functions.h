@@ -71,7 +71,7 @@ DO_APP_FUNC(0x09685450, int32_t, Camera_get_pixelHeight, (Camera* __this, Method
 
 
 // Canvas
-//DO_APP_FUNC(0x05B568C0, float, Canvas_get_scaleFactor, (/*Canvas**/void* __this, MethodInfo* method));
+DO_APP_FUNC(0x09762930, float, Canvas_get_scaleFactor, (/*Canvas**/void* __this, MethodInfo* method));
 
 
 // Component
@@ -162,7 +162,7 @@ DO_APP_FUNC(0x02B50040, List_1_MoleMole_BaseEntity_*, MoleMole_EntityManager_Get
 
 
 // GadgetModule
-//DO_APP_FUNC(0x03A30BE0, void, MoleMole_GadgetModule_OnGadgetInteractRsp, (void* __this, GadgetInteractRsp* notify, MethodInfo* method));
+DO_APP_FUNC(0x033E8790, void, MoleMole_GadgetModule_OnGadgetInteractRsp, (void* __this, GadgetInteractRsp* notify, MethodInfo* method));
 
 
 // GameManager
@@ -200,7 +200,7 @@ DO_APP_FUNC(0x0971DF30, Transform*, GameObject_get_transform, (GameObject* __thi
 // InLevelMapPageContext
 //DO_APP_FUNC(0x0307A0F0, void, MoleMole_InLevelMapPageContext_OnMarkClicked, (InLevelMapPageContext* __this, MonoMapMark* mark, MethodInfo* method));
 //DO_APP_FUNC(0x03086950, void, MoleMole_InLevelMapPageContext_OnMapClicked, (InLevelMapPageContext* __this, Vector2 screenPos, MethodInfo* method));
-//DO_APP_FUNC(0x0307D460, void, MoleMole_InLevelMapPageContext_ZoomMap, (InLevelMapPageContext* __this, float value, MethodInfo* method));
+DO_APP_FUNC(0x05D25A90, void, MoleMole_InLevelMapPageContext_ZoomMap, (InLevelMapPageContext* __this, float value, MethodInfo* method));
 //DO_APP_FUNC(0x030ABD50, void, MoleMole_InLevelMapPageContext_UpdateView, (InLevelMapPageContext* __this, MethodInfo* method));
 
 
@@ -296,7 +296,7 @@ DO_APP_FUNC(0x02A8F6A0, bool, MoleMole_LoadingManager_IsLoaded, (MoleMole_Loadin
 
 
 // MapModule
-//DO_APP_FUNC(0x05B7B770, bool, MoleMole_MapModule_IsAreaUnlock, (MoleMole_MapModule* __this, uint32_t sceneID, uint32_t areaID, MethodInfo* method));
+DO_APP_FUNC(0x02A9F6F0, bool, MoleMole_MapModule_IsAreaUnlock, (MoleMole_MapModule* __this, uint32_t sceneID, uint32_t areaID, MethodInfo* method));
 
 
 // Marshal
@@ -340,7 +340,7 @@ DO_APP_FUNC(0x051986C0, Vector2, Miscs_GenLevelPos_1, (Vector3 worldPos, MethodI
 
 
 // MonoMiniMap
-//DO_APP_FUNC(0x01007700, void, MonoMiniMap_Update, (MonoMiniMap* __this, MethodInfo* method));
+DO_APP_FUNC(0x02E71320, void, MonoMiniMap_Update, (MonoMiniMap* __this, MethodInfo* method));
 
 
 // NativeGallery
@@ -375,12 +375,12 @@ DO_APP_FUNC(0x05E2B210, void, MoleMole_Packet_XorEncrypt, (Byte__Array** bytes, 
 
 
 // Quaternion
-//DO_APP_FUNC(0x05B141F0, Vector3, Quaternion_ToEulerAngles, (Quaternion rotation, MethodInfo* method));
+DO_APP_FUNC(0x0971EE50, Vector3, Quaternion_ToEulerAngles, (Quaternion rotation, MethodInfo* method));
 //DO_APP_FUNC(0x05B142E0, Vector3, Quaternion_get_eulerAngles, (Quaternion__Boxed* __this, MethodInfo* method));
 
 
 // RectTransform
-//DO_APP_FUNC(0x05A4BCA0, Rect, RectTransform_get_rect, (RectTransform* __this, MethodInfo* method));
+DO_APP_FUNC(0x096527D0, Rect, RectTransform_get_rect, (RectTransform* __this, MethodInfo* method));
 
 
 // RectTransformUtility
@@ -424,7 +424,7 @@ DO_APP_FUNC(0x09638830, int32_t, Screen_get_height, (MethodInfo* method));
 
 
 // SimpleSafeUInt16
-//DO_APP_FUNC(0x01EC1850, uint16_t, MoleMole_SimpleSafeUInt16_get_Value, (SimpleSafeUInt16 v, MethodInfo* method));
+DO_APP_FUNC(0x03CB79F0, uint16_t, MoleMole_SimpleSafeUInt16_get_Value, (SimpleSafeUInt16 v, MethodInfo* method));
 
 
 // SimpleSafeUInt32
@@ -433,11 +433,11 @@ DO_APP_FUNC(0x09638830, int32_t, Screen_get_height, (MethodInfo* method));
 
 // Singleton
 DO_APP_FUNC(0x020ADA60, void*, Singleton_GetInstance, (MethodInfo* method));
-//DO_APP_FUNC_METHODINFO(0x0A48AD58, Singleton_1_MoleMole_UIManager__get_Instance__MethodInfo);
+DO_APP_FUNC_METHODINFO(0x0CEAC9B0, Singleton_1_MoleMole_UIManager__get_Instance__MethodInfo);
 //DO_APP_FUNC_METHODINFO(0x0A48E090, Singleton_1_InteractionManager__get_Instance__MethodInfo);
 DO_APP_FUNC_METHODINFO(0x0CEACDC0, Singleton_1_MoleMole_EntityManager__get_Instance__MethodInfo);
 DO_APP_FUNC_METHODINFO(0x0CEB38D8, Singleton_1_MoleMole_ItemModule__get_Instance__MethodInfo);
-//DO_APP_FUNC_METHODINFO(0x0A48F690, Singleton_1_MoleMole_MapModule__get_Instance__MethodInfo);
+DO_APP_FUNC_METHODINFO(0x0CEAD308, Singleton_1_MoleMole_MapModule__get_Instance__MethodInfo);
 DO_APP_FUNC_METHODINFO(0x0CEAD018, Singleton_1_MoleMole_PlayerModule__get_Instance__MethodInfo);
 //DO_APP_FUNC_METHODINFO(0x0A48D530, Singleton_1_MoleMole_NetworkManager__get_Instance__MethodInfo);
 DO_APP_FUNC_METHODINFO(0x0CEB1D08, Singleton_1_MoleMole_LoadingManager__get_Instance__MethodInfo);
@@ -508,7 +508,7 @@ DO_APP_FUNC(0x09655200, Vector3, Transform_get_position, (Transform* __this, Met
 
 
 // UIManager
-//DO_APP_FUNC(0x023EC040, bool, MoleMole_UIManager_HasEnableMapCamera, (MoleMole_UIManager* __this, MethodInfo* method));
+DO_APP_FUNC(0x02DD0730, bool, MoleMole_UIManager_HasEnableMapCamera, (MoleMole_UIManager* __this, MethodInfo* method));
 //DO_APP_FUNC(0x023DCAF0, void, MoleMole_UIManager_EnableInput, (MoleMole_UIManager* __this, bool playerInput, bool clearCurInputState, bool ignoreTouch, MethodInfo* method));
 
 
