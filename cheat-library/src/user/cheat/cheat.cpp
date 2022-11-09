@@ -96,7 +96,7 @@ namespace cheat
 //			FEAT_INST(AutoRun),
 //			FEAT_INST(FallControl),
 //
-//			FEAT_INST(AutoLoot),
+			FEAT_INST(AutoLoot),
 //			FEAT_INST(AutoTreeFarm),
 //			FEAT_INST(AutoDestroy),
 //			FEAT_INST(AutoSeelie),
@@ -142,15 +142,15 @@ namespace cheat
 #undef FEAT_INST
 
 		manager.SetModuleOrder({
-			//"Player",
-			//"World",
-			//"Teleport",
-			//"ESP",
-			//"Visuals",
+			"Player",
+			"World",
+			"Teleport",
+			"ESP",
+			"Visuals",
 			"Hotkeys",
 			"Settings",
-			//"About",
-			//"Debug"
+			"About",
+			"Debug"
 			});
 
 		LPBYTE pFontData = nullptr;
@@ -196,7 +196,7 @@ namespace cheat
 	static void LevelSyncCombatPlugin_RequestSceneEntityMoveReq_Hook(app::LevelSyncCombatPlugin* __this, uint32_t entityId, app::MotionInfo* syncInfo,
 		bool isReliable, uint32_t relseq, MethodInfo* method)
 	{
-		LOG_TRACE("Entity Move id=%d, relialbe=%d, seq=%d", entityId, isReliable, relseq);
+		//LOG_TRACE("Entity Move id=%d, relialbe=%d, seq=%d", entityId, isReliable, relseq);
 		events::MoveSyncEvent(entityId, syncInfo);
 		CALL_ORIGIN(LevelSyncCombatPlugin_RequestSceneEntityMoveReq_Hook, __this, entityId, syncInfo, isReliable, relseq, method);
 	}

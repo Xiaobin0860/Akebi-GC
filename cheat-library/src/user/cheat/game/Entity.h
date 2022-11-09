@@ -2,104 +2,104 @@
 #include <helpers.h>
 namespace cheat::game
 {
-	class Entity
-	{
-	public:
+    class Entity
+    {
+    public:
 
-		Entity(app::BaseEntity* rawEntity);
+        Entity(app::BaseEntity* rawEntity);
 
-		std::string& name();
+        std::string& name();
 
-		app::BaseEntity* raw();
-		uint32_t runtimeID();
-		app::EntityType__Enum_1 type();
+        app::BaseEntity* raw();
+        uint32_t runtimeID();
+        app::EntityType__Enum_1 type();
 
-		app::Vector3 relativePosition();
-		app::Vector3 absolutePosition();
-		app::Vector2 levelPosition();
+        app::Vector3 relativePosition();
+        app::Vector3 absolutePosition();
+        app::Vector2 levelPosition();
 
-		float distance(const app::Vector3& point);
-		float distance(const app::Vector2& levelPosition);
-		float distance(Entity* entity);
-		float distance(app::BaseEntity* rawEntity);
+        float distance(const app::Vector3& point);
+        float distance(const app::Vector2& levelPosition);
+        float distance(Entity* entity);
+        float distance(app::BaseEntity* rawEntity);
 
-		bool isGadget();
-		bool isChest();
-		bool isAvatar();
+        bool isGadget();
+        bool isChest();
+        bool isAvatar();
 
-		bool isLoaded();
+        bool isLoaded();
 
-		void setRelativePosition(const app::Vector3& value);
-		void setAbsolutePosition(const app::Vector3& value);
-		
-		app::VCBaseMove* moveComponent();
-		app::LCBaseCombat* combat();
+        void setRelativePosition(const app::Vector3& value);
+        void setAbsolutePosition(const app::Vector3& value);
 
-		app::GameObject* gameObject();
-		app::Rigidbody* rigidbody();
-		app::Animator* animator();
+        app::VCBaseMove* moveComponent();
+        app::LCBaseCombat* combat();
 
-		app::Vector3 forward() const;
-		app::Vector3 back() const;
-		app::Vector3 right() const;
-		app::Vector3 left() const;
-		app::Vector3 up() const;
-		app::Vector3 down() const;
+        app::GameObject* gameObject();
+        app::Rigidbody* rigidbody();
+        app::Animator* animator();
 
-		template<class T>
-		T* plugin(void* pClass)
-		{
-			if (m_RawEntity == nullptr)
-				return nullptr;
+        app::Vector3 forward() const;
+        app::Vector3 back() const;
+        app::Vector3 right() const;
+        app::Vector3 left() const;
+        app::Vector3 up() const;
+        app::Vector3 down() const;
 
-			SAFE_BEGIN();
+        template<class T>
+        T* plugin(void* pClass)
+        {
+            if (m_RawEntity == nullptr)
+                return nullptr;
 
-			auto logicComponentsRaw = app::MoleMole_BaseEntity_GetAllLogicComponents(m_RawEntity, nullptr);
-			auto logicComponents = TO_UNI_LIST(logicComponentsRaw, app::BaseComponent*);
-			if (logicComponents == nullptr)
-				return nullptr;
+            SAFE_BEGIN();
 
-			for (auto& component : *logicComponents)
-			{
-				T* value = GetLCPlugin<T>(component, pClass);
-				if (value != nullptr)
-					return value;
-			}
-			return nullptr;
+            auto logicComponentsRaw = app::MoleMole_BaseEntity_GetAllLogicComponents(m_RawEntity, nullptr);
+            auto logicComponents = TO_UNI_LIST(logicComponentsRaw, app::BaseComponent*);
+            if (logicComponents == nullptr)
+                return nullptr;
 
-			SAFE_ERROR();
-			return nullptr;
-			SAFE_END();
-		}
+            for (auto& component : *logicComponents)
+            {
+                T* value = GetLCPlugin<T>(component, pClass);
+                if (value != nullptr)
+                    return value;
+            }
+            return nullptr;
 
-	private:
+            SAFE_ERROR();
+            return nullptr;
+            SAFE_END();
+        }
 
-		app::BaseEntity* m_RawEntity;
-		bool m_HasName;
-		std::string m_Name;
+    private:
 
-		bool m_IsLoaded;
+        app::BaseEntity* m_RawEntity;
+        bool m_HasName;
+        std::string m_Name;
 
-		template<class T>
-		T* GetLCPlugin(app::BaseComponentPlugin* plugin, void* pClass)
-		{
-			return CastTo<T>(plugin, pClass);
-		}
+        bool m_IsLoaded;
 
-		template<class T>
-		T* GetLCPlugin(app::BaseComponent* component, void* pClass)
-		{
-			if (component == nullptr || component->fields._pluginList == nullptr)
-				return nullptr;
+        template<class T>
+        T* GetLCPlugin(app::BaseComponentPlugin* plugin, void* pClass)
+        {
+            return CastTo<T>(plugin, pClass);
+        }
 
-			auto componentList = TO_UNI_LIST(component->fields._pluginList, app::BaseComponentPlugin*);
-			for (auto& plugin : *componentList)
-			{
-				T* value = GetLCPlugin<T>(plugin, pClass);
-				if (value != nullptr)
-					return value;
-			}
-			return nullptr;
-		}
-	};
+        template<class T>
+        T* GetLCPlugin(app::BaseComponent* component, void* pClass)
+        {
+            if (component == nullptr || component->fields._pluginList == nullptr)
+                return nullptr;
+
+            auto componentList = TO_UNI_LIST(component->fields._pluginList, app::BaseComponentPlugin*);
+            for (auto& plugin : *componentList)
+            {
+                T* value = GetLCPlugin<T>(plugin, pClass);
+                if (value != nullptr)
+                    return value;
+            }
+            return nullptr;
+        }
+    };
 }

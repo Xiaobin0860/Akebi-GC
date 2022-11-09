@@ -76,7 +76,7 @@ DO_APP_FUNC(0x09685450, int32_t, Camera_get_pixelHeight, (Camera* __this, Method
 
 // Component
 //DO_APP_FUNC(0x05A2CE20, Component_1*, Component_1_GetComponent_1, (Component_1* __this, String* type, MethodInfo* method));
-//DO_APP_FUNC(0x05A2CFD0, GameObject*, Component_1_get_gameObject, (Component_1* __this, MethodInfo* method));
+DO_APP_FUNC(0x09633850, GameObject*, Component_1_get_gameObject, (Component_1* __this, MethodInfo* method));
 
 
 // CookingQtePageContext
@@ -171,12 +171,12 @@ DO_APP_FUNC(0x035C44A0, void, GameManager_Update, (GameManager* __this, MethodIn
 
 // GameObject
 //DO_APP_FUNC(0x05B12A80, GameObject*, GameObject_Find, (String* name, MethodInfo* method));
-//DO_APP_FUNC(0x05B12A90, Component_1*, GameObject_GetComponentByName, (GameObject* __this, String* type, MethodInfo* method));
+DO_APP_FUNC(0x0971D9E0, Component_1*, GameObject_GetComponentByName, (GameObject* __this, String* type, MethodInfo* method));
 //DO_APP_FUNC(0x05B12F40, bool, GameObject_get_active, (GameObject* __this, MethodInfo* method));
 //DO_APP_FUNC(0x05B13000, void, GameObject_set_active, (GameObject* __this, bool value, MethodInfo* method));
 //DO_APP_FUNC(0x05B12E10, void, GameObject_SetActive, (GameObject* __this, bool value, MethodInfo* method));
 //DO_APP_FUNC(0x05B12A50, GameObject*, GameObject_CreatePrimitive, (PrimitiveType__Enum type, MethodInfo* method));
-//DO_APP_FUNC(0x05B12FE0, Transform*, GameObject_get_transform, (GameObject* __this, MethodInfo* method));
+DO_APP_FUNC(0x0971DF30, Transform*, GameObject_get_transform, (GameObject* __this, MethodInfo* method));
 //DO_APP_FUNC(0x05B129E0, Component_1*, GameObject_AddComponentInternal, (GameObject* __this, String* className, MethodInfo* method));
 //DO_APP_FUNC(0x05B129F0, Component_1*, GameObject_AddComponent, (GameObject* __this, Type* componentType, MethodInfo* method));
 
@@ -214,7 +214,7 @@ DO_APP_FUNC(0x035C44A0, void, GameManager_Update, (GameManager* __this, MethodIn
 
 
 // ItemModule
-DO_APP_FUNC(0x01777A40, void, MoleMole_ItemModule_PickItem, (MoleMole_ItemModule* __this, uint32_t entityID, MethodInfo* method));
+DO_APP_FUNC(0x02A25270, void, MoleMole_ItemModule_PickItem, (MoleMole_ItemModule* __this, uint32_t entityID, MethodInfo* method));
 
 
 // KcpClient
@@ -242,15 +242,15 @@ DO_APP_FUNC(0x05F8B2A0, int32_t, Kcp_KcpNative_kcp_client_send_packet, (void* kc
 
 
 // LCIndicatorPlugin
-DO_APP_FUNC(0x012A6C80, bool, MoleMole_LCIndicatorPlugin_DoCheck, (LCIndicatorPlugin* __this, MethodInfo* method));
-DO_APP_FUNC(0x012A7560, void, MoleMole_LCIndicatorPlugin_ShowIcon, (LCIndicatorPlugin* __this, MethodInfo* method));
-DO_APP_FUNC(0x012A5E10, void, MoleMole_LCIndicatorPlugin_HideIcon, (LCIndicatorPlugin* __this, MethodInfo* method));
+DO_APP_FUNC(0x050C6EF0, bool, MoleMole_LCIndicatorPlugin_DoCheck, (LCIndicatorPlugin* __this, MethodInfo* method));
+DO_APP_FUNC(0x050C61D0, void, MoleMole_LCIndicatorPlugin_ShowIcon, (LCIndicatorPlugin* __this, MethodInfo* method));
+DO_APP_FUNC(0x050C8030, void, MoleMole_LCIndicatorPlugin_HideIcon, (LCIndicatorPlugin* __this, MethodInfo* method));
 
 
 // LCSelectPickup
-DO_APP_FUNC(0x01BC6290, void, MoleMole_LCSelectPickup_AddInteeBtnByID, (void* __this, BaseEntity* entity, MethodInfo* method));
-DO_APP_FUNC(0x01BC8290, bool, MoleMole_LCSelectPickup_IsInPosition, (void* __this, BaseEntity* entity, MethodInfo* method));
-DO_APP_FUNC(0x01BC6D90, bool, MoleMole_LCSelectPickup_IsOutPosition, (void* __this, BaseEntity* entity, MethodInfo* method));
+DO_APP_FUNC(0x0491FEA0, void, MoleMole_LCSelectPickup_AddInteeBtnByID, (void* __this, BaseEntity* entity, MethodInfo* method));
+DO_APP_FUNC(0x0491FD40, bool, MoleMole_LCSelectPickup_IsInPosition, (void* __this, BaseEntity* entity, MethodInfo* method));
+DO_APP_FUNC(0x0491F490, bool, MoleMole_LCSelectPickup_IsOutPosition, (void* __this, BaseEntity* entity, MethodInfo* method));
 
 
 // LevelSceneElementViewPlugin
@@ -312,7 +312,7 @@ DO_APP_FUNC(0x08EBB6D0, String*, Marshal_PtrToStringAnsi, (void* ptr, MethodInfo
 
 
 // Miscs
-DO_APP_FUNC(0x028E9F40, bool, Miscs_CheckTargetAttackable, (BaseEntity* attackerEntity, BaseEntity* targetEntity, MethodInfo* method));
+DO_APP_FUNC(0x05192BC0, bool, Miscs_CheckTargetAttackable, (BaseEntity* attackerEntity, BaseEntity* targetEntity, MethodInfo* method));
 //DO_APP_FUNC(0x028E6A40, float, Miscs_CalcCurrentGroundWaterHeight, (float x, float z, MethodInfo* method));
 //DO_APP_FUNC(0x028E6160, float, Miscs_CalcCurrentGroundHeight, (float x, float z, MethodInfo* method));
 //DO_APP_FUNC(0x028E6260, float, Miscs_CalcCurrentGroundHeight_1, (float x, float z, float rayStartHeight, float rayDetectLength, int32_t layer, MethodInfo* method));
@@ -484,26 +484,26 @@ DO_APP_FUNC(0x03680910, uint64_t, MoleMole_TimeUtil_get_LocalNowMsTimeStamp, (Me
 
 
 // Transform
-//DO_APP_FUNC(0x05A4D2B0, Transform*, Transform_FindChild, (Transform* __this, String* name, MethodInfo* method));
+DO_APP_FUNC(0x09653DB0, Transform*, Transform_FindChild, (Transform* __this, String* name, MethodInfo* method));
 //DO_APP_FUNC(0x05A4D2E0, Transform*, Transform_GetChild, (Transform* __this, int32_t index, MethodInfo* method));
-//DO_APP_FUNC(0x05A4E5B0, Quaternion, Transform_get_localRotation, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x096550C0, Quaternion, Transform_get_localRotation, (Transform* __this, MethodInfo* method));
 //DO_APP_FUNC(0x05A4EA50, void, Transform_set_localRotation, (Transform* __this, Quaternion value, MethodInfo* method));
 //DO_APP_FUNC(0x05A4E5F0, Vector3, Transform_get_localScale, (Transform* __this, MethodInfo* method));
 //DO_APP_FUNC(0x05A4EA60, void, Transform_set_localScale, (Transform* __this, Vector3 value, MethodInfo* method));
-//DO_APP_FUNC(0x05A4E570, Vector3, Transform_get_localPosition, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x09655080, Vector3, Transform_get_localPosition, (Transform* __this, MethodInfo* method));
 //DO_APP_FUNC(0x05A4EA40, void, Transform_set_localPosition, (Transform* __this, Vector3 value, MethodInfo* method));
 //DO_APP_FUNC(0x05A4E3D0, int32_t, Transform_get_childCount, (Transform* __this, MethodInfo* method));
 //DO_APP_FUNC(0x05A4E400, Vector3, Transform_get_eulerAngles, (Transform* __this, MethodInfo* method));
 //DO_APP_FUNC(0x05A4E930, void, Transform_set_eulerAngles, (Transform* __this, Vector3 value, MethodInfo* method));
-//DO_APP_FUNC(0x05A4E730, Vector3, Transform_get_right, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x09655240, Vector3, Transform_get_right, (Transform* __this, MethodInfo* method));
 //DO_APP_FUNC(0x05A4EAE0, void, Transform_set_right, (Transform* __this, Vector3 value, MethodInfo* method));
-//DO_APP_FUNC(0x05A4E810, Vector3, Transform_get_up, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x09655320, Vector3, Transform_get_up, (Transform* __this, MethodInfo* method));
 //DO_APP_FUNC(0x05A4EB60, void, Transform_set_up, (Transform* __this, Vector3 value, MethodInfo* method));
-//DO_APP_FUNC(0x05A4E460, Vector3, Transform_get_forward, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x09654F70, Vector3, Transform_get_forward, (Transform* __this, MethodInfo* method));
 //DO_APP_FUNC(0x05A4E980, void, Transform_set_forward, (Transform* __this, Vector3 value, MethodInfo* method));
-//DO_APP_FUNC(0x05A4E7C0, Quaternion, Transform_get_rotation, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x096552D0, Quaternion, Transform_get_rotation, (Transform* __this, MethodInfo* method));
 //DO_APP_FUNC(0x05A4EB50, void, Transform_set_rotation, (Transform* __this, Quaternion value, MethodInfo* method));
-//DO_APP_FUNC(0x05A4E6F0, Vector3, Transform_get_position, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x09655200, Vector3, Transform_get_position, (Transform* __this, MethodInfo* method));
 //DO_APP_FUNC(0x05A4D4C0, void, Transform_set_position, (Transform* __this, Vector3 value, MethodInfo* method));
 
 
@@ -513,7 +513,7 @@ DO_APP_FUNC(0x03680910, uint64_t, MoleMole_TimeUtil_get_LocalNowMsTimeStamp, (Me
 
 
 // Utils
-//DO_APP_FUNC(0x049274F0, Bounds, Utils_4_GetBounds, (GameObject* go, MethodInfo* method));
+DO_APP_FUNC(0x074BE6F0, Bounds, Utils_4_GetBounds, (GameObject* go, MethodInfo* method));
 
 
 // VCAnimatorEvent
