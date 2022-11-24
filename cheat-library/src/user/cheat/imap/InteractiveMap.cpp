@@ -1949,7 +1949,7 @@ namespace cheat::feature
         CALL_ORIGIN(InLevelMapPageContext_ZoomMap_Hook, __this, value, method);
 
         s_MapViewRect = __this->fields._mapViewRect;
-        LOG_TRACE("MapView {{%.2f,%.2f}, {%.2f,%.2f}}", s_MapViewRect.m_XMin, s_MapViewRect.m_YMin, s_MapViewRect.m_Width, s_MapViewRect.m_Height);
+        //LOG_TRACE("MapView {{%.2f,%.2f}, {%.2f,%.2f}}", s_MapViewRect.m_XMin, s_MapViewRect.m_YMin, s_MapViewRect.m_Width, s_MapViewRect.m_Height);
     }
 
     void InteractiveMap::OnWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, bool& cancelled)

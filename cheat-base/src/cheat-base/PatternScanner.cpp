@@ -248,6 +248,10 @@ PatternScanner::ModuleInfo& PatternScanner::GetModuleInfo(HMODULE hModule)
 		moduleInfo.base, moduleInfo.base + moduleInfo.size);
 
 	uintptr_t currentAddress = moduleInfo.base;
+	if (moduleInfo.filePath.find("UserAssembly") != std::string::npos) {
+		extern uintptr_t g_base;
+		g_base = currentAddress;
+	}
 	uintptr_t endAddress = moduleInfo.base + moduleInfo.size;
 	while (currentAddress <= endAddress)
 	{

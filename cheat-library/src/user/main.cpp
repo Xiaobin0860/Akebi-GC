@@ -23,6 +23,8 @@ void Run(HMODULE* phModule)
 	auto& settings = cheat::feature::Settings::GetInstance();
 	//if (settings.f_FileLogging)
 	{
+		extern void init_dump_dir();
+		init_dump_dir();
 		Logger::PrepareFileLogging((util::GetCurrentPath() / "logs").string());
 		Logger::SetLevel(Logger::Level::Trace, Logger::LoggerType::FileLogger);
 	}

@@ -131813,7 +131813,7 @@
     },
     "325": {
       "name": "Key Sigil II",
-      "clear_name": "KeySigilII",
+      "clear_name": "KeySigil",
       "points": [
         {
           "id": 21654,
@@ -131825,7 +131825,7 @@
     },
     "326": {
       "name": "Key Sigil III",
-      "clear_name": "KeySigilIII",
+      "clear_name": "KeySigil",
       "points": [
         {
           "id": 21655,
@@ -131837,7 +131837,7 @@
     },
     "327": {
       "name": "Key Sigil IV",
-      "clear_name": "KeySigilIV",
+      "clear_name": "KeySigil",
       "points": [
         {
           "id": 21656,

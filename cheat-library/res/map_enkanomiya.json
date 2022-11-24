@@ -7111,7 +7111,7 @@
     },
     "320": {
       "name": "Key Sigil I",
-      "clear_name": "KeySigilI",
+      "clear_name": "KeySigil",
       "points": [
         {
           "id": 21638,
@@ -7596,7 +7596,7 @@
     },
     "325": {
       "name": "Key Sigil II",
-      "clear_name": "KeySigilII",
+      "clear_name": "KeySigil",
       "points": [
         {
           "id": 21595,
@@ -7648,7 +7648,7 @@
     },
     "326": {
       "name": "Key Sigil III",
-      "clear_name": "KeySigilIII",
+      "clear_name": "KeySigil",
       "points": [
         {
           "id": 21604,
@@ -7695,7 +7695,7 @@
     },
     "327": {
       "name": "Key Sigil IV",
-      "clear_name": "KeySigilIV",
+      "clear_name": "KeySigil",
       "points": [
         {
           "id": 21612,
@@ -7772,7 +7772,7 @@
     },
     "328": {
       "name": "Key Sigil V",
-      "clear_name": "KeySigilV",
+      "clear_name": "KeySigil",
       "points": [
         {
           "id": 21626,

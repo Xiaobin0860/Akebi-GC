@@ -1190,6 +1190,7 @@ typedef union Il2CppRGCTXData
 } Il2CppRGCTXData;
 typedef struct MethodInfo
 {
+    uintptr_t x;
     Il2CppMethodPointer methodPointer;
     InvokerMethod invoker_method;
     const char* name;
@@ -7130,96 +7131,117 @@ namespace app {
     };
 
     struct __declspec(align(8)) CombatProperty__Fields {
-        struct SafeFloat maxHP;
-        struct SafeFloat HP;
-        struct SafeFloat elemEnergy;
-        struct SafeFloat maxElemEnergy;
-        struct SafeFloat attackBase;
-        struct SafeFloat attackPermanent;
-        struct SafeFloat defenseBase;
-        struct SafeFloat defensePermanent;
-        struct SafeFloat addHurtBase;
-        struct SafeFloat subHurtBase;
-        struct SafeFloat criticalHurtBase;
-        struct SafeFloat criticalBase;
-        struct SafeFloat antiCriticalBase;
-        struct SafeFloat physicalSubHurtBase;
-        struct SafeFloat EBKLJENHIND;
-        struct SafeFloat LAIBHDDNLKJ;
-        struct SafeFloat OGBPAAPLBGM;
-        struct SafeFloat EFMKNOJKHFM;
-        struct SafeFloat MHAEPFNAOGH;
-        struct SafeFloat JNGDCHPKNDG;
-        struct SafeFloat DALHBHJIGEN;
-        struct SafeFloat EGHJJMELBBD;
-        struct SafeFloat FLJMJCOKPCE;
-        struct SafeFloat JKEICNKJMLD;
-        struct SafeFloat PIMAPBKPFFB;
-        struct SafeFloat EFLMDKHCMIA;
-        struct SafeFloat GPDCOPBMELF;
-        struct SafeFloat PGFAJHGPDHP;
-        struct SafeFloat MCHMOEHOMLO;
-        struct SafeFloat DLJPKFJGMNE;
-        struct SafeFloat FMOPHCKLMED;
-        struct SafeFloat JJPLOFBHNKD;
-        struct SafeFloat EKLACOBLKFB;
-        struct SafeFloat JMOJJJDAMDA;
-        struct SafeFloat INJDKKFOLMM;
-        struct SafeFloat CJEOAELHHFA;
-        struct SafeFloat EGOIIPKILLH;
-        struct SafeFloat NLCHGGMOJNN;
-        struct SafeFloat CELGHCFBHCO;
-        struct SafeFloat MCKPNMPBGEE;
-        struct SafeFloat BIKMAMHIMDJ;
-        struct SafeFloat CBOPAFAPHNC;
-        struct SafeFloat NGKAMNKGAIF;
-        struct SafeFloat BCMGCLPMKBO;
-        struct SafeFloat MJIGCLKLFDK;
-        struct SafeFloat PDGAKCIJIPH;
-        struct SafeFloat GJIIHLNPJBH;
-        struct SafeFloat KMALDCHGGAK;
-        struct SafeFloat FDHEOHCBACA;
-        struct SafeFloat ILCKFPKNLKO;
-        struct SafeFloat OHIDFIOAFLK;
-        struct SafeFloat DEOFHHEPJKM;
-        struct SafeFloat PKKBDNHLGCJ;
-        struct SafeFloat JAGAPEOLAEE;
-        struct SafeFloat EOMHNKLLIGM;
-        struct SafeFloat DJJIPCJNNNP;
-        struct SafeFloat NJDAKBLPAJD;
-        struct SafeFloat KEHPLONGELI;
-        struct SafeFloat EGIHHGJHGLM;
-        struct SafeFloat ALIOAEOOBGA;
-        struct SafeFloat PLFBIDCAAPI;
-        struct SafeFloat GIADEIKAJLC;
-        struct SafeFloat PKCFELEMBEB;
-        struct SafeFloat HFNIFGAIKKA;
-        struct SafeFloat BNHNNJDJBIG;
-        struct SafeFloat BGNJIPAIODP;
-        struct SafeFloat FFEAAPPMDOD;
-        struct SafeFloat DAIAFOLPJPB;
-        struct SafeFloat HNBPNIHBDJC;
-        struct SafeFloat Ulevel;
-        struct SafeFloat Uexp;
-        struct SafeFloat UNK;
-        ElementType__Enum elemType;
-        struct SafeFloat weight;
-        struct SafeFloat endure;
-        struct SafeFloat endureShake;
-        struct SafeFloat gaugeLength;
-        struct SafeFloat waneSpeed;
-        struct SafeFloat recoverTime;
-        struct SafeFloat endurance;
-        struct FixedBoolStack* denyLockOn;
-        struct FixedBoolStack* isInvincible;
-        struct FixedBoolStack* islockHP;
-        struct FixedBoolStack* isNoheal;
-        struct FixedBoolStack* isGhostToAllied;
-        struct FixedBoolStack* isGhostToEnemy;
-        struct FixedBoolStack* canTriggerBullet;
-        struct FixedBoolStack* denyElementStick;
-        struct LCAbilityState* _ability;
-        bool useAbilityProperty;
+        struct SafeFloat maxHP;                 // 0-16
+        struct SafeFloat HP;                    // 1-32
+        struct SafeFloat elemEnergy;            // 2-48
+        struct SafeFloat maxElemEnergy;         // 3-64
+        struct SafeFloat attackBase;            // 4-80
+        struct SafeFloat attackPermanent;       // 5-96
+        struct SafeFloat defenseBase;           // 6-112
+        struct SafeFloat defensePermanent;      // 7-128
+        struct SafeFloat addHurtBase;           // 8-144
+        struct SafeFloat subHurtBase;           // 9-160
+        struct SafeFloat criticalHurtBase;      // 10-176
+        struct SafeFloat criticalBase;          // 11-192
+        struct SafeFloat antiCriticalBase;      // 12-208
+        struct SafeFloat physicalSubHurtBase;   // 13-224
+        struct SafeFloat GLLHLKAONCK;           // 14-240
+        struct SafeFloat AMMLOFAEBPF;           // 15-256
+        struct SafeFloat NMOEINCFOIL;           // 16-272
+        struct SafeFloat MDJFMKMEIIN;           // 17-288
+        struct SafeFloat BHLONKDLCLC;           // 18-304
+        struct SafeFloat NJPBPIJDNBD;           // 19-320
+        struct SafeFloat GDEJAPKOKFN;           // 20-336
+        struct SafeFloat BEMFDLDEKAF;           // 21-352
+        struct SafeFloat GNFEHPLABAM;           // 22-368
+        struct SafeFloat AGJJLGONEPJ;           // 23-384
+        struct SafeFloat ALHFLGABIBG;           // 24-400
+        struct SafeFloat NAFKFNENFAE;           // 25-416
+        struct SafeFloat GMLBLPOKMPM;           // 26-432
+        struct SafeFloat MHDHODBFKOJ;           // 27-448
+        struct SafeFloat DFAMAMIOLDF;           // 28-464
+        struct SafeFloat HIJAAGIAPBJ;           // 29-480
+        struct SafeFloat BGGDHGGOIIB;           // 30-496
+        struct SafeFloat IGPLDEFLKAP;           // 31-512
+        struct SafeFloat LGJFLMNLEBJ;           // 32-528
+        struct SafeFloat ECKCEIIANJI;           // 33-544
+        struct SafeFloat EILLOLJEPBP;           // 34-560
+        struct SafeFloat FDICILELCAM;           // 35-576
+        struct SafeFloat KGKBEKECCKL;           // 36-592
+        struct SafeFloat OEHJIEGCDCD;           // 37-608
+        struct SafeFloat GLKLDAGLMLD;           // 38-624
+        struct SafeFloat OPMENIDKNGK;           // 39-640
+        struct SafeFloat LNCCLOMPFHJ;           // 40-656
+        struct SafeFloat LJGDKDNPCFL;           // 41-672
+        struct SafeFloat LAHCEIHKHEH;           // 42-688
+        struct SafeFloat FENPPKOPDBD;           // 43-704
+        struct SafeFloat JPCAGGFKDFA;           // 44-720
+        struct SafeFloat JOOMCGNILPB;           // 45-736
+        struct SafeFloat ECIBKJPMIJP;           // 46-752
+        struct SafeFloat KIFAFBPPIDJ;           // 47-768
+        struct SafeFloat BFFIGNMHPJC;           // 48-784
+        struct SafeFloat JJHFKGEPMKO;           // 49-800
+        struct SafeFloat HKKDJJOFCIM;           // 50-816
+        struct SafeFloat KJFMGICOGEE;           // 51-832
+        struct SafeFloat HOFOFLJJPGB;           // 52-848
+        struct SafeFloat CLIKAEMOJLA;           // 53-864
+        struct SafeFloat HOEBPCCODAJ;           // 54-880
+        struct SafeFloat PEKFECEPDEL;           // 55-896
+        struct SafeFloat GPKMLFEGPHE;           // 56-912
+        struct SafeFloat GFAEBLKAJNB;           // 57-928
+        struct SafeFloat HJADDAMBMJA;           // 58-944
+        struct SafeFloat BLIFPELOGIN;           // 59-960
+        struct SafeFloat BKIPGJPBPMK;           // 60-976
+        struct SafeFloat DFCCKCEIEGB;           // 61-992
+        struct SafeFloat IGAMOIDDIFE;           // 62-1008
+        struct SafeFloat EOBHDMLFNGI;           // 63-1024
+        struct SafeFloat MIFGEHHLABD;           // 64-1040
+        struct SafeFloat LKJMENMPGBO;           // 65-1056
+        struct SafeFloat FGICMKCHLFG;           // 66-1072
+        struct SafeFloat KHEHPPLEGCF;           // 67-1088
+        struct SafeFloat GHCNGBFPABP;           // 68-1104
+        struct SafeFloat OFAGIKILIEB;           // 69-1120
+        struct SafeFloat BPJGHCMEAJA;           // 70-1136
+        struct SafeFloat HHLNPMMOEDH;           // 71-1152
+        struct SafeFloat DAJCINDIGAN;           // 72-1168
+        struct SafeFloat KBDMLOCNCMH;           // 73-1184
+        struct SafeFloat DIFHLDCEOIH;           // 74-1200
+        struct SafeFloat NCOFCJBGPJC;           // 75-1216
+        struct SafeFloat IPCJMLNCPKM;           // 76-1232
+        struct SafeFloat OCIBHGOMJFF;           // 77-1248
+        struct SafeFloat POMOHEHHMGH;           // 78-1264
+        struct SafeFloat DKOJCAPOFBK;           // 79-1280
+        struct SafeFloat EHHLLDIIILD;           // 80-1296
+        struct SafeFloat BOLFGJOHOIA;           // 81-1312
+        struct SafeFloat KPDAAOIPIOL;           // 82-1328
+        struct SafeFloat ILDKJPKJEIA;           // 83-1344
+        struct SafeFloat JLGMEOHCIHH;           // 84-1360
+        struct SafeFloat APEFFAPLJHB;           // 85-1376
+        struct SafeFloat MOPNGNANEGC;           // 86-1392
+        struct SafeFloat AKNEEOAAKMN;           // 87-1408
+        struct SafeFloat JLKKEADCBJD;           // 88-1424
+        struct SafeFloat IAPMABEMEMG;           // 89-1440
+        struct SafeFloat HCBNKNMHPLF;           // 90-1456
+        struct SafeFloat HCEFAFCDMPC;           // 91-1472
+        ElementType__Enum elemType;             // 92-1488
+        int32_t pad;
+        struct SafeFloat weight;                // 93-1496
+        struct SafeFloat endure;                // 94-1512
+        struct SafeFloat endureShake;           // 95-1528
+        struct SafeFloat gaugeLength;           // 96-1544
+        struct SafeFloat waneSpeed;             // 97-1560
+        struct SafeFloat recoverTime;           // 98-1576
+        struct SafeFloat endurance;             // 99-1592
+        struct FixedBoolStack* denyLockOn;      // 100-1608
+        struct FixedBoolStack* isInvincible;    // 101-1616
+        struct FixedBoolStack* islockHP;        // 102-1624
+        struct FixedBoolStack* isNoheal;        // 103-1632
+        struct FixedBoolStack* isGhostToAllied; // 104-1640
+        struct FixedBoolStack* isGhostToEnemy;  // 105-1648
+        struct FixedBoolStack* canTriggerBullet;// 106-1656
+        struct FixedBoolStack* denyElementStick;// 107-1664
+        struct LCAbilityState* _ability;        // 108-1672
+        bool useAbilityProperty;                // 109-1680
     };
 
     struct CombatProperty {

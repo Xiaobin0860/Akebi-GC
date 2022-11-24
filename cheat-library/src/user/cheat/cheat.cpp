@@ -112,8 +112,8 @@ namespace cheat
 //			FEAT_INST(FakeTime),
 //			FEAT_INST(GameSpeed),
 //
-//			FEAT_INST(ChestTeleport),
-//			FEAT_INST(OculiTeleport),
+			FEAT_INST(ChestTeleport),
+			FEAT_INST(OculiTeleport),
 //			FEAT_INST(MapTeleport),
 //			FEAT_INST(CustomTeleports),
 //

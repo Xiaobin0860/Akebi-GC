@@ -409,65 +409,65 @@ std::string ILPatternScanner::ComputeGenericParamsPrefix(const Il2CppGenericInst
 	return paramsPrefix.str();
 }
 
-//std::string ILPatternScanner::ComputeInspectorClassName(const Il2CppClass* klass)
-//{
-//	std::string className = il2cpp_class_get_name(const_cast<Il2CppClass*>(klass));
-//
-//	std::stringstream fullNameStream;
-//
-//	if (className != "<Module>")
-//	{
-//		className = SubstrFromLastOccur(className, '.');
-//		ReplaceAllOccur(className, '`', '_');
-//		fullNameStream << className;
-//	}
-//
-//	bool isInflated = il2cpp_class_is_inflated(klass);
-//	bool isGeneric = il2cpp_class_is_generic(klass);
-//	
-//	Il2CppGenericClass* genericClass = klass->generic_class;
-//	if (isGeneric || !isInflated || genericClass == nullptr)
-//		return fullNameStream.str();
-//
-//	const Il2CppGenericInst* classInst = genericClass->context.class_inst;
-//	if (classInst != nullptr)
-//		fullNameStream << "_" << ComputeGenericParamsPrefix(classInst) << "_";
-//	return fullNameStream.str();
-//}
+std::string ILPatternScanner::ComputeInspectorClassName(const Il2CppClass* klass)
+{
+	std::string className = il2cpp_class_get_name(const_cast<Il2CppClass*>(klass));
 
-//std::string ILPatternScanner::ComputeInspectorMethodName(const MethodInfo* method)
-//{
-//	static std::map<std::string, uint32_t> countNames;
-//
-//	Il2CppClass* klass = il2cpp_method_get_class(method);
-//	std::string methodName = il2cpp_method_get_name(method);
-//
-//	std::stringstream fullNameStream;
-//
-//	fullNameStream << ComputeInspectorClassName(klass);
-//
-//	fullNameStream << "_" << methodName;
-//
-//	//bool isInflated = il2cpp_method_is_inflated(method);
-//	//bool isGeneric = il2cpp_method_is_generic(method);
-//
-//	//const Il2CppGenericMethod* genericMethod = method->genericMethod;
-//	//if (isGeneric || !isInflated || genericMethod == nullptr)
-//	//	return fullNameStream.str();
-//
-//	std::string currentNamePart = fullNameStream.str();
-//	if (countNames.count(currentNamePart) == 0)
-//	{
-//		countNames[currentNamePart] = 0;
-//		return fullNameStream.str();
-//	}
-//
-//	auto& count = countNames[currentNamePart];
-//	count++;
-//	fullNameStream << "_" << count;
-//
-//	return fullNameStream.str();
-//}
+	std::stringstream fullNameStream;
+
+	if (className != "<Module>")
+	{
+		className = SubstrFromLastOccur(className, '.');
+		ReplaceAllOccur(className, '`', '_');
+		fullNameStream << className;
+	}
+
+	bool isInflated = il2cpp_class_is_inflated(klass);
+	bool isGeneric = il2cpp_class_is_generic(klass);
+	
+	Il2CppGenericClass* genericClass = klass->generic_class;
+	if (isGeneric || !isInflated || genericClass == nullptr)
+		return fullNameStream.str();
+
+	const Il2CppGenericInst* classInst = genericClass->context.class_inst;
+	if (classInst != nullptr)
+		fullNameStream << "_" << ComputeGenericParamsPrefix(classInst) << "_";
+	return fullNameStream.str();
+}
+
+std::string ILPatternScanner::ComputeInspectorMethodName(const MethodInfo* method)
+{
+	static std::map<std::string, uint32_t> countNames;
+
+	Il2CppClass* klass = il2cpp_method_get_class(method);
+	std::string methodName = il2cpp_method_get_name(method);
+
+	std::stringstream fullNameStream;
+
+	fullNameStream << ComputeInspectorClassName(klass);
+
+	fullNameStream << "_" << methodName;
+
+	//bool isInflated = il2cpp_method_is_inflated(method);
+	//bool isGeneric = il2cpp_method_is_generic(method);
+
+	//const Il2CppGenericMethod* genericMethod = method->genericMethod;
+	//if (isGeneric || !isInflated || genericMethod == nullptr)
+	//	return fullNameStream.str();
+
+	std::string currentNamePart = fullNameStream.str();
+	if (countNames.count(currentNamePart) == 0)
+	{
+		countNames[currentNamePart] = 0;
+		return fullNameStream.str();
+	}
+
+	auto& count = countNames[currentNamePart];
+	count++;
+	fullNameStream << "_" << count;
+
+	return fullNameStream.str();
+}
 
 void ILPatternScanner::LoadUsage()
 {
@@ -576,35 +576,35 @@ void ILPatternScanner::LoadMetadata()
 
 void ILPatternScanner::LoadClassMethods(Il2CppClass* klass)
 {
-	//void* iter = nullptr;
-	//const MethodInfo* method = nullptr;
-	//std::string className = il2cpp_class_get_name(klass);
-	//do
-	//{
-	//	method = il2cpp_class_get_methods(klass, &iter);
-	//	if (method == nullptr)
-	//		break;
+	void* iter = nullptr;
+	const MethodInfo* method = nullptr;
+	std::string className = il2cpp_class_get_name(klass);
+	do
+	{
+		method = il2cpp_class_get_methods(klass, &iter);
+		if (method == nullptr)
+			break;
 
-	//	uintptr_t methodPtr = *(uintptr_t*)method;
-	//	if (methodPtr == 0)
-	//		continue;
+		uintptr_t methodPtr = *(uintptr_t*)method;
+		if (methodPtr == 0)
+			continue;
 
-	//	std::string methodName = ComputeInspectorMethodName(method);
+		std::string methodName = ComputeInspectorMethodName(method);
 
-	//	m_MethodNameMap[methodName] = methodPtr;
-	//	//m_MethodPointerMap[methodPtr] = name;
-	//} while (method);
+		m_MethodNameMap[methodName] = methodPtr;
+		//m_MethodPointerMap[methodPtr] = name;
+	} while (method);
 
-	//iter = nullptr;
-	//const Il2CppClass* nested = nullptr;
-	//do
-	//{
-	//	nested = il2cpp_class_get_nested_types(klass, &iter);
-	//	if (nested == nullptr)
-	//		break;
-	//	LoadClassMethods((Il2CppClass*)nested);
+	iter = nullptr;
+	const Il2CppClass* nested = nullptr;
+	do
+	{
+		nested = il2cpp_class_get_nested_types(klass, &iter);
+		if (nested == nullptr)
+			break;
+		LoadClassMethods((Il2CppClass*)nested);
 
-	//} while (true);
+	} while (true);
 }
 
 // 

@@ -16,6 +16,125 @@
 #include <helpers.h>
 #include <imgui_internal.h>
 
+namespace {
+std::string dumps_dir;
+}
+
+void init_dump_dir()
+{
+    dumps_dir = (util::GetCurrentPath() / "dumps/").string();
+    if (!std::filesystem::is_directory(dumps_dir)) {
+        std::filesystem::create_directories(dumps_dir);
+    }
+}
+
+uintptr_t g_base = 0;
+
+void dump_class(Il2CppClass* klass)
+{
+    auto space_name = il2cpp_class_get_namespace(klass);
+    auto class_name = il2cpp_class_get_name(klass);
+    if (!class_name) {
+        LOG_WARNING("no name for Il2CppClass %p", klass);
+        return;
+    }
+    std::string name;
+    if (space_name && strlen(space_name)) {
+        name.append(space_name).append("_");
+    }
+    name.append(class_name);
+    LOG_INFO("dump %s", name.c_str());
+    std::ofstream of;
+    of.open(dumps_dir + name + ".h", std::ios::out | std::ios::binary);
+    //fields
+    {
+        of << "struct " << name << "__Fields" << " {" << std::endl;
+        void* iter = nullptr;
+        FieldInfo* info = nullptr;
+        int idx = 0;
+        do
+        {
+            info = il2cpp_class_get_fields(klass, &iter);
+            if (info == nullptr) {
+                break;
+            }
+            //const char* fname = (const char*)(int64_t(info->name) - 0x1CA93F007231A55Fi64);
+            const char* fname = il2cpp_field_get_name(info);
+            if (!fname) {
+                LOG_WARNING("no name for Field %d klass=%p, filed=%p", idx, klass, info);
+                continue;
+            }
+            auto typ = il2cpp_field_get_type(info);
+            if (!typ) {
+                LOG_WARNING("no typ for Field %d %s.%s klass=%p, filed=%p", idx, class_name, fname, klass, info);
+                continue;
+            }
+            auto tname = il2cpp_type_get_name(typ);
+            if (!tname) {
+                LOG_WARNING("no tname for Field %d %s.%s klass=%p, filed=%p, typ=%p", idx, class_name, fname, klass, info, typ);
+                continue;
+            }
+            auto offset = il2cpp_field_get_offset(info);
+            of << "    " << tname << " " << fname << ";";
+            of << " // " << idx << "-" << offset << std::endl;
+            ++idx;
+        } while (info);
+        of << "};" << std::endl;
+    }
+    //methods
+    {
+        void* iter = nullptr;
+        MethodInfo* info = nullptr;
+        int idx = 0;
+        do
+        {
+            info = il2cpp_class_get_methods(klass, &iter);
+            if (info == nullptr) {
+                break;
+            }
+            const char* fname = il2cpp_method_get_name(info);
+            if (!fname) {
+                LOG_WARNING("no name for Method %d klass=%p, method=%p", idx, klass, info);
+                continue;
+            }
+            //LOG_TRACE("%d fname=%s", idx, fname);
+            auto typ = il2cpp_method_get_return_type(info);
+            if (!typ) {
+                LOG_WARNING("no typ for Field %d %s klass=%p, filed=%p", idx, name.c_str(), klass, info);
+                continue;
+            }
+            //LOG_TRACE("%d return_type=%p", idx, typ);
+            auto tname = il2cpp_type_get_name(typ);
+            if (!tname) {
+                LOG_WARNING("no return_type_name for Field %d %s klass=%p, filed=%p, typ=%p", idx, name.c_str(), klass, info, typ);
+                continue;
+            }
+            //LOG_TRACE("%d ret_name=%p", idx, tname);
+            auto offst = uintptr_t(info->methodPointer) - g_base;
+            char soffset[32] = { 0 };
+            sprintf_s(soffset, "%p", offst);
+            of << "DO_APP_FUNC(" << soffset << ", " << tname << ", " << fname << ", (" << name << "* __this, ";
+            auto ct = il2cpp_method_get_param_count(info);
+            //LOG_TRACE("%d param_count=%d", idx, ct);
+            for (auto i = 0u; i < ct; ++i) {
+                auto param = il2cpp_method_get_param(info, i);
+                //LOG_TRACE("%d param=%p", i, param);
+                auto tname = il2cpp_type_get_name(param);
+                //LOG_TRACE("%d param_tname=%p", i, tname);
+                of << tname << " " << "p" << i << ", ";
+            }
+            of << "MethodInfo* method));" << std::endl;
+            ++idx;
+        } while (info);
+    }
+    of.close();
+}
+void dump_obj(Il2CppObject* obj)
+{
+    auto klass = il2cpp_object_get_class(obj);
+    dump_class(klass);
+}
+
 // This module is for debug purpose, and... well.. it's shit coded ^)
 namespace cheat::feature
 {
@@ -248,6 +367,13 @@ namespace cheat::feature
             entityPos.x, entityPos.y, entityPos.z
         );
         ImGui::SetClipboardText(entityDetails.c_str());
+
+        dump_obj((Il2CppObject*)entity->raw());
+        auto combat = entity->combat();
+        if (combat != nullptr) {
+            auto prop = combat->fields._combatProperty_k__BackingField;
+            dump_obj((Il2CppObject*)prop);
+        }
     }
 
     void DrawCombatDetails(game::Entity* entity)
